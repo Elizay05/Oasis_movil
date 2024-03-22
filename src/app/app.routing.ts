@@ -11,7 +11,7 @@ import { RegistroComponent } from "./components/registro/registro";
 
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'perfil', pathMatch: 'full' },
   { path: "home", component: HomeComponent },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
