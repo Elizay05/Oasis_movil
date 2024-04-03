@@ -8,10 +8,13 @@ import { PerfilComponent } from "./components/perfil/perfil";
 import { QrMesaComponent } from "./components/qr_mesa/qr_mesa";
 import { PedidoComponent } from "./components/pedido/pedido";
 import { RegistroComponent } from "./components/registro/registro";
+import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
+import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
+
 
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'perfil', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: "home", component: HomeComponent },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -22,6 +25,8 @@ export const appRoutes: any = [
   { path: "qr_mesa", component: QrMesaComponent},
   { path: "pedido", component: PedidoComponent},
   { path: "registro", component: RegistroComponent},
+  { path: "editarperfil", component: EditarPerfilComponent},
+  { path: "productos_admin", component: ProductosAdminComponent }
 ];
 
 export const appComponents: any = [
@@ -35,4 +40,6 @@ export const appComponents: any = [
   QrMesaComponent,
   PedidoComponent,
   RegistroComponent,
+  EditarPerfilComponent,
+  ProductosAdminComponent,
 ];

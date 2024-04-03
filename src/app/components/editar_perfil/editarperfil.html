@@ -21,10 +21,18 @@
                 </FlexboxLayout>
                 <FlexboxLayout class="card-body">
                   <FlexboxLayout class="contenido">
-                    <label class="fas" text="&#xf007; Juan Pablo" ></label>
-                    <label class="fas" text="&#xf0e0; juanpa@gmail.com"></label>
-                    <label class="fas" text="&#xf073; 24/03/2001"></label>
-                    <label class="fas" text="&#xf095; 3004006948"></label>
+                    <StackLayout class="input-field" marginBottom="30">
+                        <TextField hint="Juan Pablo"></TextField>
+                    </StackLayout>
+                    <StackLayout class="input-field" marginBottom="30">
+                        <TextField hint="juan@gmail.com"></TextField>
+                    </StackLayout>
+                    <StackLayout class="input-field" marginBottom="30">
+                        <TextField hint="24/03/2001"></TextField>
+                    </StackLayout>
+                    <StackLayout class="input-field" marginBottom="30">
+                        <TextField hint="3004006948"></TextField>
+                    </StackLayout>
                   </FlexboxLayout>
                 </FlexboxLayout>
               </FlexboxLayout>             
@@ -34,5 +42,5 @@
     </StackLayout>
 </DockLayout>
 <FlexboxLayout class="botones">
-  <Button class="butonlabelrosa" text="Editar perfil" [nsRouterLink]="['/editarperfil']" pageTransition="slide" clearHistory="true" backgroundColor="#FC4664"></Button>
+  <Button class="butonlabelrosa" text="Confimar" [nsRouterLink]="['#']" pageTransition="slide" clearHistory="true" backgroundColor="#FC4664"></Button>
 </FlexboxLayout>

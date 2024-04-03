@@ -138,17 +138,20 @@ This is where the vast majority of your CSS code goes. */
     margin-bottom: 30;
 }
 
+
+
 .butonlabelrojo{
     margin-top: 20;
     text-align: center;
     height: 45;
     width: 200;
     font-size: 13;
-    background-color: #792020;
+    background-color: #810c0c;
     color: white;
     border-radius: 20;
     margin-bottom: 30;
 }
+
 
 .butonIr{
     height: 30;
