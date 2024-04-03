@@ -8,6 +8,7 @@ import { PerfilComponent } from "./components/perfil/perfil";
 import { QrMesaComponent } from "./components/qr_mesa/qr_mesa";
 import { PedidoComponent } from "./components/pedido/pedido";
 import { RegistroComponent } from "./components/registro/registro";
+import { ProductosComponent } from "./components/productos /productos";
 
 
 export const appRoutes: any = [
@@ -22,6 +23,7 @@ export const appRoutes: any = [
   { path: "qr_mesa", component: QrMesaComponent},
   { path: "pedido", component: PedidoComponent},
   { path: "registro", component: RegistroComponent},
+  { path: "productos", component: ProductosComponent},
 ];
 
 export const appComponents: any = [
@@ -35,4 +37,5 @@ export const appComponents: any = [
   QrMesaComponent,
   PedidoComponent,
   RegistroComponent,
+  ProductosComponent,
 ];
