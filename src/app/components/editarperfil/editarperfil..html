@@ -1,0 +1,35 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="Nunito text-medium">Iniciar Sesión</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
+            <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">Inicia sesión con su correo electrónico y contraseña</label>
+
+            <FlexboxLayout class="formulario" flexDirection="column">
+                <StackLayout class="input-field" marginBottom="30">
+                    <TextField hint="Dirección de Correo Electrónico"></TextField>
+                </StackLayout>
+
+                <StackLayout class="input-field">
+                    <TextField hint="Contraseña" secure="True"></TextField>
+                </StackLayout>
+                <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
+            </FlexboxLayout>
+
+            <button class="butonlabelrosa Cabin" (tap)="onIniciarSesion()" text="Iniciar Sesión"></button>
+
+            <FlexboxLayout width="90%">
+                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2"></FlexboxLayout>
+            </FlexboxLayout>
+
+            <label class="Cabin textAlignCenter contraseñaOlvidada" marginRight="15"  marginTop="15" fontSize="14">¿No tienes una cuenta?</label>
+            <label class="butonlabelmorado Cabin" (tap)="onRegistrarse()" text="Registrarse"></label>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>
