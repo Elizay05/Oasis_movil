@@ -204,7 +204,7 @@ This is where the vast majority of your CSS code goes. */
 .far {
     font-family: "Font Awesome 5 Free", "fa-regular-400";
     font-weight: 200;
-    font-size: 30px;
+    font-size: 0px;
     background-color: white;
 }
 
@@ -213,12 +213,14 @@ This is where the vast majority of your CSS code goes. */
     font-weight: 400;
     font-size: 30px;
     background-color: white;
+    
 }
 
 .fas {
     font-family: "Font Awesome 5 Free", "fa-solid-900";
     font-weight: 400;
-    font-size: 30px;
-    background-color: white;
+    font-size: 23px;
+    margin-bottom: 2.9%;
+    
 
 }

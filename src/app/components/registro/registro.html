@@ -11,24 +11,34 @@
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
             <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">¡Crea una cuenta y empieza a disfrutar de nuestros servicios!</label>
 
+
             <FlexboxLayout class="formulario" flexDirection="column">
+                <StackLayout class="input-field" marginBottom="30">
+                    <TextField hint="Nombre completo"></TextField>
+                </StackLayout>
+
                 <StackLayout class="input-field" marginBottom="30">
                     <TextField hint="Dirección de Correo Electrónico"></TextField>
                 </StackLayout>
 
-                <StackLayout class="input-field">
+                <StackLayout class="input-field" flexDirection="column" marginBottom="30">
                     <TextField hint="Contraseña" secure="True"></TextField>
                 </StackLayout>
-                <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
-            </FlexboxLayout>
 
-            <label class="butonlabelrosa Cabin" text="Iniciar Sesión"></label>
+                <StackLayout class="input-field" marginBottom="30" flexDirection="column">
+                    <TextField hint="Teléfono"></TextField>
+                </StackLayout>
+
+                <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
+                    <Label text="Soy mayor de edad" marginRight="10"></Label>
+                    <Switch></Switch>
+                </StackLayout>
+
+            </FlexboxLayout>
 
             <FlexboxLayout width="90%">
-                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2"></FlexboxLayout>
+                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" morginBottom="15"></FlexboxLayout>
             </FlexboxLayout>
-
-            <label class="Cabin textAlignCenter contraseñaOlvidada" marginRight="15"  marginTop="15" fontSize="14">¿No tienes una cuenta?</label>
             <label class="butonlabelmorado Cabin" text="Registrarse"></label>
         </StackLayout>
     </DockLayout>
