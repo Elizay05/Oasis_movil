@@ -3,9 +3,9 @@ import { Router } from "@angular/router";
 import { Page, TextField } from '@nativescript/core';
 
 @Component({
-  selector: 'perfil',
-  templateUrl: './perfil.html',
-  styleUrls: ['./perfil.css']
+  selector: 'editarperfil',
+  templateUrl: './editarperfil.html',
+  styleUrls: ['./editarperfil.css']
 
   
 })
