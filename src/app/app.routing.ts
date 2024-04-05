@@ -12,7 +12,7 @@ import { ProductosComponent } from "./components/productos /productos";
 
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'perfil', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: "home", component: HomeComponent },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },

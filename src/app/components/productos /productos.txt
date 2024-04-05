@@ -62,7 +62,7 @@ ERRORES
 
     <Button text="Regresar..." [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true" id="boton"></Button>
 
-</ScrollView>123
+</ScrollView>
 
 
 
