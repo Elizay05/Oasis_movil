@@ -28,5 +28,9 @@ export class HomeComponent {
   onQrMesa(){
     this.router.navigate(['qr_mesa'])
   }
+  onProductos(){
+    const state = { returnToHome: true };
+    this.router.navigate(['productos'], { state });
+  }
 }
 

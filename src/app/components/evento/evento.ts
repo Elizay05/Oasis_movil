@@ -17,6 +17,7 @@ export class EventoComponent {
   }
 
   public obtenerTodos(){
+    console.log('eventos')
     this.apiService.getEvents().subscribe((data: any[]) => {
         console.log(data);
         this.eventos = data;

@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  apiUrl = 'http://10.171.68.196:8000/Oasis/api/1.0';
+  apiUrl = 'http://10.171.68.190:8001/Oasis/api/1.0';
 
   constructor(private http: HttpClient) { }
 
   getEvents(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/evento`);
+    return this.http.get<any[]>(`${this.apiUrl}/evento/`);
   }
 
   getRegisterById(id: number): Observable<any> {
@@ -20,7 +20,7 @@ export class ApiService {
   }
 
   addRegister(post: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/evento`, post);
+    return this.http.post<any>(`${this.apiUrl}/evento/`, post);
   }
 
   updateRegister(id: number, post: any): Observable<any> {

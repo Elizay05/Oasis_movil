@@ -1,6 +1,5 @@
 <ScrollView>
-    <DockLayout backgroundColor="#000000">
-        <StackLayout>
+        <StackLayout backgroundColor="#000000">
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
                 <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
@@ -10,8 +9,9 @@
                 <Image src="~/app/images/cart.png"></Image>
                 </FlexboxLayout>
             </FlexboxLayout>
-
-            <FlexboxLayout class="blockEventos" flexDirection="column">
+  <!-- No se ve nada aqui lo que hisieron aparece vacio -->          
+            <StackLayout >
+                <label text="hola mundo"></label>
                 <FlexboxLayout class="cardEventos" flexDirection="column" *ngFor="let i of eventos">
                     <FlexboxLayout class="headCardEventos">
                         <FlexboxLayout class="Info" flexDirection="column">
@@ -34,7 +34,6 @@
                         <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['info_evento', i.id]"></label>
                     </FlexboxLayout>
                 </FlexboxLayout>
-            </FlexboxLayout>
+            </StackLayout>
         </StackLayout>
-    </DockLayout>
 </ScrollView>
