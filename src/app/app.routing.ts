@@ -10,6 +10,7 @@ import { PedidoComponent } from "./components/pedido/pedido";
 import { RegistroComponent } from "./components/registro/registro";
 import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
 import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
+import { NoticiasComponent } from "./components/noticias/noticias";
 
 
 
@@ -26,7 +27,8 @@ export const appRoutes: any = [
   { path: "pedido", component: PedidoComponent},
   { path: "registro", component: RegistroComponent},
   { path: "editarperfil", component: EditarPerfilComponent},
-  { path: "productos_admin", component: ProductosAdminComponent }
+  { path: "productos_admin", component: ProductosAdminComponent },
+  { path: "noticias", component: NoticiasComponent },
 ];
 
 export const appComponents: any = [
@@ -42,4 +44,5 @@ export const appComponents: any = [
   RegistroComponent,
   EditarPerfilComponent,
   ProductosAdminComponent,
+  NoticiasComponent,
 ];

@@ -1,0 +1,34 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="Nunito text-medium">Noticias</label>
+                </FlexboxLayout>
+                <FlexboxLayout class="Cart">
+                <Image src="~/app/images/cart.png"></Image>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <FlexboxLayout class="blockEvento" flexDirection="column">
+                <GridLayout rows="auto, auto">
+                    <Image src="~/app/images/terraza.jpg" row="0" borderRadius="10"></Image>
+
+                </GridLayout>
+                <FlexboxLayout class="Info_Evento" flexDirection="column">
+                    <label class="Cabin titulo" text="Nueva Terraza" fontSize="20" whiteSpace="normal"></label>
+                    <FlexboxLayout flexDirection="column" height="auto">
+                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Únete a nosotros en una velada especial mientras rendimos homenaje a nuestros seres queridos en el Día de los Muertos. Nuestro bar se transformará en un espacio lleno de color, alegría y respeto, donde la tradición y la diversión se entrelazan de manera única."></label>
+                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Qué te espera?"></label>
+                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🕯️ Altar de Ofrendas"></label>
+                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="💀 Experiencia al aire libre"></label>
+                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🎶 Música Tradicional"></label>
+                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🍹 Cócteles Especiales"></label>
+                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🎁 Premios y Sorpresas"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout> 
+            </FlexboxLayout>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>
