@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  apiUrl = 'http://10.171.68.190:8001/Oasis/api/1.0';
+  apiUrl = 'http://10.171.68.190:8000/Oasis/api/1.0';
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,70 @@
+
+.infoPedido{
+    margin-top: 10;
+    padding: 10, 10, 10, 15;
+    background-color: rgb(68, 68, 68);
+    border-radius: 20;
+    font-size: 16;
+}
+.cardProducto{
+    background-color: black;
+    padding: 10, 10;
+    border-radius: 20;
+    margin-bottom: 10;
+    height: auto;
+}
+.img_producto{
+    width: 70;
+    height: 70;
+    border-radius: 20;
+    stretch: fill;
+    margin-right: 5;
+}
+
+.img_producto{
+    width: 70;
+    height: 80;
+    border-radius: 20;
+    stretch: fill;
+    margin-right: 5;
+}
+
+.icon_menos{
+    width: 40;
+    border-radius: 100%;
+}
+
+.info_producto{
+    justify-content: space-between;
+}
+
+.botones_agregar{
+    justify-content: space-between;
+    width: 120;
+}
+
+.butonlabelamarillo{
+    margin-top: 20;
+    text-align: center;
+    height: 45;
+    width: 200;
+    font-size: 13;
+    background-color: #4e4c4c;
+    color: rgb(251, 255, 0);
+    border-radius: 20;
+    margin-bottom: 30;
+}
+
+.butonlabelrojo{
+    margin-top: 20;
+    text-align: center;
+    height: 45;
+    width: 200;
+    font-size: 13;
+    background-color: #4e4c4c;
+    color: rgb(141, 24, 24);
+    border-radius: 20;
+    margin-bottom: 30;
+}
+
+
