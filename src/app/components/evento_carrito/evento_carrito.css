@@ -2,7 +2,14 @@
     padding-left: 20;
     padding-right: 20;
 }
-
+.Imagen_Evento {
+    height: 200;
+}
+.Imagen_Evento Image{
+    stretch: fill;
+    height: auto;
+    border-radius: 10;
+}
 .Info_Evento{
     margin-top: 20;
 }

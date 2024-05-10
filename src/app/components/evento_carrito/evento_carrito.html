@@ -3,7 +3,7 @@
         <StackLayout>
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
-                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onInfoEve(eve_carrito)"></label>
                 <label class="Nunito text-medium">Reservar Evento</label>
                 </FlexboxLayout>
                 <FlexboxLayout class="Cart">
@@ -12,17 +12,14 @@
             </FlexboxLayout>
 
             <FlexboxLayout class="blockEvento" flexDirection="column">
-                <GridLayout rows="auto, auto">
-                    <Image src="~/app/images/Dia_muertos.png" row="0" borderRadius="10"></Image>
-                    <!--
-                    <Image src="~/app/images/cart_purple2.png" row="0" width="45" height="41" horizontalAlignment="right" verticalAlignment="top" margin="10" borderRadius="100"></Image>
-                    -->
-                </GridLayout>
+                <FlexboxLayout class="Imagen_Evento">
+                    <Image src="{{eve_carrito.foto}}" row="0" borderRadius="10"></Image>
+                </FlexboxLayout>
                 <FlexboxLayout class="Info_Evento" flexDirection="column">
-                    <label class="Cabin titulo" text="Celebración del día de muertos" fontSize="20" whiteSpace="normal"></label>
+                    <label class="Cabin titulo" text="{{eve_carrito.nombre}}" fontSize="20" whiteSpace="normal"></label>
                     <FlexboxLayout>
                         <label class="far" id="calendario" text="&#xf133;"></label>
-                        <label class="Cabin fecha" text="20 noviembre 2023"></label>
+                        <label class="Cabin fecha" text="{{eve_carrito.fecha}}"></label>
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia3" marginTop="10"></FlexboxLayout>
                     <FlexboxLayout flexDirection="column" alignItems="center">

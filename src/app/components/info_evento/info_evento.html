@@ -13,7 +13,7 @@
 
             <FlexboxLayout class="blockEvento" flexDirection="column">
                 <GridLayout rows="auto, auto">
-                    <Image src="~/app/images/Dia_muertos.png" row="0" borderRadius="10"></Image>
+                    <Image [src]="foto" class="ImagenEvento" row="0"></Image>
                     <!--
                         <Image src="~/app/images/cart_purple2.png" row="0" width="45" height="41" horizontalAlignment="right" verticalAlignment="top" margin="10" borderRadius="100"></Image>
                     -->
@@ -25,14 +25,7 @@
                         <label class="Cabin fecha" text="{{ info_evento.fecha }}"></label>
                     </FlexboxLayout>
                     <FlexboxLayout flexDirection="column" height="auto">
-                        <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="{{info_evento.descripcion}}"></label>
-                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Únete a nosotros en una velada especial mientras rendimos homenaje a nuestros seres queridos en el Día de los Muertos. Nuestro bar se transformará en un espacio lleno de color, alegría y respeto, donde la tradición y la diversión se entrelazan de manera única."></label>
-                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Qué te espera?"></label>
-                        <label class="Cabin" marginTop="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🕯️ Altar de Ofrendas"></label>
-                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="💀 Maquillaje de Catrina"></label>
-                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🎶 Música Tradicional"></label>
-                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🍹 Cócteles Especiales"></label>
-                        <label class="Cabin" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="🎁 Premios y Sorpresas"></label>
+                        <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" [text]="descripcion"></label>
                     </FlexboxLayout>
                     <label class="Cabin titulo" fontSize="18" text="Especiales" marginTop="15" marginBottom="15"></label>
                     <ScrollView orientation="horizontal">
@@ -53,7 +46,7 @@
                     </ScrollView>
                     <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
                     <FlexboxLayout alignItems="center" justifyContent="center" marginTop="15">
-                        <label class="butonlabelmorado Cabin" (tap)="onCarrito()" text="Agregar al carrito"></label>
+                        <label class="butonlabelmorado Cabin" (tap)="onEveCarrito()" text="Agregar al carrito"></label>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

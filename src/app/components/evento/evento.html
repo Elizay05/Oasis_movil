@@ -22,7 +22,7 @@
                             </FlexboxLayout>
                         </FlexboxLayout> 
                         <FlexboxLayout>
-                            <Image src="~/app/images/pencil.png" [nsRouterLink]="['info_evento', i.id]" width="40" borderRadius="10"></Image>
+                            <Image src="~/app/images/pencil.png" class="pencilEdit" tap="onInfoEve(i)" width="40"></Image>
                         </FlexboxLayout>
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
@@ -31,7 +31,7 @@
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
                     <FlexboxLayout class="botonvermas">
-                        <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['info_evento', i.id]"></label>
+                        <label class="butonlabelrosa Cabin" text="Ver más" (tap)="onInfoEve(i)"></label>
                     </FlexboxLayout>
                 </FlexboxLayout>
             </FlexboxLayout>

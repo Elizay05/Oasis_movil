@@ -2,6 +2,11 @@
     padding-left: 20;
     padding-right: 20;
 }
+.ImagenEvento{
+    stretch: fill;
+    height: 200;
+    border-radius: 10;
+}
 .titulo{
     color: white;
 }

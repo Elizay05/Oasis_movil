@@ -5,6 +5,7 @@ import { Page, TextField } from '@nativescript/core';
 @Component({
   selector: 'qr_mesa',
   templateUrl: './qr_mesa.html',
+  styleUrls: ['./qr_mesa.css'],
 })
 export class QrMesaComponent {
   public constructor(private router: Router, private page: Page) {

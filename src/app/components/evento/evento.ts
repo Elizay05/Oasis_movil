@@ -90,11 +90,12 @@ export class EventoComponent {
             }
         });
 
-  }
-  public editarEve(item){
-    console.log(`Editar Eve: ${item.id}`)
-    this.router.navigate(['eventos-editar'], { queryParams: { id: item.id } });
   }*/
+
+  public onInfoEve(item){
+    console.log(`Info Eve: ${item.id}`)
+    this.router.navigate(['info_evento'], { queryParams: { id: item.id } });
+  }
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
