@@ -28,5 +28,11 @@ export class HomeComponent {
   onQrMesa(){
     this.router.navigate(['qr_mesa'])
   }
+  onNoticias(){
+    this.router.navigate(["noticias"])
+  }
+
+  
 }
+
 

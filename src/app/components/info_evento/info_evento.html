@@ -19,10 +19,10 @@
                     -->
                 </GridLayout>
                 <FlexboxLayout class="Info_Evento" flexDirection="column">
-                    <label class="Cabin titulo" text="{{info_evento.nombre}}" fontSize="20" whiteSpace="normal"></label>
+                    <label class="Cabin titulo" text="{{ info_evento.nombre }}" fontSize="20" whiteSpace="normal"></label>
                     <FlexboxLayout>
                         <label class="far" id="calendario" text="&#xf133;"></label>
-                        <label class="Cabin fecha" text="{{info_evento.fecha}}"></label>
+                        <label class="Cabin fecha" text="{{ info_evento.fecha }}"></label>
                     </FlexboxLayout>
                     <FlexboxLayout flexDirection="column" height="auto">
                         <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="{{info_evento.descripcion}}"></label>

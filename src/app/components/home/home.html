@@ -71,7 +71,7 @@
       </ScrollView>
     </FlexboxLayout>
     <FlexboxLayout class="blockBoton">
-      <label class="butonlabelmorado Cabin" text="Ver menú"></label>
+      <label class="butonlabelmorado Cabin"  text="Ver menú"></label>
     </FlexboxLayout>
 
     <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
@@ -108,9 +108,10 @@
             <label class="Cabin" text="¡Ahora puedes reservar tus eventos VIP!"></label>
             <label class="butonIr Cabin" text="📆 Reservar ahora"></label>
           </FlexboxLayout>
-          <FlexboxLayout class="cardInfo" flexDirection="column">
+          <FlexboxLayout class="cardInfo" flexDirection="column" (Tap)="onNoticias()">
             <Image src="~/app/images/terraza.jpg"></Image>
             <label class="Cabin" text="Contamos con una nueva Terraza"></label>
+            <label ></label>
           </FlexboxLayout>
         </FlexboxLayout>
       </ScrollView>
@@ -123,6 +124,10 @@
     <Button text="Ver Productos" [nsRouterLink]="['/productos']" pageTransition="slide" clearHistory="true"></Button>
 
     <Button text="Reservar eventos" [nsRouterLink]="['/evento']" pageTransition="slide" clearHistory="true"></Button>
+    
+    <Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>
+
+    <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" clearHistory="true"></Button>
 
     <Button text="Salir" (tap)="onExit()"></Button>
   </StackLayout>
