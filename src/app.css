@@ -8,10 +8,12 @@ This is where the vast majority of your CSS code goes. */
 
 .Nunito {
     font-family: "Nunito", "Nunito-Medium";
+    color: white;
 }
 
 .Cabin {
     font-family: "Cabin", "Cabin-Medium";
+    color: white;
 }
 
 
