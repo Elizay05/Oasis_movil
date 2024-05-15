@@ -13,7 +13,7 @@ import { ProductosAdminComponent } from "./components/productos_admin/productos_
 
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'productos', pathMatch: 'full' },
   { path: "home", component: HomeComponent },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -26,6 +26,7 @@ export const appRoutes: any = [
   { path: "registro", component: RegistroComponent},
   { path: "productos", component: ProductosComponent},
   { path: "productos_admin", component: ProductosAdminComponent},
+
 ];
 
 export const appComponents: any = [
