@@ -12,7 +12,15 @@ import { openUrl } from '@nativescript/core/utils';
 })
 export class HomeComponent {
   public constructor(private router: Router, private page: Page) {
-    // Use the component constructor to inject providers.
+    
+    console.log("home")
+    console.info("Averiguando si hay datos...");
+    if (localStorage.getItem('Oasis.token')){
+        console.log("Bienvenido "+JSON.parse( localStorage.getItem('Oasis.user')).nombre+"!!");
+    }
+    else{
+        this.router.navigate(['login']);
+    }
   }
 
   ngOnInit(): void {
@@ -57,6 +65,11 @@ export class HomeComponent {
     } else {
       this.itemsFiltrados = this.todosItems.filter(item => item.categoria === categoria);
     }
+  }
+  public cerrarSesion(private router: Router){
+    console.log("Eliminar sesión...")
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }
 

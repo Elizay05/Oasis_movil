@@ -1,4 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+@Injectable({
+    providedIn: 'root'
+})
+export class ApiService {
+
+    apiUrl = 'http://10.171.68.190:8000/Oasis/api/1.0/token-auth/';
+    headers = {"Authorization": "Token "+ localStorage.getItem('Oasis.token')}
+
+    constructor(private http: HttpClient) {}
+
+    login(datos: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}`, datos);
+    }
+    getRegisterById(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}login/${id}/`, {headers: this.headers});
+    }
+
+    addRegister(post: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}login/`, post, {headers: this.headers});
+    }
+
+    updateRegister(id: number, post: any): Observable<any> {
+        console.log(`datos: ${post.nombre_cat} - ${post.desc}`);
+        return this.http.put<any>(`${this.apiUrl}login/${id}/`, post,{headers: this.headers});
+    }
+
+    deleteRegister(id: number): Observable<any> {
+        return this.http.delete<any>(`${this.apiUrl}login/${id}/`,{headers: this.headers});
+    }
+
+}

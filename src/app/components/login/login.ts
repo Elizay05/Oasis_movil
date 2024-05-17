@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router"; 
 import { Page, TextField } from '@nativescript/core';
+import { ApiService } from './api.service';
+import { Dialogs } from '@nativescript/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -8,19 +11,66 @@ import { Page, TextField } from '@nativescript/core';
   styleUrls:["./login.css"]
 })
 export class LoginComponent {
-  public constructor(private router: Router, private page: Page) {
+  nick: string = "la@la.com";
+  password: string = "123456";
+  public constructor(private router: Router, private apiService: ApiService, private activatedRoute: ActivatedRoute) {
     // Use the component constructor to inject providers.
   }
-  ngOnInit(): void {
-    this.page.actionBarHidden = true;
+  inputChange(args, campo) {
+    // blur event will be triggered when the user leaves the TextField
+    let textField = <UITextField>args.object;
+    if (campo == "nick"){
+        this.nick = textField.text;
+    }
+    else if(campo == "password"){
+        this.password = textField.text;
+    }
+}
+
+public loguear(){
+    let data = {
+        username: this.nick,
+        password: this.password
+    };
+
+    this.apiService.login(data).subscribe((res) => {
+        if (res && res.token.length > 0){
+            console.info(res)
+            localStorage.setItem('Oasis.token', res.token);
+            localStorage.setItem('Oasis.user', JSON.stringify(res.user));
+            Dialogs.alert({
+                title: 'Info!',
+                message: 'Bienvenido!!',
+                okButtonText: 'OK',
+                cancelable: true,
+            });
+            //this.router.navigate(['categorias'], { queryParams: { token: res.token } });
+            this.router.navigate(['home']);
+        }
+    },error => {
+        console.log(error.status)
+        if (error.status == 400){
+            Dialogs.alert({
+                title: 'Alerta',
+                message: 'Usuario o contraseña incorrectos',
+                okButtonText: 'OK',
+                cancelable: true,
+            });
+        }
+        else{
+            Dialogs.alert({
+                title: 'Respuesta:',
+                message: error.error.message,
+                okButtonText: 'OK',
+                cancelable: true,
+            });
+        }
+    });
+}
+  public onRegistrarse(){
+    this.router.navigate(["registro"])
   }
   public onTap(){
     this.router.navigate(["home"])
-  }
-  public onIniciarSesion(){
-    this.router.navigate(["home"])
-  }
-  public onRegistrarse(){
-    this.router.navigate(["registro"])
   }
 }

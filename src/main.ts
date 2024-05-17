@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { appComponents, appRoutes } from './app/app.routing';
 import { HttpClientModule } from '@angular/common/http';
+import * as appSettings from "@nativescript/core/application-settings";
 
 @NgModule({
   declarations: [AppComponent, ...appComponents],
@@ -17,6 +18,28 @@ import { HttpClientModule } from '@angular/common/http';
   schemas: [NO_ERRORS_SCHEMA],
 })
 class AppComponentModule {}
+/* Before we bootstrap, shim the 'localStorage' API with application settings module */
+global.localStorage = {
+  getItem(key: string) {
+      return appSettings.getString(key);
+  },
+  setItem(key: string, value: string) {
+      return appSettings.setString(key, value);
+  },
+  length(){
+      return 0;
+      },
+  clear(){
+      return appSettings.clear();
+  },
+  key(index){
+      return "";
+  },
+  removeItem(key){
+      return appSettings.remove(key);
+  }
+}
+
 
 
 platformNativeScriptDynamic().bootstrapModule(AppComponentModule)
