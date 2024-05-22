@@ -31,5 +31,7 @@ export class ApiService {
     deleteRegister(id: number): Observable<any> {
         return this.http.delete<any>(`${this.apiUrl}login/${id}/`,{headers: this.headers});
     }
-
+    obtenerUrlImage(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}usuarios/${id}/foto`, {headers: this.headers});
+    }
 }

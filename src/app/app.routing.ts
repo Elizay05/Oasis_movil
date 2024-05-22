@@ -14,7 +14,7 @@ import { ProductosAdminComponent } from "./components/productos_admin/productos_
 
 export const appRoutes: any = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: "home", component: HomeComponent },
+  { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
   { path: "evento/info_evento/:id", component: InfoEventoComponent },

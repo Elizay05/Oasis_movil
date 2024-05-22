@@ -11,16 +11,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls:["./login.css"]
 })
 export class LoginComponent {
-  nick: string = "la@la.com";
-  password: string = "123456";
+  email: string = "";
+  password: string = "";
   public constructor(private router: Router, private apiService: ApiService, private activatedRoute: ActivatedRoute) {
     // Use the component constructor to inject providers.
-  }
+    console.info("Averiguando si hay datos...");
+        if (localStorage.getItem('Oasis.token')){
+            console.log("Bienvenido "+JSON.parse( localStorage.getItem('Oasis.user')).nombre+"!!");
+            this.router.navigate(['home']);
+        }
+    }
+  
   inputChange(args, campo) {
     // blur event will be triggered when the user leaves the TextField
     let textField = <UITextField>args.object;
-    if (campo == "nick"){
-        this.nick = textField.text;
+    if (campo == "email"){
+        this.email = textField.text;
     }
     else if(campo == "password"){
         this.password = textField.text;
@@ -29,10 +35,10 @@ export class LoginComponent {
 
 public loguear(){
     let data = {
-        username: this.nick,
+        username: this.email,
         password: this.password
     };
-
+console.log(data)
     this.apiService.login(data).subscribe((res) => {
         if (res && res.token.length > 0){
             console.info(res)

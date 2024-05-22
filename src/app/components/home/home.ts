@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from "@angular/router"; 
+import { ActivatedRoute, Router } from "@angular/router";
 import { exit } from "nativescript-exit";
 import { Page, TextField } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
+import { ApiService } from '../login/api.service';
 
 
 @Component({
@@ -11,16 +12,30 @@ import { openUrl } from '@nativescript/core/utils';
   styleUrls: ['./home.css'],
 })
 export class HomeComponent {
-  public constructor(private router: Router, private page: Page) {
-    
+  rol: string;
+  nombre: string;
+  foto: string;
+  perfil;
+  userId: number;
+  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private apiService: ApiService) {
+
     console.log("home")
     console.info("Averiguando si hay datos...");
-    if (localStorage.getItem('Oasis.token')){
-        console.log("Bienvenido "+JSON.parse( localStorage.getItem('Oasis.user')).nombre+"!!");
+    if (localStorage.getItem('Oasis.token')) {
+      this.perfil = JSON.parse(localStorage.getItem('Oasis.user'))
+      console.log("Bienvenido " + this.perfil.nombre + "!!");
+      this.rol = this.perfil.rol
+      this.nombre = this.perfil.nombre
+      this.foto = this.perfil.foto
     }
-    else{
-        this.router.navigate(['login']);
+    else {
+      this.rol = ""
+      this.nombre = ""
+      this.foto = ""
+      this.router.navigate(['login']);
     }
+    
+
   }
 
   ngOnInit(): void {
@@ -34,14 +49,14 @@ export class HomeComponent {
   onReserva() {
     this.router.navigate(['evento'])
   }
-  onQrMesa(){
+  onQrMesa() {
     this.router.navigate(['qr_mesa'])
   }
-  onProductos(){
+  onProductos() {
     const state = { returnToHome: true };
     this.router.navigate(['productos'], { state });
   }
-  mostrarMapa(){
+  mostrarMapa() {
     openUrl('https://www.google.com/maps/place/SENA+Complejo+Sur+Itag%C3%BC%C3%AD/@6.1809892,-75.6059929,15z/data=!4m6!3m5!1s0x8e46823b07fa76e7:0xd858c9c2ddf4b118!8m2!3d6.1809892!4d-75.6059929!16s%2Fg%2F1hc2vps2d?entry=ttu');// pueden cambiar el sitio yo lo puse en la ubicacion del sena pero pueden moverlo a otra parte si quieren que cuando lo habren les abre el google maps a la ubicacion que se puso aqui
   }
   categorias = ["Cocteles", "Licores", "Comidas", "Aperitivos"];
@@ -66,10 +81,33 @@ export class HomeComponent {
       this.itemsFiltrados = this.todosItems.filter(item => item.categoria === categoria);
     }
   }
-  public cerrarSesion(private router: Router){
+  public cerrarSesion(private router: Router) {
     console.log("Eliminar sesión...")
     localStorage.clear();
     this.router.navigate(['login']);
   }
-}
 
+  public verificarPermisos(rol) {
+    console.log("necesita: " + rol)
+    console.log("tengo: " + this.rol)
+    return rol == this.rol;
+  }
+  onimage(): void {
+    // Obtener el ID del usuario del almacenamiento local
+    this.userId = parseInt(localStorage.getItem('userId'));
+    if (!this.userId || isNaN(this.userId)) {
+      console.error('ID de usuario no válido:', this.userId);
+      return;
+    }
+
+    // Obtener la URL de la imagen del usuario actual
+    this.apiService.obtenerUrlImage(this.userId).subscribe(
+      (data: any) => {
+        this.foto = data.url_imagen; // Asigna la URL de la imagen a la variable 'foto'
+      },
+      error => {
+        console.error('Error al obtener la URL de la imagen:', error);
+      }
+    );
+  }
+}

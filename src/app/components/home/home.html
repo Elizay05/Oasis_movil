@@ -11,10 +11,10 @@
     <StackLayout>
       <FlexboxLayout class="barraNavegacion">
         <FlexboxLayout class="InfoUser">
-          <Image src="~/app/images/logo_user.png" class="img_user"></Image>
+          <Image [src]="foto" class="img_user"></Image>
           <FlexboxLayout flexDirection="column" style="margin-left: 30px;">
-            <label class="text-small Cabin" text="User name"></label>
-            <label class="text-medium Cabin" text="Eler Minton"></label>
+            <label class="text-small Cabin" text="nombre"></label>
+            <label class="text-medium Cabin" [text]="nombre"></label>
           </FlexboxLayout>
         </FlexboxLayout>
         <FlexboxLayout class="Cart">
@@ -126,8 +126,7 @@
 
       <Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>
 
-      <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide"
-        clearHistory="true"></Button>
+      <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" [visibility]="verificarPermisos(1) ? 'visible' : 'collapsed'" clearHistory="true"></Button>
 
       <Button text="Salir" (tap)="onExit()"></Button>
     </StackLayout>

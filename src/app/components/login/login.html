@@ -13,11 +13,14 @@
 
             <FlexboxLayout class="formulario" flexDirection="column">
                 <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Dirección de Correo Electrónico"></TextField>
+                    <TextField hint="Dirección de Correo Electrónico" 
+                    [text]="email"
+                    (textChange)="inputChange($event, 'email')"
+                    placeholder="Usuario"></TextField>
                 </StackLayout>
 
                 <StackLayout class="input-field">
-                    <TextField hint="Contraseña" secure="True"></TextField>
+                    <TextField hint="Contraseña" secure="True" [text]="password" (textChange)="inputChange($event, 'password')"placeholder="Contraseña"secure="true"></TextField>
                 </StackLayout>
                 <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
             </FlexboxLayout>

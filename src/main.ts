@@ -40,6 +40,5 @@ global.localStorage = {
   }
 }
 
-
-
 platformNativeScriptDynamic().bootstrapModule(AppComponentModule)
+
