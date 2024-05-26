@@ -40,6 +40,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
+    this.obtenerFotoUsuario
   }
 
   public onExit(): void {
@@ -104,6 +105,17 @@ export class HomeComponent {
     this.apiService.obtenerUrlImage(this.userId).subscribe(
       (data: any) => {
         this.foto = data.url_imagen; // Asigna la URL de la imagen a la variable 'foto'
+      },
+      error => {
+        console.error('Error al obtener la URL de la imagen:', error);
+      }
+    );
+  }
+  obtenerFotoUsuario(): void {
+    const userId = 1; // Cambia esto según tu lógica para obtener el ID del usuario
+    this.apiService.obtenerFotoUsuario(userId).subscribe(
+      (url: string) => {
+        this.foto = url;
       },
       error => {
         console.error('Error al obtener la URL de la imagen:', error);

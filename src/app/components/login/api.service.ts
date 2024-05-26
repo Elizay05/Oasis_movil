@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    apiUrl = 'http://10.171.68.190:8000/Oasis/api/1.0/token-auth/';
+    apiUrl = 'http://192.168.1.10:8000/Oasis/api/1.0/token-auth/';
     headers = {"Authorization": "Token "+ localStorage.getItem('Oasis.token')}
 
     constructor(private http: HttpClient) {}
@@ -33,5 +33,9 @@ export class ApiService {
     }
     obtenerUrlImage(id: number): Observable<any> {
         return this.http.get<any>(`${this.apiUrl}usuarios/${id}/foto`, {headers: this.headers});
+    }
+    obtenerFotoUsuario(userId: number): Observable<string> {
+        const url = `http://192.168.1.10:8000/tienda/Img_usuarios/${userId}.png`; // Cambia userId según necesites
+        return this.http.get<string>(url);
     }
 }

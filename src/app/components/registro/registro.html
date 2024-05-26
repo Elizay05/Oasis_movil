@@ -3,43 +3,41 @@
         <StackLayout>
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
-                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
-                <label class="Nunito text-medium">Registrarse</label>
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Registrarse</label>
                 </FlexboxLayout>
             </FlexboxLayout>
 
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
             <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">¡Crea una cuenta y empieza a disfrutar de nuestros servicios!</label>
 
-
             <FlexboxLayout class="formulario" flexDirection="column">
                 <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Nombre completo"></TextField>
+                    <TextField hint="Nombre completo" [(ngModel)]="nombre"></TextField>
                 </StackLayout>
 
                 <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Dirección de Correo Electrónico"></TextField>
+                    <TextField hint="Dirección de Correo Electrónico" [(ngModel)]="email"></TextField>
                 </StackLayout>
 
                 <StackLayout class="input-field" flexDirection="column" marginBottom="30">
-                    <TextField hint="Contraseña" secure="True"></TextField>
+                    <TextField hint="Contraseña" secure="True" [(ngModel)]="password"></TextField>
                 </StackLayout>
 
                 <StackLayout class="input-field" marginBottom="30" flexDirection="column">
-                    <TextField hint="Teléfono"></TextField>
+                    <TextField hint="Teléfono" [(ngModel)]="telefono"></TextField>
                 </StackLayout>
 
                 <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
                     <Label text="Soy mayor de edad" marginRight="10"></Label>
-                    <Switch></Switch>
+                    <Switch [(ngModel)]="mayorEdad"></Switch>
                 </StackLayout>
-
             </FlexboxLayout>
 
             <FlexboxLayout width="90%">
-                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" morginBottom="15"></FlexboxLayout>
+                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" marginBottom="15"></FlexboxLayout>
             </FlexboxLayout>
-            <label class="butonlabelmorado Cabin" text="Registrarse"></label>
+            <label class="butonlabelmorado Cabin" text="Registrarse" (tap)="registrar()"></label>
         </StackLayout>
     </DockLayout>
 </ScrollView>
