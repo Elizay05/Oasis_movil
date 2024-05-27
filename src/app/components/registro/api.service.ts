@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
     apiUrl = 'http://192.168.1.10:8000/Oasis/api/1.0/usuario/'; // Replace with your registration endpoint URL
-    headers = {"Authorization": "Token "+ localStorage.getItem('Oasis.token')}
+    headers = {"Authorization": "Token 7dbbf758a5f9883815db1a34d528f547950947d7"}
 
     constructor(private http: HttpClient) {}
 
