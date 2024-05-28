@@ -15,6 +15,9 @@ export class RegistroComponent implements OnInit {
   password: string = '';
   telefono: string = '';
   mayorEdad: boolean = false;
+  fecha_nacimiento: string = ''; // Define la variable para la fecha de nacimiento
+  cedula: string = ''; // Define la variable para la cédula
+  foto: "";
 
 public constructor(
     private router: Router,
@@ -36,10 +39,12 @@ public constructor(
         email: this.email,
         password: this.password,
         telefono: this.telefono,
+        fechaNacimiento: this.fecha_nacimiento,
+        cedula: this.cedula,
         mayorEdad: this.mayorEdad,
+        foto:this.foto,
         rol: 4,  // Asumiendo que 4 es el rol por defecto para un nuevo usuario
         estado: 1, // Asumiendo que 1 es el estado activo por defecto
-        foto: 'http://0.0.0.0:8000/tienda/Img_usuarios/default.png', // URL por defecto para la foto
         token_recuperar: ''
     };
 
