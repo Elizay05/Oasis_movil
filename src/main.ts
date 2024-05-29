@@ -28,6 +28,7 @@ global.localStorage = {
   },
   length(){
       return 0;
+      
       },
   clear(){
       return appSettings.clear();
