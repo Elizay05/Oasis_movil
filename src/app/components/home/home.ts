@@ -26,7 +26,7 @@ export class HomeComponent {
       console.log("Bienvenido " + this.perfil.nombre + "!!");
       this.rol = this.perfil.rol
       this.nombre = this.perfil.nombre
-      this.foto = URL+this.perfil.foto
+      this.foto = this.perfil.foto
     }
     else {
       this.rol = ""
