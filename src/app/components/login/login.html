@@ -25,6 +25,17 @@
                 <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
             </FlexboxLayout>
 
+            <StackLayout marginBottom="10" verticalAlignment="center">
+                <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
+            </StackLayout>
+            
+            <FlexboxLayout>
+                <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
+                    <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
+                    <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
+                </StackLayout>
+            </FlexboxLayout>
+
             <button class="butonlabelrosa Cabin" (tap)="loguear()" text="Iniciar Sesión"></button>
 
             <FlexboxLayout width="90%">

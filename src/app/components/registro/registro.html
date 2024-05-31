@@ -34,18 +34,31 @@
             <StackLayout class="input-field" marginBottom="30">
                 <TextField hint="Cédula" [text]="cedula" (textChange)="inputChange($event, 'cedula')"></TextField>
             </StackLayout>
-
-        <FlexboxLayout>
+        
+            <StackLayout marginBottom="10" verticalAlignment="center" marginRight="30">
+                <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
+            </StackLayout>
+                        
+            <FlexboxLayout marginRight="30">
+                <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
+                    <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
+                    <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
+                </StackLayout>
+            </FlexboxLayout>
+            
+            <FlexboxLayout marginRight="40px">
                 <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
                     <Label text="Soy mayor de edad" marginRight="10"></Label>
-                    <Switch [(ngModel)]="mayorEdad"></Switch>
+                    <Switch [(ngModel)]="mayorEdad" (checkedChange)="onCheckChanged($event)"></Switch>
                 </StackLayout>
-        </FlexboxLayout>
+            </FlexboxLayout>
+
 
             <FlexboxLayout width="90%">
                 <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" marginBottom="15"></FlexboxLayout>
             </FlexboxLayout>
             <label class="butonlabelmorado Cabin" text="Registrarse" (tap)="registrar()"></label>
+            
         </StackLayout>
     </DockLayout>
 </ScrollView>

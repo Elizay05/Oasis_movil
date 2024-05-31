@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    apiUrl = 'http://10.171.68.190:8000/Oasis/api/1.0/token-auth/';
+    apiUrl = 'http://10.171.68.190:8000/api/1.0/token-auth/';
     headers = {"Authorization": "Token "+ localStorage.getItem('Oasis.token')}
 
     constructor(private http: HttpClient) {}

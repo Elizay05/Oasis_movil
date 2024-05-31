@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Page } from '@nativescript/core';
 import { ApiService } from './api.service';
 import { Dialogs } from '@nativescript/core';
+import { openUrl } from '@nativescript/core/utils';
 
 @Component({
   selector: 'registro',
@@ -20,6 +21,9 @@ export class RegistroComponent implements OnInit {
   foto: "";
   rol: number = 0;
   estado: number = 0;
+  termsAccepted: boolean = false;
+  updateButtonEnabledState: boolean = false;
+  
 
 
   public constructor(
@@ -51,8 +55,19 @@ export class RegistroComponent implements OnInit {
       estado: 1 // Asumiendo que 1 es el estado activo por defecto
       
     };
-
+  
     console.log('Usuario a registrar:', usuario);
+
+    // Verificar si se han aceptado los términos y condiciones
+    if (!this.termsAccepted || !this.mayorEdad) {
+      Dialogs.alert({
+          title: 'Alerta',
+          message: 'Debes aceptar los términos y condiciones y confirmar que eres mayor de edad para registrarte.',
+          okButtonText: 'OK',
+          cancelable: true,
+      });
+      return;
+    }
 
     this.apiService.registrarUsuario(usuario).subscribe(
       response => {
@@ -114,4 +129,18 @@ export class RegistroComponent implements OnInit {
         console.log("Campo no reconocido");
     }
   }
+  onTermsAcceptedChange(args): void {
+    this.termsAccepted = args.object.checked;
+    console.log('El valor de termsAccepted ha cambiado:', this.termsAccepted);
+}
+onCheckChanged(args): void { 
+      this.mayorEdad = args.object.checked;
+      console.log('El valor de mayorEdad ha cambiado:', this.mayorEdad);
+}
+
+
+public navigateToTerms(): void {
+  openUrl('https://596fb6f7-b142-4dc5-a69f-c2b5acfab0c2-00-3918dlab8s5i9.riker.replit.dev/tyc/');
+}
+
 }

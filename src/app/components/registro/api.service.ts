@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    apiUrl = 'http://10.171.68.190:8000/Oasis/api/1.0/'; // Replace with your registration endpoint URL
+    apiUrl = 'http://10.171.68.190:8000/api/1.0/'; // Replace with your registration endpoint URL
 
     constructor(private http: HttpClient) {}
 
     registrarUsuario(post: any): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Token 9669c079a3ecfbc5bd8cdae360b4db2158704dcb'
+            'Authorization': 'Token 1f59adabe708c3d27a61918441378ec72d2b9123'
         });
 
         return this.http.post<any>(`${this.apiUrl}usuario/`, post, { headers });
@@ -22,7 +22,7 @@ export class ApiService {
 
     obtenerUrlImage(id: number): Observable<any> {
         const headers = new HttpHeaders({
-            'Authorization': 'Token 9669c079a3ecfbc5bd8cdae360b4db2158704dcb'
+            'Authorization': 'Token 1f59adabe708c3d27a61918441378ec72d2b9123'
         });
         return this.http.get<any>(`${this.apiUrl}usuarios/${id}/foto`, { headers });
     }
