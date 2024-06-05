@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from "@angular/router";
 import { exit } from "nativescript-exit";
-import { Page, TextField } from '@nativescript/core';
+import { Dialogs, Page, TextField } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
 import { ApiService } from '../login/api.service';
 
@@ -17,6 +17,8 @@ export class HomeComponent {
   foto: string;
   perfil;
   userId: number;
+  email: string = '';
+  
   public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private apiService: ApiService) {
 
     console.log("home")
@@ -122,4 +124,5 @@ export class HomeComponent {
       }
     );
   }
+
 }

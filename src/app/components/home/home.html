@@ -127,7 +127,7 @@
       <Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>
 
       <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" [visibility]="verificarPermisos(1) ? 'visible' : 'collapsed'" clearHistory="true"></Button>
-
+      
       <Button text="Salir" (tap)="onExit()"></Button>
     </StackLayout>
   </DockLayout>
