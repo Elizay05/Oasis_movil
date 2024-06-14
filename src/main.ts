@@ -19,6 +19,11 @@ import * as appSettings from "@nativescript/core/application-settings";
 })
 class AppComponentModule {}
 /* Before we bootstrap, shim the 'localStorage' API with application settings module */
+
+/* API web IP */
+global.url = "http://10.171.68.190:8000";
+global.apiUrl = global.url+"/api/1.0";
+
 global.localStorage = {
   getItem(key: string) {
       return appSettings.getString(key);
@@ -26,10 +31,7 @@ global.localStorage = {
   setItem(key: string, value: string) {
       return appSettings.setString(key, value);
   },
-  length(){
-      return 0;
-      
-      },
+  length:0,
   clear(){
       return appSettings.clear();
   },

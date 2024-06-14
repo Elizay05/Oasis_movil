@@ -28,7 +28,7 @@ export class HomeComponent {
       console.log("Bienvenido " + this.perfil.nombre + "!!");
       this.rol = this.perfil.rol
       this.nombre = this.perfil.nombre
-      this.foto = this.perfil.foto
+      this.foto = global.url+this.perfil.foto
     }
     else {
       this.rol = ""
@@ -84,15 +84,13 @@ export class HomeComponent {
       this.itemsFiltrados = this.todosItems.filter(item => item.categoria === categoria);
     }
   }
-  public cerrarSesion(private router: Router) {
+  public cerrarSesion() {
     console.log("Eliminar sesión...")
     localStorage.clear();
     this.router.navigate(['login']);
   }
 
   public verificarPermisos(rol) {
-    console.log("necesita: " + rol)
-    console.log("tengo: " + this.rol)
     return rol == this.rol;
   }
   onimage(): void {

@@ -5,4 +5,7 @@
             <certificates src="system" />
         </trust-anchors>
     </base-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">596fb6f7-b142-4dc5-a69f-c2b5acfab0c2-00-3918dlab8s5i9.riker.replit.dev</domain>
+    </domain-config>
 </network-security-config>

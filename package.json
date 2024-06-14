@@ -1,7 +1,7 @@
 {
   "name": "adso",
   "main": "src/main.ts",
-  "version": "1.0.0",
+  "version": "1.0",
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.2.0",
