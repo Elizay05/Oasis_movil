@@ -1,7 +1,7 @@
 <ActionBar>
     <Button text="Carrito" (tap)="abrirCarrito()"></Button>
     <Label text="Productos"
-        style="color: rgb(15, 14, 14); font-size: 40; text-align: center; font-weight: bold;"></Label>
+        style="color: rgb(7, 6, 6); font-size: 40; text-align: center; font-weight: bold;"></Label>
     <NavigationButton text="volver" android.systemIcon="ic_menu_back" [nsRouterLink]="['/home']" pageTransition="slide"
         height="100" width="100" verticalAlignment="bottom" />
        
@@ -106,7 +106,7 @@
 
         <StackLayout width="100%" padding="10" horizontalAlignment="center">
             <Button text="Regresar" [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true" id="boton"
-                style="color: black;font-weight: bold;"></Button>
+                style="color: black;font-weight: bold; background-color: white;"></Button>
         </StackLayout>
     </WrapLayout>
 
