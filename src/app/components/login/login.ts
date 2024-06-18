@@ -95,6 +95,6 @@ export class LoginComponent {
         console.log('El valor de termsAccepted ha cambiado:', this.termsAccepted);
     }
     public navigateToTerms(): void {
-        openUrl('https://596fb6f7-b142-4dc5-a69f-c2b5acfab0c2-00-3918dlab8s5i9.riker.replit.dev/tyc/');
+        openUrl('https://elizay05.pythonanywhere.com/tyc/');
       }
 }

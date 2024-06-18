@@ -1,7 +1,7 @@
 import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
-  id: 'com.lyrasoft',
+  id: 'com.pythonanywhere.elizay05',
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   android: {

@@ -21,7 +21,7 @@ class AppComponentModule {}
 /* Before we bootstrap, shim the 'localStorage' API with application settings module */
 
 /* API web IP */
-global.url = "http://10.171.68.190:8000";
+global.url = "https://elizay05.pythonanywhere.com";
 global.apiUrl = global.url+"/api/1.0";
 
 global.localStorage = {
