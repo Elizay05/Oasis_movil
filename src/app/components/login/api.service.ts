@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    apiUrl = 'http://10.171.68.190:8000/api/1.0/token-auth/';
+    apiUrl = 'https://elizay05.pythonanywhere.com/api/1.0/token-auth/';
     headers = {"Authorization": "Token "+ localStorage.getItem('Oasis.token')}
 
     constructor(private http: HttpClient) {}
@@ -35,9 +35,12 @@ export class ApiService {
         return this.http.get<any>(`${this.apiUrl}usuarios/${id}/foto`, {headers: this.headers});
     }
     obtenerFotoUsuario(userId: number): Observable<string> {
-        const url = `http://192.168.1.10:8000/tienda/Img_usuarios/${userId}.png`; // Cambia userId según necesites
-        return this.http.get<string>(url);
+        const headers = new HttpHeaders({
+            'Authorization': 'Token 0feb642ec2305e8620a94d26722dc45abda11b3c'
+        });
+        return this.http.get<string>(`https://elizay05.pythonanywhere.com/Oasis/Img_usuarios/${userId}.png`, { headers });
     }
+    
     eliminarUsuario(email: string): Observable<any> {
         return this.http.delete(`${this.apiUrl}/usuarios/${email}`);
       }
