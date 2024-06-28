@@ -74,6 +74,8 @@ This is where the vast majority of your CSS code goes. */
 
 .img_user{
     width: 60;
+    height: 60;
+    border-radius: 70;
 }
 
 .InfoUser{

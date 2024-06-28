@@ -1,51 +1,52 @@
 <ScrollView>
     <DockLayout backgroundColor="#000000">
         <StackLayout>
+            <!-- Navigation Bar -->
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
-                <!--<label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>siempre sale el inicio y no deja devolver--->
-                <label class="Nunito text-medium">Iniciar Sesión</label>
+                    <label class="Nunito text-medium">Iniciar Sesión</label>
                 </FlexboxLayout>
             </FlexboxLayout>
 
+            <!-- Logo -->
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
             <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">Inicia sesión con su correo electrónico y contraseña</label>
 
+            <!-- Form -->
             <FlexboxLayout class="formulario" flexDirection="column">
                 <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Dirección de Correo Electrónico" 
-                    [text]="email"
-                    (textChange)="inputChange($event, 'email')"
-                    placeholder="Usuario"></TextField>
+                    <TextField hint="Dirección de Correo Electrónico" [text]="email" (textChange)="inputChange($event, 'email')" placeholder="Usuario"></TextField>
                 </StackLayout>
 
                 <StackLayout class="input-field">
-                    <TextField hint="Contraseña" secure="True" [text]="password" (textChange)="inputChange($event, 'password')"placeholder="Contraseña"secure="true"></TextField>
+                    <TextField hint="Contraseña" secure="True" [text]="password" (textChange)="inputChange($event, 'password')" placeholder="Contraseña"></TextField>
                 </StackLayout>
                 <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
             </FlexboxLayout>
 
-            <StackLayout marginBottom="10" verticalAlignment="center">
+            <!-- Terms and Conditions -->
+            <FlexboxLayout class="horizontal-align-center">
                 <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
-            </StackLayout>
+            </FlexboxLayout>
             
-            <FlexboxLayout>
-                <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
+            <!-- Accept Terms and Conditions -->
+            <StackLayout orientation="horizontal" verticalAlignment="center">
                     <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
                     <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
-                </StackLayout>
-            </FlexboxLayout>
+            </StackLayout>
 
-            <button class="butonlabelrosa Cabin" (tap)="loguear()" text="Iniciar Sesión"></button>
 
+            <!-- Login Button -->
+            <label class="butonlabelrosa Cabin" (tap)="loguear()" text="Iniciar Sesión"></label>
+
+            <!-- Divider -->
             <FlexboxLayout width="90%">
                 <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2"></FlexboxLayout>
             </FlexboxLayout>
 
-            <label class="Cabin textAlignCenter contraseñaOlvidada" marginRight="15"  marginTop="15" fontSize="14">¿No tienes una cuenta?</label>
+            <!-- Register Link -->
+            <label class="Cabin textAlignCenter contraseñaOlvidada" marginRight="15" marginTop="15" fontSize="14">¿No tienes una cuenta?</label>
             <label class="butonlabelmorado Cabin" (tap)="onRegistrarse()" text="Registrarse"></label>
         </StackLayout>
     </DockLayout>
-
-    
 </ScrollView>

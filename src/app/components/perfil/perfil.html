@@ -17,14 +17,12 @@
             <FlexboxLayout class="contenedor">
               <FlexboxLayout class="card">
                 <FlexboxLayout class="card-imagen">
-                  <Image class="foto" src="~/app/images/viper.jpg"></Image>
+                  <Image class="foto" [src]="foto"></Image>
                 </FlexboxLayout>
                 <FlexboxLayout class="card-body">
                   <FlexboxLayout class="contenido">
-                    <label class="fas" text="&#xf007; Juan Pablo" ></label>
-                    <label class="fas" text="&#xf0e0; juanpa@gmail.com"></label>
-                    <label class="fas" text="&#xf073; 24/03/2001"></label>
-                    <label class="fas" text="&#xf095; 3004006948"></label>
+                    <label class="fas" text="&#xf007;"[text]="nombre"></label>
+                    <label class="fas" text="&#xf0e0;"[text]="email"></label>
                   </FlexboxLayout>
                 </FlexboxLayout>
               </FlexboxLayout>             
