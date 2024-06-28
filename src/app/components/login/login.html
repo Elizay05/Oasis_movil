@@ -11,7 +11,7 @@
 
             <!-- Logo -->
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
-            <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">Inicia sesión con su correo electrónico y contraseña</label>
+            <label class="Cabin" fontSize="14" marginTop="20" textAlignment="center">Inicia sesión con su correo electrónico y contraseña</label>
 
             <!-- Form -->
             <FlexboxLayout class="formulario" flexDirection="column">
@@ -19,23 +19,23 @@
                     <TextField hint="Dirección de Correo Electrónico" [text]="email" (textChange)="inputChange($event, 'email')" placeholder="Usuario"></TextField>
                 </StackLayout>
 
-                <StackLayout class="input-field">
+                <StackLayout class="input-field" marginBottom="30">
                     <TextField hint="Contraseña" secure="True" [text]="password" (textChange)="inputChange($event, 'password')" placeholder="Contraseña"></TextField>
                 </StackLayout>
                 <label class="Cabin textAlignEnd contraseñaOlvidada" marginRight="15" marginBottom="15" fontSize="14">¿Olvidaste tu contraseña?</label>
-            </FlexboxLayout>
-
-            <!-- Terms and Conditions -->
-            <FlexboxLayout class="horizontal-align-center">
-                <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
-            </FlexboxLayout>
             
-            <!-- Accept Terms and Conditions -->
-            <StackLayout orientation="horizontal" verticalAlignment="center">
-                    <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
-                    <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
-            </StackLayout>
 
+                <!-- Terms and Conditions -->
+                <StackLayout class="input-field" marginBottom="30">
+                    <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" textDecoration="underline"></Label>
+                </StackLayout>
+                
+                <!-- Accept Terms and Conditions -->
+                <FlexboxLayout class="input-field"  marginBottom="30">
+                    <Label text="Aceptas los términos y condiciones"></Label>
+                    <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
+                </FlexboxLayout>
+            </FlexboxLayout>
 
             <!-- Login Button -->
             <label class="butonlabelrosa Cabin" (tap)="loguear()" text="Iniciar Sesión"></label>

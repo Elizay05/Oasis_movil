@@ -11,6 +11,7 @@
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
             <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">¡Crea una cuenta y empieza a disfrutar de nuestros servicios!</label>
 
+            <FlexboxLayout class="formulario" flexDirection="column">
             <StackLayout class="input-field" marginBottom="30">
                 <TextField hint="Nombre completo" [text]="nombre" (textChange)="inputChange($event, 'nombre')"></TextField>
             </StackLayout>
@@ -35,25 +36,23 @@
                 <TextField hint="Cédula" [text]="cedula" (textChange)="inputChange($event, 'cedula')"></TextField>
             </StackLayout>
         
-            <FlexboxLayout class="horizontal-align-center">
+            <FlexboxLayout class="input-field" marginBottom="30">
                 <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
             </FlexboxLayout>
                         
             <!-- Accept Terms and Conditions -->
-            <FlexboxLayout class="horizontal-align-center">
-                <StackLayout orientation="horizontal" verticalAlignment="center">
+            <StackLayout orientation="horizontal" verticalAlignment="center">
                     <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
                     <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
-                </StackLayout>
-            </FlexboxLayout>
+            </StackLayout>
+            
             
             <!-- Age Confirmation -->
-            <FlexboxLayout class="horizontal-align-center">
-                <StackLayout orientation="horizontal" verticalAlignment="center">
+            <StackLayout orientation="horizontal" verticalAlignment="center">
                     <Label text="Soy mayor de edad" marginRight="10"></Label>
                     <Switch [(ngModel)]="mayorEdad" (checkedChange)="onCheckChanged($event)"></Switch>
-                </StackLayout>
-            </FlexboxLayout>
+            </StackLayout>
+        </FlexboxLayout>
 
 
             <FlexboxLayout width="90%">
