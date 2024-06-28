@@ -15,7 +15,7 @@ export class LoginComponent {
     email: string = "";
     password: string = "";
     termsAccepted: boolean = false;
-    public constructor(private router: Router, private apiService: ApiService, private activatedRoute: ActivatedRoute) {
+    public constructor(private router: Router, private apiService: ApiService, private activatedRoute: ActivatedRoute,private page: Page) {
         // Use the component constructor to inject providers.
         console.info("Averiguando si hay datos...");
         if (localStorage.getItem('Oasis.token')) {
@@ -34,7 +34,9 @@ export class LoginComponent {
             this.password = textField.text;
         }
     }
-
+    ngOnInit() {
+        this.page.actionBarHidden = true;
+      }
     public loguear() {
         let data = {
             username: this.email,
