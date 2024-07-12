@@ -5,7 +5,6 @@ import { Dialogs, Page, TextField } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
 import { ApiService } from '../login/api.service';
 
-
 @Component({
   selector: 'home',
   templateUrl: './home.html',
@@ -18,12 +17,14 @@ export class HomeComponent {
   perfil;
   userId: number;
   email: string = '';
+  loggedIn: boolean = false;
   
   public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private apiService: ApiService) {
 
     console.log("home")
     console.info("Averiguando si hay datos...");
     if (localStorage.getItem('Oasis.token')) {
+      this.loggedIn = true;
       this.perfil = JSON.parse(localStorage.getItem('Oasis.user'))
       console.log("Bienvenido " + this.perfil.nombre + "!!");
       this.rol = this.perfil.rol
@@ -93,6 +94,8 @@ export class HomeComponent {
   public verificarPermisos(rol) {
     return rol == this.rol;
   }
+
+ 
   onimage(): void {
     // Obtener el ID del usuario del almacenamiento local
     this.userId = parseInt(localStorage.getItem('userId'));
