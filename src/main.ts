@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { appComponents, appRoutes } from './app/app.routing';
 import { HttpClientModule } from '@angular/common/http';
+import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 
 @NgModule({
   declarations: [AppComponent, ...appComponents],
@@ -12,10 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+  ],
+  providers: [
+    BarcodeScanner
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
+
+
 class AppComponentModule {}
 
 

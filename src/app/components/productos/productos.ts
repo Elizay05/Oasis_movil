@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from "@angular/router";
+import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 
 
 
@@ -10,10 +11,11 @@ import { Router } from "@angular/router";
 })
 export class ProductosComponent implements OnInit {
 
-    public constructor(private router: Router) {
+    public constructor(private router: Router, private barcodeScanner: BarcodeScanner) {
         // Use the component constructor to inject providers.
     }
     ngOnInit(): void {
 
     }
+
 }

@@ -12,7 +12,7 @@ import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
 import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
 import { NoticiasComponent } from "./components/noticias/noticias";
 
-import { ProductosComponent } from "./components/productos /productos";
+import { ProductosComponent } from "./components/productos/productos";
 
 
 export const appRoutes: any = [
