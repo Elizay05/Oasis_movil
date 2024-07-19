@@ -8,7 +8,7 @@ import { PerfilComponent } from "./components/perfil/perfil";
 import { QrMesaComponent } from "./components/qr_mesa/qr_mesa";
 import { PedidoComponent } from "./components/pedido/pedido";
 import { RegistroComponent } from "./components/registro/registro";
-import { ProductosComponent } from "./components/productos /productos";
+import { ProductosComponent } from "./components/productos/productos";
 import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
 
 
