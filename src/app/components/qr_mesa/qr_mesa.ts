@@ -38,7 +38,7 @@ export class QrMesaComponent {
       alert('Scanned QR Code: '+ result.text);
       const data = {
         'mesa': result.text,
-        'email': localStorage.getItem('email')
+        'email': localStorage.getItem("email")
       }
       this.qr_service.activarMesa(data).subscribe((res) => {
       })
