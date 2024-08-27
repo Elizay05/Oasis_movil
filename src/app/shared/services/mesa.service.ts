@@ -8,16 +8,15 @@ import { Observable } from 'rxjs';
   export class MesaService {
 
     mesa = {}
-  
-    apiUrl = 'https://elizay05.pythonanywhere.com/api/1.0/';
-
-    activarMesa(data: any): Observable<any> {
-      return this.http.post<any>(`${this.apiUrl}token_qr/`, data);
-    }
+    headers = {"Authorization": `Token ${localStorage.getItem('Oasis.token')}`}
 
     constructor(private http: HttpClient) { }
+  
+    activarMesa(data: any): Observable<any> {
+      return this.http.post<any>(`${global.apiUrl}token_qr/`, data);
+    }
 
-    obtenerMesa(qr: string): Observable<any> {
-      return this.http.post<any>(`${this.apiUrl}mesa_qr/`);
+    obtenerMesa(data: any): Observable<any> {
+      return this.http.post<any>(`${global.apiUrl}token_qr/`, data, {headers: this.headers});
     }
   }

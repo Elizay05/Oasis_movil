@@ -38,17 +38,15 @@ export class QrMesaComponent {
       openSettingsIfPermissionWasPreviouslyDenied: true
     }).then(result => {
       console.log('Scanned QR Code: ', result.text);
-      alert('Scanned QR Code: '+ result.text);
       const data = {
         'mesa': result.text,
-        'email': localStorage.getItem("email")
+        'email': JSON.parse(localStorage.getItem('Oasis.user')).email
       }
-      this.qrService.activarMesa(data).subscribe((res) => {
-        if (res.success) {
-          this.mesaService.mesa = res.mesa
-          this.router.navigate(["pedido"]);
-        }
-      })
+      console.log(data)
+      this.mesaService.activarMesa(data).subscribe({
+        next: value => console.log(value),
+        error: err => console.log(err)
+      })  
     }, error => {
       console.log('QR Code scanning fail¨ed: ', error);
       alert('QR Code Scanning failed: ' + error);
