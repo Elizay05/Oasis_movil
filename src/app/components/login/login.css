@@ -4,9 +4,12 @@
     margin-right: 15;
     justify-content: center;
 }
-
 .input-field{
     width: 100%;
+}
+.input{
+    flex-grow: 30;
+    margin-right: 70;
 }
 
 #rayaIntermedia2 {

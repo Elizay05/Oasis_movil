@@ -3,13 +3,16 @@ import { Router } from "@angular/router";
 import { Page, TextField } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 import { QrMesaService } from './qr_mesa.service';
+import { MesaService } from '../../shared/services/mesa.service';
+
+
 
 @Component({
   selector: 'qr_mesa',
   templateUrl: './qr_mesa.html',
 })
 export class QrMesaComponent {
-  public constructor(private router: Router, private page: Page, private barcodeScanner: BarcodeScanner, private qr_service: QrMesaService) {
+  public constructor(private router: Router, private page: Page, private barcodeScanner: BarcodeScanner, private qrService: QrMesaService, private mesaService: MesaService) {
     // Use the component constructor to inject providers.
   }
   ngOnInit(): void {
@@ -40,7 +43,11 @@ export class QrMesaComponent {
         'mesa': result.text,
         'email': localStorage.getItem("email")
       }
-      this.qr_service.activarMesa(data).subscribe((res) => {
+      this.qrService.activarMesa(data).subscribe((res) => {
+        if (res.success) {
+          this.mesaService.mesa = res.mesa
+          this.router.navigate(["pedido"]);
+        }
       })
     }, error => {
       console.log('QR Code scanning fail¨ed: ', error);

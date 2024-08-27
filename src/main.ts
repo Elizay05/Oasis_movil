@@ -23,6 +23,30 @@ import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 
 
 class AppComponentModule {}
+/* Before we bootstrap, shim the 'localStorage' API with application settings module */
 
+/* API web IP */
+global.url = "https://elizay05.pythonanywhere.com";
+global.apiUrl = global.url+"/api/1.0";
+
+global.localStorage = {
+  getItem(key: string) {
+      return appSettings.getString(key);
+  },
+  setItem(key: string, value: string) {
+      return appSettings.setString(key, value);
+  },
+  length:0,
+  clear(){
+      return appSettings.clear();
+  },
+  key(index){
+      return "";
+  },
+  removeItem(key){
+      return appSettings.remove(key);
+  }
+}
 
 platformNativeScriptDynamic().bootstrapModule(AppComponentModule)
+

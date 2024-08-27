@@ -62,7 +62,7 @@ ERRORES
 
     <Button text="Regresar..." [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true" id="boton"></Button>
 
-</ScrollView>123
+</ScrollView>
 
 
 
@@ -146,3 +146,12 @@ ERRORES
         </StackLayout>
         <!-- Repite lo mismo para los otros elementos -->
     </WrapLayout>
+
+    elfolkepokep
+    eofoekpo,epkeokoke
+    rkeinfimneo mwpomomdomf
+    djmfok
+
+
+
+    

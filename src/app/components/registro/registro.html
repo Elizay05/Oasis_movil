@@ -3,43 +3,63 @@
         <StackLayout>
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
-                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
-                <label class="Nunito text-medium">Registrarse</label>
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Registrarse</label>
                 </FlexboxLayout>
             </FlexboxLayout>
 
             <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
             <label class="Cabin" fontSize="14" marginTop="20" class="textAlignCenter">¡Crea una cuenta y empieza a disfrutar de nuestros servicios!</label>
 
-
             <FlexboxLayout class="formulario" flexDirection="column">
-                <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Nombre completo"></TextField>
-                </StackLayout>
-
-                <StackLayout class="input-field" marginBottom="30">
-                    <TextField hint="Dirección de Correo Electrónico"></TextField>
-                </StackLayout>
-
-                <StackLayout class="input-field" flexDirection="column" marginBottom="30">
-                    <TextField hint="Contraseña" secure="True"></TextField>
-                </StackLayout>
-
-                <StackLayout class="input-field" marginBottom="30" flexDirection="column">
-                    <TextField hint="Teléfono"></TextField>
-                </StackLayout>
-
-                <StackLayout marginBottom="10" orientation="horizontal" verticalAlignment="center">
-                    <Label text="Soy mayor de edad" marginRight="10"></Label>
-                    <Switch></Switch>
-                </StackLayout>
-
+            <StackLayout class="input-field" marginBottom="30">
+                <TextField hint="Nombre completo" [text]="nombre" (textChange)="inputChange($event, 'nombre')"></TextField>
+            </StackLayout>
+            
+            <StackLayout class="input-field" marginBottom="30">
+                <TextField hint="Dirección de Correo Electrónico" [text]="email" (textChange)="inputChange($event, 'email')"></TextField>
+            </StackLayout>
+            
+            <StackLayout class="input-field" flexDirection="column" marginBottom="30">
+                <TextField hint="Contraseña" secure="true" [text]="password" (textChange)="inputChange($event, 'password')"></TextField>
+            </StackLayout>
+            
+            <StackLayout class="input-field" marginBottom="30">
+                <TextField hint="Teléfono" [text]="telefono" (textChange)="inputChange($event, 'telefono')"></TextField>
+            </StackLayout>
+            
+            <StackLayout class="input-field" marginBottom="30">
+                <TextField hint="Fecha de Nacimiento (YYYY-MM-DD)" [text]="fecha_nacimiento" (textChange)="inputChange($event, 'fecha_nacimiento')"></TextField>
+            </StackLayout>
+            
+            <StackLayout class="input-field" marginBottom="30">
+                <TextField hint="Cédula" [text]="cedula" (textChange)="inputChange($event, 'cedula')"></TextField>
+            </StackLayout>
+        
+            <FlexboxLayout class="input-field" marginBottom="30">
+                <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
             </FlexboxLayout>
+                        
+            <!-- Accept Terms and Conditions -->
+            <StackLayout orientation="horizontal" verticalAlignment="center">
+                    <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
+                    <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
+            </StackLayout>
+            
+            
+            <!-- Age Confirmation -->
+            <StackLayout orientation="horizontal" verticalAlignment="center">
+                    <Label text="Soy mayor de edad" marginRight="10"></Label>
+                    <Switch [(ngModel)]="mayorEdad" (checkedChange)="onCheckChanged($event)"></Switch>
+            </StackLayout>
+        </FlexboxLayout>
+
 
             <FlexboxLayout width="90%">
-                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" morginBottom="15"></FlexboxLayout>
+                <FlexboxLayout class="rayaIntermedia2" id="rayaIntermedia2" marginBottom="15"></FlexboxLayout>
             </FlexboxLayout>
-            <label class="butonlabelmorado Cabin" text="Registrarse"></label>
+            <label class="butonlabelmorado Cabin" text="Registrarse" (tap)="registrar()"></label>
+            
         </StackLayout>
     </DockLayout>
 </ScrollView>

@@ -4,9 +4,7 @@
 /* Place any CSS rules you want to apply on both iOS and Android here.
 This is where the vast majority of your CSS code goes. */
 
-#LETRAS
-
-.Nunito {
+#LETRAS .Nunito {
     font-family: "Nunito", "Nunito-Medium";
 }
 
@@ -15,34 +13,35 @@ This is where the vast majority of your CSS code goes. */
 }
 
 
-.text-small{
+.text-small {
     font-size: 12px;
 }
 
-.text-medium{
+.text-medium {
     font-size: 22px;
 }
-.titulo{
+
+.titulo {
     color: white;
 }
 
 
-.texto_centrado{
+.texto_centrado {
     text-align: center;
     font-size: 16px;
 }
 
-.textAlignCenter{
+.textAlignCenter {
     text-align: center;
     white-space: normal;
 }
 
-.textAlignEnd{
+.textAlignEnd {
     text-align: right;
     white-space: normal;
 }
 
-.barraNavegacion{
+.barraNavegacion {
     display: flex;
     height: 180px;
     width: 100%;
@@ -51,13 +50,13 @@ This is where the vast majority of your CSS code goes. */
     padding-left: 30px;
     padding-right: 30px;
     margin-bottom: 60px;
-    background-color:#000000;
+    background-color: #000000;
     align-items: center;
     font-family: 'Nunito';
     font-weight: 700;
 }
 
-.barraNavegacion2{
+.barraNavegacion2 {
     display: flex;
     height: 180px;
     width: 100%;
@@ -66,43 +65,47 @@ This is where the vast majority of your CSS code goes. */
     padding-left: 30px;
     margin-bottom: 10;
     padding-right: 30px;
-    background-color:#000000;
+    background-color: #000000;
     align-items: center;
     font-family: 'Nunito';
     font-weight: 700;
 }
 
-.img_user{
-    width: 60;
+.img_user {
+    width: 150px;
+    height: 150px;
+    border-radius: 70px;
+    margin: 20px;
 }
 
-.InfoUser{
+.InfoUser {
     display: flex;
     width: 85%;
 }
 
-.InfoUser2{
+.InfoUser2 {
     display: flex;
     width: 85%;
 }
 
-.InfoUser2 label{
+.InfoUser2 label {
     margin-left: 15;
 }
 
-.Cart{
+.Cart {
     width: 15%;
 }
 
-.Cart Image{
+.Cart Image {
     width: 80px;
 }
 
-#flecha_devolver{
+#flecha_devolver {
     background-color: #000000;
     color: white;
 }
-.butonlabelrosa{
+
+.butonlabelrosa {
     margin-top: 20;
     text-align: center;
     height: 45;
@@ -115,7 +118,7 @@ This is where the vast majority of your CSS code goes. */
 }
 
 
-.butonlabelmorado{
+.butonlabelmorado {
     margin-top: 20;
     text-align: center;
     height: 45;
@@ -126,7 +129,8 @@ This is where the vast majority of your CSS code goes. */
     border-radius: 20;
     margin-bottom: 30;
 }
-.butonlabelverde{
+
+.butonlabelverde {
     margin-top: 20;
     text-align: center;
     height: 45;
@@ -138,9 +142,7 @@ This is where the vast majority of your CSS code goes. */
     margin-bottom: 30;
 }
 
-
-
-.butonlabelrojo{
+.butonlabelrojo {
     margin-top: 20;
     text-align: center;
     height: 45;
@@ -152,8 +154,7 @@ This is where the vast majority of your CSS code goes. */
     margin-bottom: 30;
 }
 
-
-.butonIr{
+.butonIr {
     height: 30;
     width: 20;
     margin-right: 50;
@@ -163,7 +164,7 @@ This is where the vast majority of your CSS code goes. */
     margin-bottom: 30;
 }
 
-.butonlabelgris{
+.butonlabelgris {
     text-align: center;
     height: 35;
     padding-left: 10;
@@ -174,7 +175,8 @@ This is where the vast majority of your CSS code goes. */
     border-radius: 20;
     margin-bottom: 30;
 }
-.rayaIntermedia{
+
+.rayaIntermedia {
     height: 1.9;
     width: auto;
     background-color: #262626;
@@ -182,28 +184,33 @@ This is where the vast majority of your CSS code goes. */
     margin-left: 10;
     margin-right: 10;
 }
+
 .rayaIntermedia2 {
     height: 1.5;
     width: 100%;
     background-color: #B7B7B7;
     border-radius: 30;
 }
-.rayaIntermedia3{
+
+.rayaIntermedia3 {
     height: 1.9;
     width: 100%;
     background-color: #262626;
     border-radius: 30;
 }
-#calendario{
+
+#calendario {
     background-color: transparent;
     color: #fc4664;
     font-size: small;
     margin-right: 8;
 }
-.fecha{
+
+.fecha {
     color: #fc4664;
     font-size: 14;
 }
+
 .far {
     font-family: "Font Awesome 5 Free", "fa-regular-400";
     font-weight: 200;
@@ -216,7 +223,7 @@ This is where the vast majority of your CSS code goes. */
     font-weight: 400;
     font-size: 30px;
     background-color: white;
-    
+
 }
 
 .fas {
@@ -224,6 +231,6 @@ This is where the vast majority of your CSS code goes. */
     font-weight: 400;
     font-size: 23px;
     margin-bottom: 2.9%;
-    
+
 
 }

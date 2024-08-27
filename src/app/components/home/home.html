@@ -1,8 +1,6 @@
-
-
 <ScrollView>
-<DockLayout backgroundColor="#000000">
-  <!--
+  <DockLayout backgroundColor="#000000">
+    <!--
   <label text="" dock="top" height="40"></label>
   <StackLayout dock="bottom" height="60" backgroundColor="#FC4664">
     <GridLayout columns="*, *" height="100%">
@@ -10,43 +8,43 @@
         <Label col="1" textAlignment="center" text="&#xf07a;" class="fas titul_big botonesAbajo" backgroundColor="#AA46FC"></Label>
     </GridLayout>
   </StackLayout> -->
-  <StackLayout>
-    <FlexboxLayout class="barraNavegacion">
-      <FlexboxLayout class="InfoUser">
-        <Image src="~/app/images/logo_user.png" class="img_user"></Image>
-        <FlexboxLayout flexDirection="column" style="margin-left: 30px;">
-          <label class="text-small Cabin" text="User name"></label>
-          <label class="text-medium Cabin" text="Eler Minton"></label>
+    <StackLayout>
+      <FlexboxLayout class="barraNavegacion">
+        <FlexboxLayout class="InfoUser">
+          <Image [src]="foto" class="img_user"></Image>
+          <FlexboxLayout flexDirection="column" style="margin-left: 30px;">
+            <label class="text-small Cabin" text="nombre"></label>
+            <label class="text-medium Cabin" [text]="nombre"></label>
+          </FlexboxLayout>
+        </FlexboxLayout>
+        <FlexboxLayout class="Cart">
+          <Image src="~/app/images/cart.png"></Image>
         </FlexboxLayout>
       </FlexboxLayout>
-      <FlexboxLayout class="Cart">
-        <Image src="~/app/images/cart.png"></Image>
+
+
+      <FlexboxLayout class="blockImages" flexDirection="column">
+        <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
+        <Image src="~/app/images/licores.jpg"></Image>
+        <label class="butonlabelrosa Cabin" (tap)="onQrMesa()" text="Hacer pedido"></label>
       </FlexboxLayout>
-    </FlexboxLayout>
 
-    
-    <FlexboxLayout class="blockImages" flexDirection="column">
-      <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
-      <Image src="~/app/images/licores.jpg"></Image>
-      <label class="butonlabelrosa Cabin" (tap)="onQrMesa()" text="Hacer pedido"></label>
-    </FlexboxLayout>
-
-    <FlexboxLayout class="blockImages" flexDirection="column">
-      <Image src="~/app/images/halloween.jpg"></Image>
-      <label class="butonlabelmorado Cabin" (tap)="onReserva()" text="Ver Próximos Eventos"></label>
-    </FlexboxLayout>
-
-
-    <Label class="texto_centrado" text="¡Nuestro Menú!"></Label>
-    <FlexboxLayout class="blockProductos" flexDirection="column">
-      <FlexboxLayout class="blockCategorias">
-        <label class="butonlabelgris Cabin" text="Cocteles"></label>
-        <label class="butonlabelgris Cabin" text="Licores"></label>
-        <label class="butonlabelgris Cabin" text="Comidas"></label>
-        <label class="butonlabelgris Cabin" text="Aperitivos"></label>
+      <FlexboxLayout class="blockImages" flexDirection="column">
+        <Image src="~/app/images/halloween.jpg"></Image>
+        <label class="butonlabelmorado Cabin" (tap)="onReserva()" text="Ver Próximos Eventos"></label>
       </FlexboxLayout>
-      <ScrollView orientation="horizontal">
-        <FlexboxLayout>
+
+
+      <Label class="texto_centrado" text="¡Nuestro Menú!"></Label>
+      <FlexboxLayout class="blockProductos" flexDirection="column">
+        <FlexboxLayout class="blockCategorias">
+          <label class="butonlabelgris Cabin" text="Cocteles" (tap)="filtrarCategoria('Cocteles')"></label>
+          <label class="butonlabelgris Cabin" text="Licores" (tap)="filtrarCategoria('Licores')"></label>
+          <label class="butonlabelgris Cabin" text="Comidas" (tap)="filtrarCategoria('Comidas')"></label>
+          <label class="butonlabelgris Cabin" text="Aperitivos" (tap)="filtrarCategoria('Aperitivos')"></label>
+        </FlexboxLayout>
+        <ScrollView orientation="horizontal">
+          <FlexboxLayout>
             <FlexboxLayout class="cardProductos" flexDirection="column">
               <Image src="~/app/images/coctel1.png"></Image>
               <label class="Cabin" text="Flower Power"></label>
@@ -67,69 +65,70 @@
               <Image src="~/app/images/coctel3.jpg"></Image>
               <label class="Cabin" text="Sky Blue"></label>
             </FlexboxLayout>
-        </FlexboxLayout>
-      </ScrollView>
-    </FlexboxLayout>
-    <FlexboxLayout class="blockBoton">
-      <label class="butonlabelmorado Cabin"  text="Ver menú"></label>
-    </FlexboxLayout>
-
-    <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
-
-    <Label class="texto_centrado" text="Galería"></Label>
-    <ScrollView orientation="horizontal">
-      <FlexboxLayout class="blockGaleria">
-        <FlexboxLayout class="cardGaleria" flexDirection="column">
-          <Image src="~/app/images/galeria1.jpg"></Image>
-          <label class="Cabin" text="Noche de amigos"></label>
-        </FlexboxLayout>
-        <FlexboxLayout class="cardGaleria" flexDirection="column">
-          <Image src="~/app/images/galeria2.jpg"></Image>
-          <label class="Cabin" text="Noche de vinos"></label>
-        </FlexboxLayout>
-        <FlexboxLayout class="cardGaleria" flexDirection="column">
-          <Image src="~/app/images/galeria3.jpg"></Image>
-          <label class="Cabin" text="Halloween 2022"></label>
-        </FlexboxLayout>
+          </FlexboxLayout>
+        </ScrollView>
       </FlexboxLayout>
-    </ScrollView>
+      <FlexboxLayout class="blockBoton">
+        <label class="butonlabelmorado Cabin" (tap)="onProductos()" text="Ver menú"></label>
+      </FlexboxLayout>
 
-    <FlexboxLayout class="blockInfo" flexDirection="column">
-      <Label class="Text-Info Cabin" text="Conoce más de Oasis"></Label>
+      <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
+
+      <Label class="texto_centrado" text="Galería"></Label>
       <ScrollView orientation="horizontal">
-        <FlexboxLayout>
-          <FlexboxLayout class="cardInfo" flexDirection="column">
-            <Image src="~/app/images/ubicacion.png"></Image>
-            <label class="Cabin" text="Nuestra Ubicación"></label>
-            <label class="butonIr Cabin" text="📍 Ir"></label>
+        <FlexboxLayout class="blockGaleria">
+          <FlexboxLayout class="cardGaleria" flexDirection="column">
+            <Image src="~/app/images/galeria1.jpg"></Image>
+            <label class="Cabin" text="Noche de amigos"></label>
           </FlexboxLayout>
-          <FlexboxLayout class="cardInfo" flexDirection="column">
-            <Image src="~/app/images/local_bar.jpg"></Image>
-            <label class="Cabin" text="¡Ahora puedes reservar tus eventos VIP!"></label>
-            <label class="butonIr Cabin" text="📆 Reservar ahora"></label>
+          <FlexboxLayout class="cardGaleria" flexDirection="column">
+            <Image src="~/app/images/galeria2.jpg"></Image>
+            <label class="Cabin" text="Noche de vinos"></label>
           </FlexboxLayout>
-          <FlexboxLayout class="cardInfo" flexDirection="column" (Tap)="onNoticias()">
-            <Image src="~/app/images/terraza.jpg"></Image>
-            <label class="Cabin" text="Contamos con una nueva Terraza"></label>
-            <label ></label>
+          <FlexboxLayout class="cardGaleria" flexDirection="column">
+            <Image src="~/app/images/galeria3.jpg"></Image>
+            <label class="Cabin" text="Halloween 2022"></label>
           </FlexboxLayout>
         </FlexboxLayout>
       </ScrollView>
-    </FlexboxLayout>
 
-    <Button text="Iniciar Sesión" [nsRouterLink]="['/login']" pageTransition="slide" clearHistory="true"></Button>
+      <FlexboxLayout class="blockInfo" flexDirection="column">
+        <Label class="Text-Info Cabin" text="Conoce más de Oasis"></Label>
+        <ScrollView orientation="horizontal">
+          <FlexboxLayout>
+            <FlexboxLayout class="cardInfo" flexDirection="column">
+              <Image src="~/app/images/ubicacion.png"></Image>
+              <label class="Cabin" text="Nuestra Ubicación"></label>
+              <label class="butonIr Cabin" text="📍 Ir" (tap)="mostrarMapa()"></label><!---->
+            </FlexboxLayout>
+            <FlexboxLayout class="cardInfo" flexDirection="column">
+              <Image src="~/app/images/local_bar.jpg"></Image>
+              <label class="Cabin" text="¡Ahora puedes reservar tus eventos VIP!"></label>
+              <label class="butonIr Cabin" text="📆 Reservar ahora" (tap)="onReserva()"></label>
+            </FlexboxLayout>
+            <FlexboxLayout class="cardInfo" flexDirection="column">
+              <Image src="~/app/images/terraza.jpg"></Image>
+              <label class="Cabin" text="Contamos con una nueva Terraza"></label>
+            </FlexboxLayout>
+          </FlexboxLayout>
+        </ScrollView>
+      </FlexboxLayout>
 
-    <Button text="Registrarse" [nsRouterLink]="['/registro']" pageTransition="slide" clearHistory="true"></Button>
+      <Button text="Iniciar Sesión" *ngIf="!loggedIn" [nsRouterLink]="['/login']" pageTransition="slide" clearHistory="true"></Button>
 
-    <Button text="Ver Productos" [nsRouterLink]="['/productos']" pageTransition="slide" clearHistory="true"></Button>
+      <Button text="Cerrar Sesión" (tap)="cerrarSesion()"></Button>
 
-    <Button text="Reservar eventos" [nsRouterLink]="['/evento']" pageTransition="slide" clearHistory="true"></Button>
-    
-    <Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>
+      <Button text="Registrarse" *ngIf="!loggedIn" [nsRouterLink]="['/registro']" pageTransition="slide" clearHistory="true"></Button>
 
-    <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" clearHistory="true"></Button>
+      <Button text="Ver Productos" [nsRouterLink]="['/productos']" pageTransition="slide" clearHistory="true"></Button>
 
-    <Button text="Salir" (tap)="onExit()"></Button>
-  </StackLayout>
-</DockLayout>
+      <Button text="Reservar eventos" [nsRouterLink]="['/evento']" pageTransition="slide" clearHistory="true"></Button>
+
+      <Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>
+
+      <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" [visibility]="verificarPermisos(1) ? 'visible' : 'collapsed'" clearHistory="true"></Button>
+      
+      <Button text="Salir" (tap)="onExit()"></Button>
+    </StackLayout>
+  </DockLayout>
 </ScrollView>

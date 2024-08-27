@@ -1,6 +1,10 @@
 <ActionBar>
+    <Button text="Carrito" (tap)="abrirCarrito()"></Button>
     <Label text="Productos"
-        style="color: rgb(15, 14, 14); font-size: 40; text-align: center; font-weight: bold;"></Label>
+        style="color: rgb(7, 6, 6); font-size: 40; text-align: center; font-weight: bold;"></Label>
+    <NavigationButton text="volver" android.systemIcon="ic_menu_back" [nsRouterLink]="['/home']" pageTransition="slide"
+        height="100" width="100" verticalAlignment="bottom" />
+       
 </ActionBar>
 
 <ScrollView>
@@ -9,7 +13,6 @@
             <Image src="~/app/images/coctel1.png" width="100" height="100" />
             <Label text="coctel" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
             <Label text="$50.000" style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-            <Button text="Agregar" style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
         </StackLayout>
 
         <StackLayout width="44%" padding="10">
@@ -17,7 +20,6 @@
             <Label text="blue label"
                 style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
             <Label text="$30.000" style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-            <Button text="Agregar" style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
         </StackLayout>
 
         <StackLayout width="44%" padding="10">
@@ -28,8 +30,6 @@
                 <Label text="AZUL" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
                 <Label text="$80.000"
                     style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
             </StackLayout>
         </StackLayout>
 
@@ -42,8 +42,6 @@
                     style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
                 <Label text="$90.000"
                     style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
             </StackLayout>
         </StackLayout>
 
@@ -55,8 +53,6 @@
                 <Label text="rojo" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
                 <Label text="$67.000"
                     style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
             </StackLayout>
         </StackLayout>
 
@@ -69,8 +65,6 @@
                     style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
                 <Label text="$67.000"
                     style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
             </StackLayout>
         </StackLayout>
 
@@ -83,46 +77,37 @@
                     style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
                 <Label text="$76.500"
                     style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
             </StackLayout>
         </StackLayout>
 
         <StackLayout width="44%" padding="10">
             <StackLayout verticalAlignment="center">
                 <Image src="~/app/images/coctel7.jpg" width="100" height="100" />
-                <Label text="BEBIDA"
-                    style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
-                <Label text="TODOTIPO"
-                    style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
-                <Label text="$76.500"
-                    style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
-                <Button text="Agregar"
-                    style="color: black; font-size: 14; text-align: center; font-weight: bold;"></Button>
-            </StackLayout>
+                <Label text="BEBIDA" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
+                <Label text="TODOTIPO" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
+                <Label text="$76.500" style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
+        </StackLayout>
+    </StackLayout>
+
+        <StackLayout *ngFor="let producto of productos" width="44%" padding="10">
+            <Image [src]="producto.foto" width="100" height="100"/>
+            <Label [text]="producto.nombre" style="color: white; font-size: 16; text-align: center; font-weight: bold;"></Label>
+            <Label [text]="'$' + producto.precio" style="color: white; font-size: 14; text-align: center; font-weight: bold;"></Label>
+            <label [text]="producto.descripcion" style="color: white; font-size: 14; text-align: center; font-weight: bold;"></label>
         </StackLayout>
 
-        <StackLayout width="44%" padding="10" horizontalAlignment="left">
-            <StackLayout verticalAlignment="center">
-                <Button text="PAGAR" class="btn btn-success" tap="pagar"
-                    style="background-color: greenyellow; font-weight: bold; color: black;"></Button>
-            </StackLayout>
+        <StackLayout orientation="horizontal" padding="10" horizontalAlignment="left">
+            <Button text="PAGAR" class="btn btn-success" (tap)="onPagar()"
+                style="background-color: rgb(235, 6, 197); font-weight: bold; color: black; width: 40%; height: 60;"></Button>
+            <Button text="CANCELAR" class="btn btn-warning" (tap)="onCancelar()"
+                style="background-color: rgb(252, 250, 247); font-weight: bold; color: black; width: 40%; height: 60;"></Button>
         </StackLayout>
+        
 
-        <StackLayout width="44%" padding="10" horizontalAlignment="right">
-            <StackLayout verticalAlignment="center">
-                <Button text="CANCELAR" class="btn btn-warning" tap="cancelar"
-                    style="background-color: rgb(255, 187, 0); font-weight: bold; color: black;"></Button>
-            </StackLayout>
+        <StackLayout width="100%" padding="10" horizontalAlignment="center">
+            <Button text="Regresar" [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true" id="boton"
+                style="color: black;font-weight: bold; background-color: white;"></Button>
         </StackLayout>
-
-        <StackLayout width="88%" padding="10" horizontalAlignment="right">
-            <StackLayout verticalAlignment="center">
-                <Button text="Regresar" [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true" id="boton"
-                    style="color: black;font-weight: bold;"></Button>
-            </StackLayout>
-        </StackLayout>
-
     </WrapLayout>
 
 </ScrollView>
