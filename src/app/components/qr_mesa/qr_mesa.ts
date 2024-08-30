@@ -21,8 +21,18 @@ export class QrMesaComponent {
   public onTap(){
     this.router.navigate(["home"]);
   }
+  
+  /*
   public onEscaneado(){
     this.router.navigate(["pedido"]);
+  }
+  */
+
+  public onEscaneado(){
+    this.mesaService.urlPrueba({email: JSON.parse(localStorage.getItem('Oasis.user')).email}).subscribe({
+      next: value => console.log(value),
+      error: err => console.log(err)
+    })
   }
 
   abrirCamara() {

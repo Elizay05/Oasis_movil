@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
   })
   export class MesaService {
 
+    url = "http://10.171.68.196:8000/api/1.0/url_prueba/"
+
     mesa = {}
     headers = {"Authorization": `Token ${localStorage.getItem('Oasis.token')}`}
 
@@ -18,5 +20,9 @@ import { Observable } from 'rxjs';
 
     obtenerMesa(data: any): Observable<any> {
       return this.http.post<any>(`${global.apiUrl}token_qr/`, data, {headers: this.headers});
+    }
+
+    urlPrueba(nombre: any): Observable<any> {
+      return this.http.post<any>(`${this.url}`, nombre, {headers: {"Authorization": `Token f9c0f70d26cf197fe4d760c48ee9fea9b4942e99`}});
     }
   }
