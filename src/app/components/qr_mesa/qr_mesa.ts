@@ -53,10 +53,9 @@ export class QrMesaComponent {
         'email': JSON.parse(localStorage.getItem('Oasis.user')).email
       }
       console.log(data)
-      this.mesaService.activarMesa(data).subscribe({
-        next: value => console.log(value),
-        error: err => console.log(err)
-      })  
+      this.mesaService.obtenerMesa((data: any[]) => {
+        console.log(data)
+      })
     }, error => {
       console.log('QR Code scanning fail¨ed: ', error);
       alert('QR Code Scanning failed: ' + error);

@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
     }
 
     obtenerMesa(data: any): Observable<any> {
-      return this.http.post<any>(`${global.apiUrl}token_qr/`, data, {headers: this.headers});
+      return this.http.get<any>(`${global.apiUrl}token_qr/${data.mesa}/${data.email}/`, {headers: this.headers});
     }
 
     urlPrueba(nombre: any): Observable<any> {

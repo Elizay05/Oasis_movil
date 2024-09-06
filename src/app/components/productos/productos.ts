@@ -1,40 +1,19 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core'
-import { Router } from "@angular/router";
-import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
-
-
-=======
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ApiService } from './api.service';
 import { Page, TextField } from '@nativescript/core';
 import { ItemEventData } from "@nativescript/core/ui/list-view";
 import { Dialogs } from '@nativescript/core';
->>>>>>> origin/Deivy
 
 @Component({
     selector: 'productos',
     templateUrl: './productos.html',
-<<<<<<< HEAD
-    styleUrls: ['./productos.css'],
-})
-export class ProductosComponent implements OnInit {
-
-    public constructor(private router: Router, private barcodeScanner: BarcodeScanner) {
-        // Use the component constructor to inject providers.
-    }
-    ngOnInit(): void {
-
-    }
-
-=======
 })
 export class ProductosComponent implements OnInit {
     productos = [];
     carrito: any[] = [];
     productosAgregados: any[] = [];
-    mostrarCarrito: boolean = false; // Corrección: asignar directamente el valor false
+    mostrarCarrito: boolean = false;
 
     constructor(private router: Router, private apiService: ApiService, private page: Page) {
         this.obtenerTodos();
@@ -91,5 +70,4 @@ export class ProductosComponent implements OnInit {
         this.mostrarCarrito =  !this.mostrarCarrito;
     }
     
->>>>>>> origin/Deivy
 }
