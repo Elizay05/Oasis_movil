@@ -19,7 +19,7 @@ export class QrMesaComponent {
     this.page.actionBarHidden = true;
   }
   public onTap(){
-    this.router.navigate(["home"]);
+    this.router.navigate(["productos"]);
   }
   
   /*
@@ -28,13 +28,13 @@ export class QrMesaComponent {
   }
   */
 
-  public onEscaneado(){
+  /*public onEscaneado(){
     this.mesaService.urlPrueba({email: JSON.parse(localStorage.getItem('Oasis.user')).email}).subscribe({
       next: value => console.log(value),
       error: err => console.log(err)
     })
   }
-
+  */
   abrirCamara() {
     this.barcodeScanner.scan({
       formats: 'QR_CODE',

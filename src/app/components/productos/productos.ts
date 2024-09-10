@@ -39,6 +39,7 @@ export class ProductosComponent implements OnInit {
             okButtonText: "Ok",
             cancelable: true,
         });
+        
         this.router.navigate(['/home']);
     }
 

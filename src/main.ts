@@ -1,10 +1,11 @@
 import { platformNativeScriptDynamic, NativeScriptModule } from '@nativescript/angular';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { appComponents, appRoutes } from './app/app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
+
 
 import * as appSettings from '@nativescript/core/application-settings'
 
@@ -29,7 +30,7 @@ class AppComponentModule {}
 
 /* API web IP */
 global.url = "https://elizay05.pythonanywhere.com";
-global.urlLocal = "http://10.171.68.196:8000"
+global.urlLocal = "http://127.0.0.1:8000"
 global.apiUrl = global.urlLocal+"/api/1.0/";
 
 
