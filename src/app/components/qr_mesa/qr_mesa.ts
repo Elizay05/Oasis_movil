@@ -53,15 +53,7 @@ export class QrMesaComponent {
         'email': JSON.parse(localStorage.getItem('Oasis.user')).email
       };
       console.log(data);
-  
-      // Navigate to productos page with a success message
-      Dialogs.alert({
-        title: 'Info!',
-        message: 'Escaneado Exitosamente,redirijiendo a productos!!',
-        okButtonText: 'OK',
-        cancelable: true,
-    });
-      this.router.navigate(['/productos']);
+      this.router.navigate(['/pedido']);
     }, error => {
       console.log('QR Code scanning failed: ', error);
       Dialogs.alert('Escaneo fallido: ' + error);
