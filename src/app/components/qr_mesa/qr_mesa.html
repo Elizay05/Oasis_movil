@@ -15,7 +15,7 @@
                 <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
                 <label class="Cabin" fontSize="16" marginTop="30" text="Escanea el código QR de la mesa"></label>
                 <Image marginTop="25" src="~/app/images/QR.jpg" width="270"></Image>
-                <label marginTop="25" class="butonlabelmorado Cabin" text="Escanear"></label>
+                <label marginTop="25" class="butonlabelmorado Cabin" (tap)="abrirCamara()" text="Escanear"></label>
                 <FlexboxLayout class="rayaIntermedia3"></FlexboxLayout>
                 <label marginTop="25" class="butonlabelrosa Cabin" (tap)="onEscaneado()" text="Escaneado"></label>
             </FlexboxLayout>

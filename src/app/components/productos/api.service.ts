@@ -10,7 +10,7 @@ export class ApiService {
     apiUrl = 'https://elizay05.pythonanywhere.com/api/1.0/';
 
     // Incluir aquí tu token de autenticación
-    authToken = '249c571b20c7727a9e45cab81c6fe5c68b4d3fa2';
+    authToken = 'c2f9d0d7766f1ebc39a3e01a1a4e252e10472ed9';
 
     constructor(private http: HttpClient) {}
 

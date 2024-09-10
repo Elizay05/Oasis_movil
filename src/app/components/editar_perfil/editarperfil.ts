@@ -9,7 +9,7 @@ import { Page, TextField } from '@nativescript/core';
 
   
 })
-export class PerfilComponent {
+export class EditarPerfilComponent {
   public constructor(private router: Router, private page: Page) {
     // Use the component constructor to inject providers.
   }

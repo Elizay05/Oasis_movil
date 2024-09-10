@@ -4,7 +4,9 @@ import { AppComponent } from './app.component';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { appComponents, appRoutes } from './app/app.routing';
 import { HttpClientModule } from '@angular/common/http';
-import * as appSettings from "@nativescript/core/application-settings";
+import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
+
+import * as appSettings from '@nativescript/core/application-settings'
 
 @NgModule({
   declarations: [AppComponent, ...appComponents],
@@ -13,16 +15,23 @@ import * as appSettings from "@nativescript/core/application-settings";
     NativeScriptModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+  ],
+  providers: [
+    BarcodeScanner
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })
+
+
 class AppComponentModule {}
 /* Before we bootstrap, shim the 'localStorage' API with application settings module */
 
 /* API web IP */
 global.url = "https://elizay05.pythonanywhere.com";
-global.apiUrl = global.url+"/api/1.0";
+global.urlLocal = "http://10.171.68.196:8000"
+global.apiUrl = global.urlLocal+"/api/1.0/";
+
 
 global.localStorage = {
   getItem(key: string) {

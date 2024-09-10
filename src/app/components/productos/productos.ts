@@ -13,7 +13,7 @@ export class ProductosComponent implements OnInit {
     productos = [];
     carrito: any[] = [];
     productosAgregados: any[] = [];
-    mostrarCarrito: boolean = false; // Corrección: asignar directamente el valor false
+    mostrarCarrito: boolean = false;
 
     constructor(private router: Router, private apiService: ApiService, private page: Page) {
         this.obtenerTodos();
