@@ -1,20 +1,11 @@
 <ScrollView>
   <DockLayout backgroundColor="#000000">
-    <!--
-  <label text="" dock="top" height="40"></label>
-  <StackLayout dock="bottom" height="60" backgroundColor="#FC4664">
-    <GridLayout columns="*, *" height="100%">
-        <Label col="0" textAlignment="center" text="&#xf007;" class="fas titul_big botonesAbajo" backgroundColor="#AA46FC"></Label>
-        <Label col="1" textAlignment="center" text="&#xf07a;" class="fas titul_big botonesAbajo" backgroundColor="#AA46FC"></Label>
-    </GridLayout>
-  </StackLayout> -->
     <StackLayout>
       <FlexboxLayout class="barraNavegacion">
         <FlexboxLayout class="InfoUser">
           <Image [nsRouterLink]="['/perfil']" [src]="foto" class="img_user"></Image>
-          <FlexboxLayout flexDirection="column" style="margin-left: 30px;">
-            <label class="text-small Cabin" text="Nombre: "></label>
-            <label class="text-medium Cabin" [text]="nombre"></label>
+          <FlexboxLayout flexDirection="column" justifyContent="center" style="margin-left: 30px;">
+            <label class="Cabin" style="font-size: 18px;" [text]="nombre"></label>
           </FlexboxLayout>
         </FlexboxLayout>
         <FlexboxLayour>
@@ -121,15 +112,8 @@
 
       <Button text="Registrarse" *ngIf="!loggedIn" [nsRouterLink]="['/registro']" pageTransition="slide" clearHistory="true"></Button>
 
-      <!--<Button text="Ver Productos" [nsRouterLink]="['/productos']" pageTransition="slide" clearHistory="true"></Button>-->
-
-      <!--<Button text="Reservar eventos" [nsRouterLink]="['/evento']" pageTransition="slide" clearHistory="true"></Button>-->
-
-      <!--<Button text="Perfil" [nsRouterLink]="['/perfil']" pageTransition="slide" clearHistory="true"></Button>-->
-
       <Button text="Productos Admin" [nsRouterLink]="['/productos_admin']" pageTransition="slide" [visibility]="verificarPermisos(1) ? 'visible' : 'collapsed'" clearHistory="true"></Button>
       
-      <Button text="Salir" (tap)="onExit()"></Button>
     </StackLayout>
   </DockLayout>
 </ScrollView>

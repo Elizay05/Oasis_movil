@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { NavigationEnd, Router } from "@angular/router";
-import { Application, Page, TextField } from '@nativescript/core';
-import { ApiService } from './api.service';
+import { Application, Page } from '@nativescript/core';
+import { LoginService } from '../../shared/services/login.service';
 import { Dialogs } from '@nativescript/core';
 import { ActivatedRoute } from '@angular/router';
 import { openUrl } from '@nativescript/core/utils';
@@ -19,21 +19,16 @@ export class LoginComponent {
     loggedIn: boolean = false;
     private backPressedSubscription: any;
 
-    public constructor(private router: Router, private apiService: ApiService, private activatedRoute: ActivatedRoute,private page: Page) {
-        // Use the component constructor to inject providers.
-        console.info("Averiguando si hay datos...");
+    public constructor(private router: Router, private loginService: LoginService , private activatedRoute: ActivatedRoute,private page: Page) {
         if (localStorage.getItem('Oasis.token')) {
             console.log("Bienvenido " + JSON.parse(localStorage.getItem('Oasis.user')).nombre + "!!");
-            this.loggedIn = true; // Establecer como iniciado sesión para evitar el mensaje de confirmación
+            this.loggedIn = true;
             this.router.navigate(['home']);
         }
-        // Suscribirse al evento de navegación de Android para manejar el botón de retroceso
         Application.android.on(Application.AndroidApplication.activityBackPressedEvent, (args: any) => {
             if (!this.loggedIn) {
-                // Mostrar cuadro de diálogo de confirmación solo en la página de inicio de sesión
                 if (this.router.isActive('/login', false)) {
-                    args.cancel = true; // Cancelar el evento de retroceso para evitar la navegación estándar
-
+                    args.cancel = true; 
                     Dialogs.confirm({
                         title: 'Confirmar salida',
                         message: '¿Seguro que deseas salir de la aplicación?',
@@ -41,7 +36,6 @@ export class LoginComponent {
                         cancelButtonText: 'No'
                     }).then((result) => {
                         if (result) {
-                            // Sí seleccionado, salir de la aplicación
                             Application.android.foregroundActivity.finish();
                         }
                     }).catch((error) => {
@@ -53,7 +47,6 @@ export class LoginComponent {
     }
 
     inputChange(args, campo) {
-        // blur event will be triggered when the user leaves the TextField
         let textField = <UITextField>args.object;
         if (campo == "email") {
             this.email = textField.text;
@@ -69,8 +62,7 @@ export class LoginComponent {
             filter(event => event instanceof NavigationEnd)
         ).subscribe((event: NavigationEnd) => {
             if (event.url !== '/login') {
-                // El usuario ha navegado fuera de la página de inicio de sesión
-                this.loggedIn = true; // Marcar como iniciado sesión para evitar el mensaje de confirmación
+                this.loggedIn = true;
             }
         });
 
@@ -80,7 +72,6 @@ export class LoginComponent {
             username: this.email,
             password: this.password
         };
-        console.log(data)
         if (!this.termsAccepted) {
             Dialogs.alert({
                 title: 'Alerta',
@@ -90,9 +81,8 @@ export class LoginComponent {
             });
             return;
         }
-        this.apiService.login(data).subscribe((res) => {
+        this.loginService.login(data).subscribe((res) => {
             if (res && res.token.length > 0) {
-                console.info(res)
                 localStorage.setItem('Oasis.token', res.token);
                 localStorage.setItem('Oasis.user', JSON.stringify(res.user));
                 Dialogs.alert({
@@ -101,11 +91,9 @@ export class LoginComponent {
                     okButtonText: 'OK',
                     cancelable: true,
                 });
-                //this.router.navigate(['categorias'], { queryParams: { token: res.token } });
                 this.router.navigate(['home']);
             }
         }, error => {
-            console.log(error.status)
             if (error.status == 400) {
                 Dialogs.alert({
                     title: 'Alerta',
@@ -115,6 +103,7 @@ export class LoginComponent {
                 });
             }
             else {
+                console.log(error.error.message);
                 Dialogs.alert({
                     title: 'Respuesta:',
                     message: error.error.message,
@@ -127,13 +116,16 @@ export class LoginComponent {
     public onRegistrarse() {
         this.router.navigate(["registro"])
     }
+
     public onTap() {
         this.router.navigate(["home"])
     }
+
     public onTermsAcceptedChange(args): void {
         this.termsAccepted = args.object.checked;
         console.log('El valor de termsAccepted ha cambiado:', this.termsAccepted);
     }
+
     public navigateToTerms(): void {
         openUrl('https://elizay05.pythonanywhere.com/tyc/');
     }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
-import { Page, TextField } from '@nativescript/core';
+import { Page } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 import { QrMesaService } from './qr_mesa.service';
 import { MesaService } from '../../shared/services/mesa.service';
@@ -12,9 +12,9 @@ import { MesaService } from '../../shared/services/mesa.service';
   templateUrl: './qr_mesa.html',
 })
 export class QrMesaComponent {
-  public constructor(private router: Router, private page: Page, private barcodeScanner: BarcodeScanner, private qrService: QrMesaService, private mesaService: MesaService) {
-    // Use the component constructor to inject providers.
+  public constructor(private router: Router, private page: Page, private barcodeScanner: BarcodeScanner, private mesaService: MesaService) {
   }
+
   ngOnInit(): void {
     this.page.actionBarHidden = true;
   }
@@ -25,14 +25,6 @@ export class QrMesaComponent {
   /*
   public onEscaneado(){
     this.router.navigate(["pedido"]);
-  }
-  */
-
-  /*public onEscaneado(){
-    this.mesaService.urlPrueba({email: JSON.parse(localStorage.getItem('Oasis.user')).email}).subscribe({
-      next: value => console.log(value),
-      error: err => console.log(err)
-    })
   }
   */
   abrirCamara() {

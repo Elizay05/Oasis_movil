@@ -16,8 +16,8 @@ export class RegistroComponent implements OnInit {
   password: string = '';
   telefono: string = '';
   mayorEdad: boolean = false;
-  fecha_nacimiento: string = ''; // Define la variable para la fecha de nacimiento
-  cedula: string = ''; // Define la variable para la cédula
+  fecha_nacimiento: string = '';
+  cedula: string = '';
   foto: "";
   rol: number = 0;
   estado: number = 0;
@@ -102,6 +102,7 @@ export class RegistroComponent implements OnInit {
       }
     );
   }
+
   inputChange(args, campo): void {
     let textField = args.object;
     let value = textField.text;
@@ -124,7 +125,6 @@ export class RegistroComponent implements OnInit {
       case "cedula":
         this.cedula = value;
         break;
-      // Agrega más casos según sea necesario para otros campos
       default:
         console.log("Campo no reconocido");
     }
@@ -137,7 +137,6 @@ onCheckChanged(args): void {
       this.mayorEdad = args.object.checked;
       console.log('El valor de mayorEdad ha cambiado:', this.mayorEdad);
 }
-
 
 public navigateToTerms(): void {
   openUrl('https://elizay05.pythonanywhere.com/tyc/');

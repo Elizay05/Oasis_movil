@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    apiUrl = 'https://elizay05.pythonanywhere.com/api/1.0/'; // Replace with your registration endpoint URL
+    apiUrl = 'https://elizay05.pythonanywhere.com/api/1.0/';
 
     constructor(private http: HttpClient) {}
 

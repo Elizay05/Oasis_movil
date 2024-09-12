@@ -5,9 +5,6 @@
                 <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
                 <label class="Nunito text-medium">Eventos</label>
                 </FlexboxLayout>
-                <FlexboxLayout class="Cart">
-                <Image src="~/app/images/cart.png"></Image>
-                </FlexboxLayout>
             </FlexboxLayout>      
             <StackLayout>
                 <FlexboxLayout class="cardEventos" flexDirection="column" *ngFor="let i of eventos">
@@ -19,9 +16,6 @@
                                 <label class="Cabin fecha" text="{{i.fecha}}"></label>
                             </FlexboxLayout>
                         </FlexboxLayout> 
-                        <FlexboxLayout>
-                            <Image src="~/app/images/pencil.png" [nsRouterLink]="['info_evento', i.id]" width="40" borderRadius="10"></Image>
-                        </FlexboxLayout>
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
                     <FlexboxLayout class="Imagen_Evento">

@@ -72,8 +72,8 @@ This is where the vast majority of your CSS code goes. */
 }
 
 .img_user {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 70px;
     margin: 20px;
 }
