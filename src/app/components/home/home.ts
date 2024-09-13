@@ -20,6 +20,7 @@ export class HomeComponent {
   loggedIn: boolean = false;
   
   public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
+    console.log('home constructor');
     if (localStorage.getItem('Oasis.token')) {
       this.loggedIn = true;
       this.perfil = JSON.parse(localStorage.getItem('Oasis.user'))
@@ -38,7 +39,6 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
-    this.obtenerFotoUsuario
   }
 
   onReserva() {

@@ -1,0 +1,48 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Reservar Evento</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <FlexboxLayout class="blockEvento" flexDirection="column">
+                <GridLayout rows="auto, auto">
+                    <Image src="{{info_evento.foto}}" row="0" borderRadius="10" height="200" width="100%" stretch="fill"></Image>
+                </GridLayout>
+                <FlexboxLayout class="Info_Evento" flexDirection="column">
+                    <label class="Cabin titulo" text="{{info_evento.nombre}}" fontSize="20" whiteSpace="normal"></label>
+                    <FlexboxLayout>
+                        <label class="far" id="calendario" text="&#xf133;"></label>
+                        <label class="Cabin fecha" text="{{info_evento.fecha}} a las {{info_evento.hora_incio}} pm"></label>
+                    </FlexboxLayout>
+                    <FlexboxLayout class="rayaIntermedia3" marginTop="10"></FlexboxLayout>
+
+                    
+                    <FlexboxLayout flexDirection="column" alignItems="center">
+                        <label class="Cabin titulo" text="Entrada General" fontSize="18" marginTop="15" whiteSpace="normal"></label>
+                    </FlexboxLayout>      
+                    <FlexboxLayout justifyContent="space-around" height="auto">
+                        <number-input-stepper [value]="entradaGeneral" [min]="0" [max]="4" (valueChange)="onEntradaGeneralChange($event)"></number-input-stepper>
+                        <label class="Cabin" fontSize="16" whiteSpace="normal" [text]="'$ ' + formatCurrency(subtotalEntradaGeneral)"  verticalAlignment="center"></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout alignItems="center" justifyContent="center">
+                        <label class="Cabin titulo" text="Entrada VIP" fontSize="18" marginTop="15" whiteSpace="normal"></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout justifyContent="space-around" height="auto">
+                        <number-input-stepper [value]="entradaVip" [min]="0" [max]="4" (valueChange)="onEntradaVipChange($event)"></number-input-stepper>
+                        <label class="Cabin" fontSize="16" whiteSpace="normal" [text]="'$ ' + formatCurrency(subtotalEntradaVip)" verticalAlignment="center"></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout alignItems="center" justifyContent="center" marginTop="30">
+                        <label class="butonlabelmorado Cabin" [class.disabled]="isButtonDisabled" [text]="isButtonDisabled ? 'Comprar' : 'Comprar'" (tap)="!isButtonDisabled ? onComprar() : null"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout> 
+            </FlexboxLayout>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>

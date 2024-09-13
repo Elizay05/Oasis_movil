@@ -10,10 +10,7 @@
 
             <FlexboxLayout class="blockEvento" flexDirection="column">
                 <GridLayout rows="auto, auto">
-                    <Image src="~/app/images/Dia_muertos.png" row="0" borderRadius="10"></Image>
-                    <!--
-                        <Image src="~/app/images/cart_purple2.png" row="0" width="45" height="41" horizontalAlignment="right" verticalAlignment="top" margin="10" borderRadius="100"></Image>
-                    -->
+                    <Image src="{{info_evento.foto}}" row="0" borderRadius="15" height="200" width="100%" stretch="fill"></Image>
                 </GridLayout>
                 <FlexboxLayout class="Info_Evento" flexDirection="column">
                     <label class="Cabin titulo" text="{{info_evento.nombre}}" fontSize="20" whiteSpace="normal"></label>
@@ -45,8 +42,9 @@
                     </ScrollView>
                     -->
                     <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
-                    <FlexboxLayout alignItems="center" justifyContent="center" marginTop="15">
-                        <label class="butonlabelmorado Cabin" (tap)="onCarrito()" text="Agregar al carrito"></label>
+                    <FlexboxLayout  flexDirection="column" alignItems="center" justifyContent="center" marginTop="15">
+                        <label class="butonlabelmorado Cabin" marginBottom="20" marginTop="0" (tap)="onComprarEntrada(info_evento.id)" text="Comprar entradas"></label>
+                        <label class="butonlabelrosa Cabin" margin="0" (tap)="onCarrito()" text="Reservar mesa"></label>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

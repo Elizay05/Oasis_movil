@@ -11,7 +11,9 @@ import { RegistroComponent } from "./components/registro/registro";
 import { ProductosComponent } from "./components/productos/productos";
 import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
 import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
-
+import { EventoEntradasComponent } from "./components/evento_entradas/evento_entradas";
+import { NumberInputStepperComponent } from "./components/number-input-stepper/number-input-stepper";
+import { ModalEntradasComponent } from "./components/modal-entradas/modal-entradas";
 
 export const appRoutes: any = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,7 +32,7 @@ export const appRoutes: any = [
   // { path: "noticias", component: NoticiasComponent},
   { path: "productos", component: ProductosComponent},
   { path: "productos_admin", component: ProductosAdminComponent},
-
+  { path: "evento/entradas/:id", component: EventoEntradasComponent},
 ];
 
 export const appComponents: any = [
@@ -49,5 +51,8 @@ export const appComponents: any = [
   //NoticiasComponent,
   ProductosComponent,
   ProductosAdminComponent,
+  EventoEntradasComponent,
+  NumberInputStepperComponent,
+  ModalEntradasComponent
 ];
 

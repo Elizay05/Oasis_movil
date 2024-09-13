@@ -1,0 +1,28 @@
+<StackLayout class="modal Cabin">
+    <label class="modal-title" text="Confirmar Compra"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
+        <Image src="{{fotoEvento}}" row="0" borderRadius="10" height="100" width="80%" stretch="fill"></Image>
+        <label fontSize="18" text="{{nombreEvento}}"></label>
+    </FlexboxLayout>
+
+    <GridLayout rows="auto, auto, auto" columns="*, *, *" class="tabla-compras">
+        <Label text="General" row="0" col="0"></Label>
+        <Label [text]="'x' + cantidadGeneral" row="0" col="1"></Label>
+        <Label [text]="'$' + formatCurrency(totalGeneral)" row="0" col="2"></Label>
+    
+        <Label text="Vip" row="1" col="0"></Label>
+        <Label [text]="'x' + cantidadVip" row="1" col="1"></Label>
+        <Label [text]="'$' + formatCurrency(totalVip)" row="1" col="2"></Label>
+    </GridLayout>
+
+    <FlexboxLayout display="flex" alignItems="center" justifyContent="center" marginTop="10">
+        <label class="Cabin" [text]="'Total: $ ' + formatCurrency(totalCompra)" fontSize="16" fontWeight="bold"></label>
+    </FlexboxLayout>
+    
+    <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>
+    <FlexboxLayout justifyContent="space-between" marginTop="10">
+        <Button text="Cancelar" (tap)="cancelar()" class="btn-cancelar"></Button>
+        <Button text="Confirmar" (tap)="confirmar()" class="btn-confirmar"></Button>
+    </FlexboxLayout>
+  </StackLayout>

@@ -1,0 +1,7 @@
+<FlexboxLayout class="content-stepeer">
+    <TextField [text]="value.toString()" keyboardType="number" class="stepper-input"></TextField>
+    <FlexboxLayout flexDirection="column" >
+        <Button text="&#9650;" (tap)="increase()" class="stepper-button"></Button>
+        <Button text="&#9660;" (tap)="decrease()" class="stepper-button"></Button>
+    </FlexboxLayout>
+</FlexboxLayout>

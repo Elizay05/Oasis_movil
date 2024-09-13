@@ -18,4 +18,8 @@ export class EventoService {
     obtenerEventoPorId(id: number): Observable<any> {
         return this.http.get<any>(`${global.urlLocalSayi}/api/1.0/evento/${id}/`, { headers: this.headers });
     }
+
+    comprarEntradas(data: any): Observable<any> {
+        return this.http.post<any>(`${global.urlLocalSayi}/api/1.0/comprar_entradas/`, data, { headers: this.headers });
+    }
 }

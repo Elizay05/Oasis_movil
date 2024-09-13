@@ -6,8 +6,8 @@
                 <label class="Nunito text-medium">Eventos</label>
                 </FlexboxLayout>
             </FlexboxLayout>      
-            <StackLayout>
-                <FlexboxLayout class="cardEventos" flexDirection="column" *ngFor="let i of eventos">
+            <StackLayout margiBottom="10">
+                <FlexboxLayout class="cardEventos" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let i of eventos">
                     <FlexboxLayout class="headCardEventos">
                         <FlexboxLayout class="Info" flexDirection="column">
                             <label class="Cabin titulo" text="{{i.nombre}}"></label>
@@ -19,7 +19,7 @@
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
                     <FlexboxLayout class="Imagen_Evento">
-                        <Image src="{{i.foto}}"></Image>
+                        <Image src="{{i.foto}}" borderRadius="10"></Image>
                     </FlexboxLayout>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
                     <FlexboxLayout class="botonvermas">

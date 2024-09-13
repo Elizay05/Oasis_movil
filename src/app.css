@@ -130,6 +130,12 @@ This is where the vast majority of your CSS code goes. */
     margin-bottom: 30;
 }
 
+.butonlabelmorado.disabled {
+    background-color: #262626;
+    color: #BDBDBD;
+    cursor: not-allowed;
+  }
+
 .butonlabelverde {
     margin-top: 20;
     text-align: center;
