@@ -1,8 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
 import { Page } from '@nativescript/core';
-import { ItemEventData } from "@nativescript/core/ui/list-view";
-import { Dialogs } from '@nativescript/core'
 import { EventoService } from '../../shared/services/evento.service';
 
 
@@ -21,21 +19,6 @@ export class EventoComponent {
     this.eventoService.obtenerEventos().subscribe((data: any[]) => {
         this.eventos = data;
     }); 
-  }
-
-
-  onItemTap(item: any) {
-    let register = item
-
-    this.eventoService.getRegisterById(register.id).subscribe((res) => {
-        Dialogs.alert({
-            title: 'Detalles!',
-            message: `ID: ${res.id}\nNOMBRE: ${res.nombre}\nFECHA: ${res.fecha}\nHORA INICIO: ${res.hora_incio}\nDESCRIPCION: ${res.descripcion}\nFOTO: ${res.foto}`,
-            okButtonText: 'OK',
-            cancelable: true,
-        });
-        console.info(res)
-    });
   }
 
   ngOnInit(): void {

@@ -14,9 +14,11 @@ import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
 import { EventoEntradasComponent } from "./components/evento_entradas/evento_entradas";
 import { NumberInputStepperComponent } from "./components/number-input-stepper/number-input-stepper";
 import { ModalEntradasComponent } from "./components/modal-entradas/modal-entradas";
+import { PerfilEntradasComponent } from "./components/perfil_entradas/perfil-entradas";
+import { PerfilEntradasDetallesComponent } from "./components/perfil-entradas-detalles/perfil-entradas-detalles";
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'perfil/entradas', pathMatch: 'full' },
   { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -33,6 +35,8 @@ export const appRoutes: any = [
   { path: "productos", component: ProductosComponent},
   { path: "productos_admin", component: ProductosAdminComponent},
   { path: "evento/entradas/:id", component: EventoEntradasComponent},
+  { path: "perfil/entradas", component: PerfilEntradasComponent},
+  { path: "perfil/entradas/detalles/:id", component: PerfilEntradasDetallesComponent},
 ];
 
 export const appComponents: any = [
@@ -53,6 +57,8 @@ export const appComponents: any = [
   ProductosAdminComponent,
   EventoEntradasComponent,
   NumberInputStepperComponent,
-  ModalEntradasComponent
+  ModalEntradasComponent,
+  PerfilEntradasComponent,
+  PerfilEntradasDetallesComponent
 ];
 

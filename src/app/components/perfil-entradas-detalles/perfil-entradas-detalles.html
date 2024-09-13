@@ -1,0 +1,43 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="Nunito text-medium">Detalles entrada</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <FlexboxLayout class="blockEvento" flexDirection="column">
+                <GridLayout rows="auto, auto">
+                    <Image src="{{evento.foto}}" row="0" borderRadius="15" height="200" width="100%" stretch="fill"></Image>
+                </GridLayout>
+                <FlexboxLayout class="Info_Evento" flexDirection="column">
+                    <label class="Cabin titulo" [text]="evento.nombre" fontSize="20" whiteSpace="normal"></label>
+                    <FlexboxLayout>
+                        <label class="far" id="calendario" text="&#xf133;"></label>
+                        <label class="Cabin fecha" text="{{evento.fecha}} a las {{evento.hora_incio}} pm"></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout flexDirection="column" height="auto">
+                        <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Total entradas: {{compra_entrada.entrada_general + compra_entrada.entrada_vip}}"></label>
+                        <FlexboxLayout class="contenedor-entradas">
+                            <FlexboxLayout class="entrada" *ngIf="compra_entrada.entrada_general > 0">
+                                <label class="Cabin" [text]="'x' + compra_entrada.entrada_general + ' Entrada General'"></label>
+                            </FlexboxLayout>
+                            <FlexboxLayout class="entrada" *ngIf="compra_entrada.entrada_vip > 0">
+                                <label class="Cabin" [text]="'x' + compra_entrada.entrada_vip + ' Entrada General'"></label>
+                            </FlexboxLayout>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
+                    <FlexboxLayout  flexDirection="column" alignItems="center" justifyContent="center" marginTop="15">
+                        <label class="butonlabelmorado Cabin" marginBottom="20" marginTop="0" text="Comprar entradas"></label>
+                        <label class="butonlabelrosa Cabin" margin="0" text="Reservar mesa"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout> 
+            </FlexboxLayout>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>

@@ -1,38 +1,33 @@
-<DockLayout backgroundColor="#000000">
+<ScrollView>
+  <DockLayout backgroundColor="#000000">
     <StackLayout>
         <FlexboxLayout class="barraNavegacion2">
             <FlexboxLayout class="InfoUser2">
             <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
-            <label class="Nunito text-medium">Regresar</label>
+            <label class="Nunito text-medium">Perfil</label>
             </FlexboxLayout>
         </FlexboxLayout>
   
         <DockLayout stretchLastChild="true" padding="10" backgroundColor="black">
-          <Label text="" dock="left" width="40" ></Label>
-          <Label text="" dock="top" height="40"></Label>
-          <Label text="" dock="right" width="40"></Label>
-          <Label text="" dock="bottom" height="40"></Label>
-<!--El "FlexboxLayour" Reemplaza el "Div" de HTML.-->
-          <FlexboxLayout>
-            <FlexboxLayout class="contenedor">
-              <FlexboxLayout class="card">
-                <FlexboxLayout class="card-imagen">
-                  <Image class="foto" [src]="foto"></Image>
+          <FlexboxLayout class="contenedor-perfil">
+            <FlexboxLayout class="card">
+              <Image class="foto" [src]="foto" width="200" height="200"></Image>
+              <FlexboxLayout class="card-body" margin="0">
+                <FlexboxLayout class="contenido">
+                  <label class="Cabin text-medium" [text]="nombre"></label>
+                  <label class="Cabin text-small" [text]="rolNombre"></label>
+                  <label class="Cabin" fontSize="16" marginTop="10" [text]="email"></label>
+                  <label class="Cabin" fontSize="16" marginTop="10" [text]=""></label>
                 </FlexboxLayout>
-                <FlexboxLayout class="card-body">
-                  <FlexboxLayout class="contenido">
-                    <label class="fas" text="&#xf007;"[text]="nombre"></label>
-                    <label class="fas" text="&#xf0e0;"[text]="email"></label>
-                  </FlexboxLayout>
-                </FlexboxLayout>
-              </FlexboxLayout>             
-            </FlexboxLayout>           
+              </FlexboxLayout>
+              <label class="butonlabelmoradoSinMargin Cabin" marginBottom="20" text="Ver entradas" [nsRouterLink]="['entradas']"></label>
+              <label class="butonlabelmoradoSinMargin Cabin" marginBottom="20" text="Ver reservas"></label>
+              <label class="butonlabelmoradoSinMargin Cabin" marginBottom="20" text="Ver pedidos"></label>
+            </FlexboxLayout>             
           </FlexboxLayout>         
         </DockLayout> 
     </StackLayout>
-</DockLayout>
-<FlexboxLayout class="botones">
-  <Button class="butonlabelrosa" text="Editar perfil" [nsRouterLink]="['/editarperfil']" pageTransition="slide" clearHistory="true" backgroundColor="#FC4664"></Button>
-</FlexboxLayout>
+  </DockLayout>
+</ScrollView>
 
 

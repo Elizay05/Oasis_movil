@@ -1,0 +1,26 @@
+.blockEvento {
+    padding-left: 20;
+    padding-right: 20;
+}
+.titulo{
+    color: white;
+}
+
+.Info_Evento{
+    margin-top: 20;
+}
+
+.contenedor-entradas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-entradas .entrada{
+    padding: 12;
+    background-color: #575757;
+    width: 70%;
+    margin-top: 15;
+    border-radius: 10;
+    color: white;
+}
