@@ -19,22 +19,17 @@
                         <label class="Cabin fecha" text="{{evento.fecha}} a las {{evento.hora_incio}} pm"></label>
                     </FlexboxLayout>
 
-                    <FlexboxLayout flexDirection="column" height="auto">
-                        <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Total entradas: {{compra_entrada.entrada_general + compra_entrada.entrada_vip}}"></label>
+                    <FlexboxLayout flexDirection="column" height="auto" alignItems="center">
+                        <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" text="Total entradas: {{compra_entrada.entrada_general + compra_entrada.entrada_vip}}"></label>
+                        <label class="Cabin" marginTop="5" fontSize="14" whiteSpace="normal" [text]="'Precio entrada general: $' + formatCurrency(evento.precio_entrada || 0)"></label> 
+                        <label class="Cabin" marginTop="5" fontSize="14" whiteSpace="normal" [text]="'Precio entrada vip: $' + formatCurrency(evento.precio_vip || 0)"></label> 
                         <FlexboxLayout class="contenedor-entradas">
-                            <FlexboxLayout class="entrada" *ngIf="compra_entrada.entrada_general > 0">
-                                <label class="Cabin" [text]="'x' + compra_entrada.entrada_general + ' Entrada General'"></label>
-                            </FlexboxLayout>
-                            <FlexboxLayout class="entrada" *ngIf="compra_entrada.entrada_vip > 0">
-                                <label class="Cabin" [text]="'x' + compra_entrada.entrada_vip + ' Entrada General'"></label>
+                            <FlexboxLayout class="entrada" *ngFor="let entrada of qr_entradas">
+                                <label class="Cabin" text="Entrada {{entrada.tipo_entrada}}"></label>
+                                <Image src="~/app/images/icono-qr.png" height="30" width="30" borderRadius="5" (tap)="onQr(entrada.qr_imagen)"></Image>
                             </FlexboxLayout>
                         </FlexboxLayout>
-                    </FlexboxLayout>
-
-                    <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
-                    <FlexboxLayout  flexDirection="column" alignItems="center" justifyContent="center" marginTop="15">
-                        <label class="butonlabelmorado Cabin" marginBottom="20" marginTop="0" text="Comprar entradas"></label>
-                        <label class="butonlabelrosa Cabin" margin="0" text="Reservar mesa"></label>
+                        <label class="Cabin" fontSize="18" marginTop="20" marginBottom="20" [text]="'Total de la compra: $' + formatCurrency(compra_entrada?.total || 0)"></label>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

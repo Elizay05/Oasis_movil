@@ -22,15 +22,16 @@ export class InfoEventoComponent {
     }); 
   }
 
-  public onTap(){
-    this.router.navigate(["evento"]);
-  }
 
   onComprarEntrada(id: any) {
     this.router.navigate(["evento/entradas", id]);
   }
 
-  public onCarrito(){
-    this.router.navigate(["evento_entradas"]);
+  onReservarMesa(id: any){
+    this.router.navigate(["evento/reservas", id]);
+  }
+
+  public onTap(){
+    this.router.navigate(["evento"]);
   }
 }

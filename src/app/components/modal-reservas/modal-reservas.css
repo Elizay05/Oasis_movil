@@ -1,0 +1,32 @@
+.modal {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+
+  .content-mesa{
+    background-color: rgb(78, 78, 78);
+    border-radius: 50%;
+    width: 40%;
+    margin-top: 30px;
+    padding: 20;
+    display: flex;
+    justify-content: center;
+  }
+
+  
+  .btn-confirmar {
+    background-color: #fc4664;
+    color: white;
+  }
+  
+  .btn-cancelar {
+    background-color: #000000;
+    color: white;
+  }

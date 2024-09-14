@@ -30,4 +30,5 @@ export class EventoService {
     obtenerEntradasDetallesUsuario(user_id: number, entrada_id: number): Observable<any[]> {
         return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/entradas_detalles_usuario/${user_id}/${entrada_id}/`, { headers: this.headers });
     }
+
 }

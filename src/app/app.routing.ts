@@ -2,7 +2,6 @@ import { HomeComponent } from "./components/home/home";
 import { TiendaComponent } from "./components/tienda/tienda";
 import { EventoComponent } from "./components/evento/evento";
 import { InfoEventoComponent } from "./components/info_evento/info_evento";
-import { EventoCarritoComponent } from "./components/evento_agregar_carrito/evento_carrito";
 import { LoginComponent } from "./components/login/login";
 import { PerfilComponent } from "./components/perfil/perfil";
 import { QrMesaComponent } from "./components/qr_mesa/qr_mesa";
@@ -16,14 +15,16 @@ import { NumberInputStepperComponent } from "./components/number-input-stepper/n
 import { ModalEntradasComponent } from "./components/modal-entradas/modal-entradas";
 import { PerfilEntradasComponent } from "./components/perfil_entradas/perfil-entradas";
 import { PerfilEntradasDetallesComponent } from "./components/perfil-entradas-detalles/perfil-entradas-detalles";
+import { ModalQrComponent } from "./components/modal-qr/modal-qr";
+import { EventoReservasComponent } from  "./components/evento-reservas/evento-reservas";
+import { ModalReservasComponent } from "./components/modal-reservas/modal-reservas";
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'perfil/entradas', pathMatch: 'full' },
+  { path: '', redirectTo: 'evento', pathMatch: 'full' },
   { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
   { path: "evento/info_evento/:id", component: InfoEventoComponent },
-  { path: "evento_carrito", component: EventoCarritoComponent },
   { path: "login", component: LoginComponent },
   { path: "perfil", component: PerfilComponent },
   { path: "qr_mesa", component: QrMesaComponent},
@@ -37,6 +38,7 @@ export const appRoutes: any = [
   { path: "evento/entradas/:id", component: EventoEntradasComponent},
   { path: "perfil/entradas", component: PerfilEntradasComponent},
   { path: "perfil/entradas/detalles/:id", component: PerfilEntradasDetallesComponent},
+  { path: "evento/reservas/:id", component: EventoReservasComponent},
 ];
 
 export const appComponents: any = [
@@ -44,7 +46,6 @@ export const appComponents: any = [
   TiendaComponent,
   EventoComponent,
   InfoEventoComponent,
-  EventoCarritoComponent,
   LoginComponent,
   PerfilComponent,
   QrMesaComponent,
@@ -59,6 +60,9 @@ export const appComponents: any = [
   NumberInputStepperComponent,
   ModalEntradasComponent,
   PerfilEntradasComponent,
-  PerfilEntradasDetallesComponent
+  PerfilEntradasDetallesComponent,
+  ModalQrComponent,
+  EventoReservasComponent,
+  ModalReservasComponent
 ];
 

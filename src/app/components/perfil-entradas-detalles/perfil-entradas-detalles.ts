@@ -1,7 +1,11 @@
-import { Component } from '@angular/core'
+import { Component, ViewContainerRef } from '@angular/core'
 import { ActivatedRoute, Router } from "@angular/router"; 
 import { Page } from '@nativescript/core';
 import { EventoService } from '~/app/shared/services/evento.service';
+import { ModalDialogService, ModalDialogOptions } from '@nativescript/angular';
+import { Dialogs } from '@nativescript/core';
+import { ModalQrComponent } from '../modal-qr/modal-qr';
+
 
 
 @Component({
@@ -16,7 +20,7 @@ export class PerfilEntradasDetallesComponent {
     compra_entrada: any = {};
 
 
-  public constructor(private router: Router, private page: Page, private eventoService: EventoService, private route: ActivatedRoute) {
+  public constructor(private router: Router, private page: Page, private eventoService: EventoService, private route: ActivatedRoute, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
   }
   ngOnInit(): void {
     this.page.actionBarHidden = true;
@@ -29,7 +33,28 @@ export class PerfilEntradasDetallesComponent {
         this.compra_entrada = data.compra_entrada;
     })
   }
+
+  public onQr(fotoQr){
+    console.log(fotoQr);
+    const options: ModalDialogOptions = {
+      context: {
+        fotoQr: fotoQr,
+      },
+      fullscreen: false,
+      viewContainerRef: this.viewContainerRef
+    };
+
+    this.modalService.showModal(ModalQrComponent, options).then((result: boolean) => {
+      if (result) {
+        console.log('Viendo Qr');        
+      }
+    });
+  }
   public onTap(){
     this.router.navigate(["home"])
+  }
+
+  formatCurrency(value: number): string {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 }

@@ -45,7 +45,7 @@ export class QrMesaComponent {
         'email': JSON.parse(localStorage.getItem('Oasis.user')).email
       }
       console.log(data)
-      this.mesaService.obtenerMesa((data: any[]) => {
+      this.mesaService.obtenerMesaQr((data: any[]) => {
         console.log(data)
       })
     }, error => {

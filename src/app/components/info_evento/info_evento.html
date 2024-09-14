@@ -22,29 +22,10 @@
                         <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="Aforo: {{info_evento.aforo}} personas"></label>
                         <label class="Cabin" marginTop="20" marginBottom="15" fontSize="14" whiteSpace="normal" color="#c4c4c2" text="{{info_evento.descripcion}}"></label>
                     </FlexboxLayout>
-                    <!--
-                    <label class="Cabin titulo" fontSize="18" text="Especiales" marginTop="15" marginBottom="15"></label>
-                    <ScrollView orientation="horizontal">
-                        <FlexboxLayout marginBottom="30">
-                            <FlexboxLayout class="cardEspeciales" flexDirection="column" marginRight="10">
-                                <Image src="~/app/images/tacos.png"></Image>
-                                <label class="Cabin" text="Tacos"></label>
-                            </FlexboxLayout>
-                            <FlexboxLayout class="cardEspeciales" flexDirection="column" marginRight="10">
-                                <Image src="~/app/images/coctel4.png"></Image>
-                                <label class="Cabin" text="Coctel Calaca Cosmo"></label>
-                            </FlexboxLayout>
-                            <FlexboxLayout class="cardEspeciales" flexDirection="column" marginRight="10">
-                                <Image src="~/app/images/coctel5.png"></Image>
-                                <label class="Cabin" text="Arteria Coctel"></label>
-                            </FlexboxLayout>
-                        </FlexboxLayout>
-                    </ScrollView>
-                    -->
                     <FlexboxLayout class="rayaIntermedia"></FlexboxLayout>
                     <FlexboxLayout  flexDirection="column" alignItems="center" justifyContent="center" marginTop="15">
                         <label class="butonlabelmorado Cabin" marginBottom="20" marginTop="0" (tap)="onComprarEntrada(info_evento.id)" text="Comprar entradas"></label>
-                        <label class="butonlabelrosa Cabin" margin="0" (tap)="onCarrito()" text="Reservar mesa"></label>
+                        <label class="butonlabelrosa Cabin" margin="0" (tap)="onReservarMesa(info_evento.id)" text="Reservar mesa"></label>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

@@ -12,7 +12,12 @@ import { Observable } from 'rxjs';
 
     constructor(private http: HttpClient) { }
 
-    obtenerMesa(data: any): Observable<any> {
-      return this.http.get<any>(`${global.apiUrl}token_qr/${data.mesa}/${data.email}/`, {headers: this.headers});
+    
+    obtenerMesas(): Observable<any[]> {
+      return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/mesa/`, {headers: this.headers});
+    }
+
+    obtenerMesaQr(data: any): Observable<any> {
+      return this.http.get<any>(`${global.urlLocalSayi}/api/1.0/token_qr/${data.mesa}/${data.email}/`, {headers: this.headers});
     }
 }
