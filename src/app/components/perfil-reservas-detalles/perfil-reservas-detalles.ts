@@ -1,23 +1,23 @@
 import { Component, ViewContainerRef } from '@angular/core'
 import { ActivatedRoute, Router } from "@angular/router"; 
 import { Page } from '@nativescript/core';
-import { EventoService } from '~/app/shared/services/evento.service';
 import { ModalDialogService, ModalDialogOptions } from '@nativescript/angular';
-import { Dialogs } from '@nativescript/core';
 import { ModalQrComponent } from '../modal-qr/modal-qr';
+import { EventoService } from '~/app/shared/services/evento.service';
 
 
 
 @Component({
-  selector: 'perfil-entradas-detalles',
-  templateUrl: './perfil-entradas-detalles.html',
-  styleUrls: ['./perfil-entradas-detalles.css']
+  selector: 'perfil-reservas-detalles',
+  templateUrl: './perfil-reservas-detalles.html',
+  styleUrls: ['./perfil-reservas-detalles.css']
 })
-export class PerfilEntradasDetallesComponent {
+export class PerfilReservasDetallesComponent {
 
-    qr_entradas: any[] = [];
     evento: any = {};
-    compra_entrada: any = {};
+    reserva: any = {};
+    mesa: any = {};
+    capacidadMesa: number = 0;
 
 
   public constructor(private router: Router, private page: Page, private eventoService: EventoService, private route: ActivatedRoute, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
@@ -25,13 +25,14 @@ export class PerfilEntradasDetallesComponent {
   ngOnInit(): void {
     this.page.actionBarHidden = true;
     const user_id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
-    const entrada_id = this.route.snapshot.params.id
-    this.eventoService.obtenerEntradasDetallesUsuario(user_id, entrada_id).subscribe((data: any) => {
+    const reserva_id = this.route.snapshot.params.id
+    this.eventoService.obtenerReservasDetallesUsuario(user_id, reserva_id).subscribe((data: any) => {
         console.log(data);
-        this.qr_entradas = data.qr_entradas;
         this.evento = data.evento;
-        this.compra_entrada = data.compra_entrada;
-        this.compra_entrada.fecha_compra = this.formatDate(this.compra_entrada.fecha_compra);
+        this.reserva = data.reserva;
+        this.mesa = data.mesa;
+        this.capacidadMesa = data.capacidad_mesa;
+        this.reserva.fecha_compra = this.formatDate(this.reserva.fecha_compra);
     })
   }
 
@@ -52,7 +53,7 @@ export class PerfilEntradasDetallesComponent {
     });
   }
   public onTap(){
-    this.router.navigate(["perfil/entradas"])
+    this.router.navigate(["perfil/reservas"])
   }
 
   formatDate(fecha: string): string {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from "@angular/router"; 
+import { ActivatedRoute, Router } from "@angular/router"; 
 import { Page, TextField } from '@nativescript/core';
-import { MesaService } from '../../shared/services/mesa.service';
+import { ProductoService } from '~/app/shared/services/producto.service';
 
 @Component({
   selector: 'pedido',
@@ -9,14 +9,26 @@ import { MesaService } from '../../shared/services/mesa.service';
   styleUrls: ['./pedido.css'],
 })
 export class PedidoComponent {
-  mesa = {}
+  mesa: string;
+  codigo_qr: string;
+  usuario: string;
 
-  public constructor(private router: Router, private page: Page, private mesaService: MesaService) {
+  productos: any = [];
+
+  public constructor(private router: Router, private page: Page, private route: ActivatedRoute, private productoService: ProductoService) {
     // Use the component constructor to inject providers.
   }
   ngOnInit(): void {
     this.page.actionBarHidden = true;
-    this.mesa = this.mesaService.mesa
+    this.mesa = this.route.snapshot.params.mesa
+    this.codigo_qr = this.route.snapshot.params.id
+    this.usuario = JSON.parse(localStorage.getItem('Oasis.user')).nombre
+
+    this.productoService.obtenerProductos().subscribe((data: any) => {
+        console.log(data);
+        this.productos = data.productos;
+    })
+
   }
   public onTap(){
     this.router.navigate(["qr_mesa"]);

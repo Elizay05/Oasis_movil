@@ -1,0 +1,72 @@
+.blockEventos{
+    margin-left: 15;
+    margin-right: 15;
+}
+
+.cardEventos{
+    background-color: #262626;
+    border-radius: 20;
+    margin-bottom: 20;
+}
+#lapizEdit{
+    background-color: transparent;
+    color: #fc4664;
+    font-size: small;
+    margin-right: 8;
+}
+
+.Info{
+    margin-bottom: 10;
+}
+
+.Info .titulo{
+    font-size: 19;
+    white-space: normal;
+    margin-bottom: 0;
+
+}
+
+.Imagen_Evento{
+    padding: 15;
+    border-radius: 10;
+    height: 170;
+    display: flex;
+    justify-content: center;
+}
+
+.Imagen_Evento Image{
+    stretch: fill;
+    height: auto;
+    width: 90%;
+}
+
+.contenedor-reservas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-reservas .reserva{
+    display: flex;
+    justify-content: center;
+    padding: 12;
+    background-color: #575757;
+    width: 20%;
+    height: 70;
+    margin-top: 15;
+    border-radius: 100%;
+    color: white;
+}
+
+.contenedor-entradas .entrada{
+    padding: 12;
+    background-color: #575757;
+    width: 80%;
+    margin-top: 15;
+    border-radius: 10;
+    color: white;
+}
+
+.botonvermas{
+    justify-content: center;
+}

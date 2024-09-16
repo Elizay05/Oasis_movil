@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
       return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/mesa/`, {headers: this.headers});
     }
 
-    obtenerMesaQr(data: any): Observable<any> {
-      return this.http.get<any>(`${global.urlLocalSayi}/api/1.0/token_qr/${data.mesa}/${data.email}/`, {headers: this.headers});
+    obtenerMesaQr(mesa: any): Observable<any> {
+      return this.http.get<any>(`${global.urlLocalSayi}/api/1.0/token_qr/${mesa}/`, {headers: this.headers});
     }
 }

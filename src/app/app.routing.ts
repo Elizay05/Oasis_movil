@@ -18,9 +18,11 @@ import { PerfilEntradasDetallesComponent } from "./components/perfil-entradas-de
 import { ModalQrComponent } from "./components/modal-qr/modal-qr";
 import { EventoReservasComponent } from  "./components/evento-reservas/evento-reservas";
 import { ModalReservasComponent } from "./components/modal-reservas/modal-reservas";
+import { PerfilReservasComponent } from "./components/perfil-reservas/perfil-reservas";
+import { PerfilReservasDetallesComponent } from "./components/perfil-reservas-detalles/perfil-reservas-detalles";
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'evento', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -28,7 +30,7 @@ export const appRoutes: any = [
   { path: "login", component: LoginComponent },
   { path: "perfil", component: PerfilComponent },
   { path: "qr_mesa", component: QrMesaComponent},
-  { path: "pedido", component: PedidoComponent},
+  { path: "pedido/:id/:mesa", component: PedidoComponent},
   { path: "registro", component: RegistroComponent},
   { path: "editarperfil", component: EditarPerfilComponent},
   { path: "productos_admin", component: ProductosAdminComponent },
@@ -39,6 +41,8 @@ export const appRoutes: any = [
   { path: "perfil/entradas", component: PerfilEntradasComponent},
   { path: "perfil/entradas/detalles/:id", component: PerfilEntradasDetallesComponent},
   { path: "evento/reservas/:id", component: EventoReservasComponent},
+  { path: "perfil/reservas", component: PerfilReservasComponent},
+  { path: "perfil/reservas/detalles/:id", component: PerfilReservasDetallesComponent},
 ];
 
 export const appComponents: any = [
@@ -63,6 +67,8 @@ export const appComponents: any = [
   PerfilEntradasDetallesComponent,
   ModalQrComponent,
   EventoReservasComponent,
-  ModalReservasComponent
+  ModalReservasComponent,
+  PerfilReservasComponent,
+  PerfilReservasDetallesComponent
 ];
 

@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
 import { Page } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
-import { QrMesaService } from './qr_mesa.service';
 import { MesaService } from '../../shared/services/mesa.service';
 
 
@@ -39,14 +38,11 @@ export class QrMesaComponent {
       beepOnScan: true,
       openSettingsIfPermissionWasPreviouslyDenied: true
     }).then(result => {
-      console.log('Scanned QR Code: ', result.text);
-      const data = {
-        'mesa': result.text,
-        'email': JSON.parse(localStorage.getItem('Oasis.user')).email
-      }
-      console.log(data)
-      this.mesaService.obtenerMesaQr((data: any[]) => {
-        console.log(data)
+      const mesa = result.text
+      this.mesaService.obtenerMesaQr(mesa).subscribe((data: any) => {
+        const mesa = data.mesa.nombre;
+        const codigo_qr = data.mesa.codigo_qr;
+        this.router.navigate(["pedido", codigo_qr, mesa]);
       })
     }, error => {
       console.log('QR Code scanning fail¨ed: ', error);

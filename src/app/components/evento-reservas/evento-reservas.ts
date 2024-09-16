@@ -23,6 +23,8 @@ export class EventoReservasComponent {
 
   public precioMesa: number = 0;
   public total: number = 0;
+  
+  public mesaSeleccionada: any = {};
 
 
   constructor(private router: Router, private page: Page, private eventoService: EventoService, private mesaService: MesaService, private route: ActivatedRoute, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
@@ -57,10 +59,10 @@ export class EventoReservasComponent {
     const index = event.value; 
     
     if (this.mesas && this.mesas[index]) {
-        const mesaSeleccionada = this.mesas[index];
+        this.mesaSeleccionada = this.mesas[index];
         
-        this.precioMesa = mesaSeleccionada.precio;
-        const capacidad = mesaSeleccionada.capacidad;
+        this.precioMesa = this.mesaSeleccionada.precio;
+        const capacidad = this.mesaSeleccionada.capacidad;
 
         this.total = this.calcularTotal(this.precioMesa, capacidad);
     }
@@ -82,6 +84,34 @@ export class EventoReservasComponent {
     this.modalService.showModal(ModalReservasComponent, options).then((result: boolean) => {
       if (result) {
         console.log('Compra confirmada');
+        let data = {
+            id_usuario: JSON.parse(localStorage.getItem('Oasis.user')).user_id,
+            id_evento: this.info_evento.id,
+            id_mesa: this.mesaSeleccionada.id,
+            total: this.total
+        }
+        console.log(data);
+        this.eventoService.reservarMesa(data).subscribe((res: any) => {
+          if (res) {
+              console.log(res.message);
+              Dialogs.alert({
+                  title: 'Respuesta:',
+                  message: 'Reserva hecha exitosamente!',
+                  okButtonText: 'OK',
+                  cancelable: true,
+              });
+
+              this.router.navigate(['/home']);
+          }
+          }, error => {
+              console.log(error.error);
+              Dialogs.alert({
+                  title: 'Respuesta:',
+                  message: error.error.message,
+                  okButtonText: 'OK',
+                  cancelable: true,
+              });
+          });
       } else {
         console.log('Compra cancelada');
       }

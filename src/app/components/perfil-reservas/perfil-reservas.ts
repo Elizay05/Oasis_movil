@@ -5,14 +5,14 @@ import { EventoService } from '~/app/shared/services/evento.service';
 
 
 @Component({
-  selector: 'perfil-entradas',
-  templateUrl: './perfil-entradas.html',
-  styleUrls: ['./perfil-entradas.css']
+  selector: 'perfil-reservas',
+  templateUrl: './perfil-reservas.html',
+  styleUrls: ['./perfil-reservas.css']
 
   
 })
-export class PerfilEntradasComponent {
-    entradas: any[];
+export class PerfilReservasComponent {
+    reservas: any[];
 
   public constructor(private router: Router, private page: Page, private eventoService: EventoService) {
 
@@ -20,9 +20,9 @@ export class PerfilEntradasComponent {
   ngOnInit(): void {
     this.page.actionBarHidden = true;
     const id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
-    this.eventoService.obtenerEntradasUsuario(id).subscribe((data: any) => {
+    this.eventoService.obtenerReservasUsuario(id).subscribe((data: any) => {
         console.log(data);
-        this.entradas = data.entradas;
+        this.reservas = data.reservas;
     });
   }
 

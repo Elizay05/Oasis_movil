@@ -3,11 +3,8 @@
         <StackLayout>
             <FlexboxLayout class="barraNavegacion2">
                 <FlexboxLayout class="InfoUser2">
-                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
-                <label class="Nunito text-medium">Escanear Mesa</label>
-                </FlexboxLayout>
-                <FlexboxLayout class="Cart">
-                <Image src="~/app/images/cart.png"></Image>
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Escanear Mesa</label>
                 </FlexboxLayout>
             </FlexboxLayout>
 
@@ -16,8 +13,6 @@
                 <label class="Cabin" fontSize="16" marginTop="30" text="Escanea el código QR de la mesa"></label>
                 <Image marginTop="25" src="~/app/images/QR.jpg" width="270"></Image>
                 <label marginTop="25" class="butonlabelmorado Cabin" (tap)="abrirCamara()" text="Escanear"></label>
-                <FlexboxLayout class="rayaIntermedia3"></FlexboxLayout>
-                <label marginTop="25" class="butonlabelrosa Cabin" (tap)="onEscaneado()" text="Escaneado"></label>
             </FlexboxLayout>
         </StackLayout>
     </DockLayout>

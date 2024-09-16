@@ -1,0 +1,38 @@
+<ScrollView>
+    <StackLayout backgroundColor="#000000">
+        <FlexboxLayout class="barraNavegacion2">
+            <FlexboxLayout class="InfoUser2">
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="Nunito text-medium">Reservas</label>
+            </FlexboxLayout>
+        </FlexboxLayout>      
+
+        <StackLayout margiBottom="10">
+            <FlexboxLayout class="cardEventos" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let reserva of reservas">
+                <FlexboxLayout class="Imagen_Evento">
+                    <Image [src]="getFullImageUrl(reserva.evento.foto)" borderRadius="10"></Image>
+                </FlexboxLayout>
+                
+                <FlexboxLayout class="Info" display="flex" flexDirection="column" alignItems="center">
+                    <label class="Cabin titulo" [text]="reserva.evento.nombre"></label>
+                    <FlexboxLayout>
+                        <label class="far" id="calendario" text="&#xf133;"></label>
+                        <label class="Cabin fecha" [text]="reserva.evento.fecha"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout> 
+                
+                <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+                <FlexboxLayout class="contenedor-reservas">
+                    <FlexboxLayout class="reserva">
+                        <label class="Cabin" text="{{reserva.reserva.mesa}}"></label>
+                    </FlexboxLayout>
+                </FlexboxLayout>
+                                
+                <FlexboxLayout class="botonvermas">
+                    <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['detalles', reserva.reserva.id]"></label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
