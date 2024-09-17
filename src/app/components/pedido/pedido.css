@@ -16,17 +16,15 @@
     padding: 10, 10, 10, 15;
     background-color: rgb(68, 68, 68);
     border-radius: 20;
-    font-size: 16;
 }
 .cardProducto{
-    background-color: rgb(124, 123, 123);
     padding: 10, 10;
     border-radius: 20;
     margin-bottom: 10;
     height: auto;
 }
 .cardProductoSeleccionado{
-    background-color: #9975b6;
+    background-color: rgb(68, 68, 68);
     padding: 10, 10;
     border-radius: 20;
     margin-bottom: 10;
@@ -39,16 +37,12 @@
     stretch: fill;
     margin-right: 5;
 }
-.icon_menos{
-    width: 40;
-    border-radius: 100%;
-}
 
 .info_producto{
     justify-content: space-between;
 }
 .fotoeinfo{
-    width: 180;
+    width: 75%;
     justify-content: flex-start;
 }
 .informacion label{
@@ -56,5 +50,23 @@
 }
 .botones_agregar{
     justify-content: space-between;
-    width: 120;
+    width: 25%;
+}
+
+.masymenos{
+    font-size: 25;
+    background-color: black;
+    font-weight: bold;
+}
+
+.masymenos:active{
+    color: #fc4664;
+}
+
+.masymenosSelected{
+    background-color: rgb(68, 68, 68);
+}
+
+.masymenosSelected:active{
+    color: #fc4664;
 }

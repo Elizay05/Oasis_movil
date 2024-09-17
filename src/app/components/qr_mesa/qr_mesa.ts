@@ -18,7 +18,7 @@ export class QrMesaComponent {
     this.page.actionBarHidden = true;
   }
   public onTap(){
-    this.router.navigate(["productos"]);
+    this.router.navigate(["home"]);
   }
   
   /*

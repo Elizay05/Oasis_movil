@@ -1,0 +1,51 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Pedidos activos</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <label class="Cabin nombreMesa" text="{{ mesa.nombre }}"></label>
+            <label class="Cabin totalPedidos grisColor" text="(todos {{ totalPedidos }})"></label>
+
+            <FlexboxLayout flexDirection="column" marginLeft="15" marginRight="15">
+                <FlexboxLayout *ngFor="let pedido of detalles_pedidos" class="pedidos" flexDirection="column">
+                    <FlexboxLayout display="flex" justifyContent="space-between" marginBottom="10">
+                        <FlexboxLayout display="flex" flexDirection="column">
+                            <label text="Fecha: {{ formatDate(pedido.pedido.fecha) }}"></label>
+                            <label fontSize="13" fontWeight="bold" [ngClass]="{
+                                'estado-preparacion': pedido.pedido.estado === 'En preparación',
+                                'estado-entregado': pedido.pedido.estado === 'Entregado',
+                                'estado-cancelado': pedido.pedido.estado === 'Cancelado'
+                            }" text="Estado: {{pedido.pedido.estado}}"></label>
+                        </FlexboxLayout>
+                        <Image src="~/app/images/trash-icon.png" width="30" height="30"></Image>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout *ngFor="let detalle of pedido.detalles" justifyContent="space-between" marginTop="10">
+                        <Image *ngIf="pedido.detalles.length > 1" src="~/app/images/x-icon.png" width="25" height="30"></Image>
+                        <FlexboxLayout 
+                        [ngClass]="pedido.detalles.length > 1 ? 'tabla-compras' : 'tabla-compras-solo'" 
+                        display="flex" 
+                        justifyContent="space-between">
+                            <Label [text]="'x' + detalle.cantidad + ' ' + detalle.producto.nombre"></Label>
+                            <Label [text]="'$' + formatCurrency(detalle.subtotal)"></Label>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+                </FlexboxLayout>
+
+                <FlexboxLayout justifyContent="flex-end" marginTop="10">
+                    <label class="Cabin" fontWeight="bold" fontSize="16" [text]="'Total: $' + formatCurrency(cuenta)"></label>
+                </FlexboxLayout>
+
+                <label class="butonlabelrosa Cabin" text="Pagar cuenta"></label>
+                <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+                <label class="butonlabelmorado Cabin" text="Nuevo pedido"></label>
+            </FlexboxLayout>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>

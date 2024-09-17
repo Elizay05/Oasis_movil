@@ -1,3 +1,4 @@
+
 import { HomeComponent } from "./components/home/home"; 
 import { TiendaComponent } from "./components/tienda/tienda";
 import { EventoComponent } from "./components/evento/evento";
@@ -20,9 +21,11 @@ import { EventoReservasComponent } from  "./components/evento-reservas/evento-re
 import { ModalReservasComponent } from "./components/modal-reservas/modal-reservas";
 import { PerfilReservasComponent } from "./components/perfil-reservas/perfil-reservas";
 import { PerfilReservasDetallesComponent } from "./components/perfil-reservas-detalles/perfil-reservas-detalles";
+import { ModalPedidosComponent } from "./components/modal-pedidos/modal-pedidos";
+import { PerfilPedidosDetallesComponent } from "./components/perfil-pedidos-detalles/perfil-pedidos-detalles";
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'perfil/pedidos', pathMatch: 'full' },
   { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -43,6 +46,7 @@ export const appRoutes: any = [
   { path: "evento/reservas/:id", component: EventoReservasComponent},
   { path: "perfil/reservas", component: PerfilReservasComponent},
   { path: "perfil/reservas/detalles/:id", component: PerfilReservasDetallesComponent},
+  { path: "perfil/pedidos", component: PerfilPedidosDetallesComponent},
 ];
 
 export const appComponents: any = [
@@ -69,6 +73,8 @@ export const appComponents: any = [
   EventoReservasComponent,
   ModalReservasComponent,
   PerfilReservasComponent,
-  PerfilReservasDetallesComponent
+  PerfilReservasDetallesComponent,
+  ModalPedidosComponent,
+  PerfilPedidosDetallesComponent
 ];
 

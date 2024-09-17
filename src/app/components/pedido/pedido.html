@@ -13,35 +13,41 @@
                     <label class="Cabin mesa" text="{{ mesa }}"></label>
                 </FlexboxLayout>
                 <FlexboxLayout flexDirection="column" class="infoPedido">
-                    <FlexboxLayout justifyContent="center">
-                        <label class="Cabin" text="Cliente: {{usuario}}"></label>
+                    <FlexboxLayout justifyContent="center" marginBottom="10">
+                        <label class="Cabin" whiteSpace="normal" fontSize="16" text="Cliente: {{usuario}}"></label>
                     </FlexboxLayout>
-                    <label class="Cabin" text="x2 Blue Moon"></label>
-                    <label class="Cabin" text="x1 Flower Power"></label>
-                    <label class="Cabin" text="x3 Tacos"></label>
+                    <FlexboxLayout *ngFor="let producto of productosSeleccionados" display="flex" justifyContent="space-between">
+                        <label class="Cabin" whiteSpace="normal" [text]="'x' + producto.cantidad + ' ' + producto.nombre"></label>
+                        <label class="Cabin" whiteSpace="normal" [text]="'$'+formatCurrency(producto.subtotal)"></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout *ngIf="productosSeleccionados.length > 0" justifyContent="flex-end" marginTop="10">
+                        <label class="Cabin" whiteSpace="normal" fontSize="16" [text]="'Total: $'+formatCurrency(total)"></label>
+                    </FlexboxLayout>
                 </FlexboxLayout>
                 <FlexboxLayout flexDirection="column">                    
-                    <TextView class="Cabin" textWrap="true" v-model="textFieldValue" fontSize="14" hint="Agregar un comentario..."/>
+                    <TextView class="Cabin" textWrap="true" v-model="textFieldValue" fontSize="14" (textChange)="onCommentChange($event)" hint="Agrega un comentario..."/>
                 </FlexboxLayout>
 
-                <label class="butonlabelrosa Cabin" text="Hacer pedido"></label>
+                <label class="butonlabelrosa Cabin" [class.disabled]="productosSeleccionados.length == 0" (tap)="onHacerPedido()" text="Hacer pedido"></label>
 
-                <FlexboxLayout flexDirection="column" justifyContent="space-between" class="cardProductoSeleccionado" *ngFor="let p of productos">                    
+                <FlexboxLayout flexDirection="column" justifyContent="space-between" class="cardProducto" *ngFor="let p of productos"
+                [ngClass]="{'cardProductoSeleccionado': p.cantidad > 0}">               
                     <FlexboxLayout class="info_producto" flexDirextion="column">
                         <FlexboxLayout class="fotoeinfo">
-                            <Image src="{{p.foto}}" class="img_producto"></Image>
+                            <Image src="{{p.foto}}" class="img_producto" ></Image>
                             <FlexboxLayout flexDirection="column">
-                                <label class="Cabin" fontSize="18" text="{{p.producto.nombre}}"></label>
-                                <label class="Cabin" fontSize="16" text="Precio: {{p.precio}}"></label>
+                                <label class="Cabin" whiteSpace="normal" fontWeight="bold" fontSize="16" text="{{p.nombre}}"></label>
+                                <label class="Cabin" whiteSpace="normal" [text]="'$' + formatCurrency(p.precio)"></label>
                             </FlexboxLayout>
                         </FlexboxLayout>
                         <FlexboxLayout class="botones_agregar">
-                            <FlexboxLayout class="icon_menos" justifyContent="center">
-                                <Button class="butonlabelrojo" fontSize="20" fontWeight="bold" text="-"></Button>
+                            <FlexboxLayout justifyContent="center" width="20" height="5">
+                                <Button class="masymenos" text="-" (tap)="decrementarCantidad(p)" [ngClass]="{'masymenosSelected': p.cantidad > 0}"></Button>
                             </FlexboxLayout>
-                            <label class="Cabin" fontSize="20" text="2"></label>
-                            <FlexboxLayout class="icon_menos" justifyContent="center">
-                                <Button class="butonlabelverde" fontSize="20" fontWeight="bold" text="+"></Button>
+                            <label class="Cabin" fontSize="16" fontWeight="bold" text="{{p.cantidad}}"></label>
+                            <FlexboxLayout justifyContent="center" width="20" height="5">
+                                <Button class="masymenos" text="+" (tap)="incrementarCantidad(p)" [ngClass]="{'masymenosSelected': p.cantidad > 0}"></Button>
                             </FlexboxLayout>
                         </FlexboxLayout>
                     </FlexboxLayout>

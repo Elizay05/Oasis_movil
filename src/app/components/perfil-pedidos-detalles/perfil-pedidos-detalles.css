@@ -1,0 +1,59 @@
+.grisColor{
+    color: #c4c4c2;
+}
+
+.nombreMesa{
+    color: #fc4664;
+    font-size: 35;
+    text-align: center;
+}
+
+.totalPedidos{
+    text-align: center;
+    font-size: 16;
+}
+
+.pedidos{
+    margin-top: 20;
+    background-color: rgb(59, 59, 59);
+    padding: 10;
+    border-radius: 10;
+}
+
+.contenedor-detalles{
+    margin-top: 10;
+}
+
+.estado-preparacion {
+    color: orange;
+}
+
+.estado-entregado {
+    color: green;
+}
+
+.estado-cancelado {
+    color: red;
+}
+
+.tabla-compras {
+    width: 90%;
+    align-self: center;
+    background-color: rgb(78, 78, 78);
+    border-radius: 20px;
+  }
+
+.tabla-compras-solo{
+    width: 100%;
+    height: 30;
+    padding-left: 4;
+    padding-right: 4;
+    align-self: center;
+    background-color: rgb(78, 78, 78);
+    border-radius: 20px;
+}
+  
+  .tabla-compras Label {
+    padding: 10px;
+    text-align: center;
+  }

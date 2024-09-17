@@ -1,0 +1,35 @@
+.modal {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+
+  .tabla-compras {
+    width: 90%;
+    margin-top: 20px;
+    align-self: center;
+    background-color: rgb(78, 78, 78);
+    border-radius: 10px;
+  }
+  
+  .tabla-compras Label {
+    padding: 10px;
+    text-align: center;
+  }
+
+  
+  .btn-confirmar {
+    background-color: #fc4664;
+    color: white;
+  }
+  
+  .btn-cancelar {
+    background-color: #000000;
+    color: white;
+  }

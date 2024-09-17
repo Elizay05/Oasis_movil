@@ -1,0 +1,24 @@
+<StackLayout class="modal Cabin">
+    <label class="modal-title" text="{{nombreMesa}}"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+    <FlexboxLayout class="tabla-compras" display="flex" justifyContent="space-between" *ngFor="let p of productos">
+        <Label [text]="'x' + p.cantidad + ' ' + p.nombre"></Label>
+        <Label [text]="'$' + formatCurrency(p.subtotal)"></Label>
+    </FlexboxLayout>
+
+    <FlexboxLayout display="flex" alignItems="center" justifyContent="center" marginTop="10">
+        <label class="Cabin" [text]="'Total: $' + formatCurrency(total)" fontSize="16" fontWeight="bold"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout *ngIf="comentario" class="rayaIntermedia2" marginTop="10"></FlexboxLayout>
+
+    <label *ngIf="comentario" text="Comentario"></label>
+    <label *ngIf="comentario" whiteSpace="normal" class="Cabin" [text]="comentario"></label>
+    
+    <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>  
+    <FlexboxLayout justifyContent="space-between" marginTop="10">
+        <Button text="Cancelar" (tap)="cancelar()" class="btn-cancelar"></Button>
+        <Button text="Confirmar" (tap)="confirmar()" class="btn-confirmar"></Button>
+    </FlexboxLayout>
+  </StackLayout>
