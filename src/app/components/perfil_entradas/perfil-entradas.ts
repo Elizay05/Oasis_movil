@@ -13,6 +13,7 @@ import { EventoService } from '~/app/shared/services/evento.service';
 })
 export class PerfilEntradasComponent {
     entradas: any[];
+    hayEntradas: boolean = false
 
   public constructor(private router: Router, private page: Page, private eventoService: EventoService) {
 
@@ -21,9 +22,17 @@ export class PerfilEntradasComponent {
     this.page.actionBarHidden = true;
     const id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     this.eventoService.obtenerEntradasUsuario(id).subscribe((data: any) => {
-        console.log(data);
-        this.entradas = data.entradas;
+        if (data.entradas && data.entradas.length > 0) {
+          this.entradas = data.entradas;
+          this.hayEntradas = true;
+        } else {
+          this.hayEntradas = false;
+        }
     });
+  }
+
+  public onComprarEntradas(){
+    this.router.navigate(["evento"])
   }
 
   public onTap(){

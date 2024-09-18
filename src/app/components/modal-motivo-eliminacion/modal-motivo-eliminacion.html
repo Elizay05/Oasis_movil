@@ -1,0 +1,12 @@
+<StackLayout class="modal Cabin">
+    <label class="modal-title" [text]="item ? 'Motivo de eliminación' : 'Motivo de cancelación'"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+    <FlexboxLayout justifyContent="center" marginTop="20" marginBottom="20">
+        <label class="Cabin" text="{{motivoEliminacion}}"></label>
+    </FlexboxLayout>
+    
+    <FlexboxLayout justifyContent="center" marginTop="10">
+        <Button text="Ok" (tap)="confirmar()" class="btn-confirmar" width="70%"></Button>
+    </FlexboxLayout>
+</StackLayout>

@@ -50,7 +50,8 @@ export class PerfilEntradasDetallesComponent {
         console.log('Viendo Qr');        
       }
     });
-  }
+  } 
+  
   public onTap(){
     this.router.navigate(["perfil/entradas"])
   }

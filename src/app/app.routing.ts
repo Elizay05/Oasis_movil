@@ -23,6 +23,9 @@ import { PerfilReservasComponent } from "./components/perfil-reservas/perfil-res
 import { PerfilReservasDetallesComponent } from "./components/perfil-reservas-detalles/perfil-reservas-detalles";
 import { ModalPedidosComponent } from "./components/modal-pedidos/modal-pedidos";
 import { PerfilPedidosDetallesComponent } from "./components/perfil-pedidos-detalles/perfil-pedidos-detalles";
+import { ModalEliminarPedidoComponent } from "./components/modal-eliminar-pedido/modal-eliminar-pedido";
+import { ModalMotivoEliminacionComponent } from "./components/modal-motivo-eliminacion/modal-motivo-eliminacion";
+
 
 export const appRoutes: any = [
   { path: '', redirectTo: 'perfil/pedidos', pathMatch: 'full' },
@@ -75,6 +78,8 @@ export const appComponents: any = [
   PerfilReservasComponent,
   PerfilReservasDetallesComponent,
   ModalPedidosComponent,
-  PerfilPedidosDetallesComponent
+  PerfilPedidosDetallesComponent,
+  ModalEliminarPedidoComponent,
+  ModalMotivoEliminacionComponent
 ];
 

@@ -1,0 +1,13 @@
+<StackLayout class="modal Cabin">
+    <label class="modal-title" [text]="item ? 'Eliminar Producto' : 'Cancelar Pedido'"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+    <FlexboxLayout justifyContent="center" marginTop="20" marginBottom="20">
+        <label class="Cabin" [text]=" item ? '¿Está seguro que desea eliminar el producto?' : '¿Está seguro que desea eliminar el pedido?'"></label>
+    </FlexboxLayout>
+    
+    <FlexboxLayout justifyContent="space-between" marginTop="10">
+        <Button text="Cancelar" (tap)="cancelar()" class="btn-cancelar"></Button>
+        <Button text="Confirmar" (tap)="confirmar()" class="btn-confirmar"></Button>
+    </FlexboxLayout>
+</StackLayout>

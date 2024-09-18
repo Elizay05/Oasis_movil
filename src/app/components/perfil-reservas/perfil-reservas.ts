@@ -13,6 +13,7 @@ import { EventoService } from '~/app/shared/services/evento.service';
 })
 export class PerfilReservasComponent {
     reservas: any[];
+    hayReservas: boolean = false
 
   public constructor(private router: Router, private page: Page, private eventoService: EventoService) {
 
@@ -21,11 +22,18 @@ export class PerfilReservasComponent {
     this.page.actionBarHidden = true;
     const id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     this.eventoService.obtenerReservasUsuario(id).subscribe((data: any) => {
-        console.log(data);
+      if (data.reservas && data.reservas.length > 0) {
         this.reservas = data.reservas;
+        this.hayReservas = true;
+      } else {
+        this.hayReservas = false;
+      }
     });
   }
 
+  public onReservar(){
+    this.router.navigate(["evento"])
+  }
   public onTap(){
     this.router.navigate(["perfil"])
   }

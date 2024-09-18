@@ -18,5 +18,13 @@ import { Observable } from 'rxjs';
     obtenerPedidos(id: number): Observable<any[]>{
         return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/pedidos_usuario/${id}/`, {headers: this.headers});
     }
+
+    eliminarPedido(id_pedido: number): Observable<any[]>{
+        return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/eliminar_pedido_usuario/${id_pedido}/`, {headers: this.headers});
+    }
+
+    eliminarProductoPedido(id_detalle: number): Observable<any[]>{
+        return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/eliminar_producto_pedido_usuario/${id_detalle}/`, {headers: this.headers});
+    }
   
 }
