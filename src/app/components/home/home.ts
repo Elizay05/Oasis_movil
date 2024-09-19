@@ -4,6 +4,7 @@ import { exit } from "nativescript-exit";
 import { Dialogs, Page, TextField } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
 import { LoginService } from '../../shared/services/login.service';
+import { PedidoService } from '~/app/shared/services/pedido.service';
 
 @Component({
   selector: 'home',
@@ -18,8 +19,11 @@ export class HomeComponent {
   userId: number;
   email: string = '';
   loggedIn: boolean = false;
+
+  pedidos = false
+  mesa: any = {};
   
-  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
+  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService, private pedidoService: PedidoService) {
     console.log('home constructor');
     if (localStorage.getItem('Oasis.token')) {
       this.loggedIn = true;
@@ -39,18 +43,34 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
+    if (this.perfil.rol == 4) {
+      this.pedidoService.verificarPedidoUsuario(this.perfil.user_id).subscribe((res: any) => {
+        this.pedidos = res.pedidos
+        this.mesa = res.mesa
+      }) 
+    }
   }
 
   onReserva() {
     this.router.navigate(['evento'])
   }
+  
   onQrMesa() {
-    this.router.navigate(['qr_mesa'])
+    if (this.pedidos){
+      this.router.navigate(['pedido', this.mesa.codigo_qr, this.mesa.nombre])
+    }else{
+      this.router.navigate(['qr_mesa'])
+    }
   }
   onProductos() {
     const state = { returnToHome: true };
     this.router.navigate(['productos'], { state });
   }
+
+  onGestionarMesas() {
+    this.router.navigate(['gestionMesas'])
+  }
+
   mostrarMapa() {
     openUrl('https://www.google.com/maps/place/SENA+Complejo+Sur+Itag%C3%BC%C3%AD/@6.1809892,-75.6059929,15z/data=!4m6!3m5!1s0x8e46823b07fa76e7:0xd858c9c2ddf4b118!8m2!3d6.1809892!4d-75.6059929!16s%2Fg%2F1hc2vps2d?entry=ttu');// pueden cambiar el sitio yo lo puse en la ubicacion del sena pero pueden moverlo a otra parte si quieren que cuando lo habren les abre el google maps a la ubicacion que se puso aqui
   }
@@ -70,9 +90,5 @@ export class HomeComponent {
     console.log("Eliminar sesión...")
     localStorage.clear();
     this.router.navigate(['login']);
-  }
-
-  public verificarPermisos(rol) {
-    return rol == this.rol;
   }
 }

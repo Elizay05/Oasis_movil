@@ -59,8 +59,8 @@
                         <label class="Cabin" fontWeight="bold" fontSize="16" [text]="'Total: $' + formatCurrency(cuenta)"></label>
                     </FlexboxLayout>
 
-                    <label *ngIf="cuenta > 0" class="butonlabelrosa Cabin" text="Pagar cuenta"></label>
-                    <label *ngIf="cuenta === 0" class="butonlabelrosa Cabin" text="Liberar mesa"></label>
+                    <label *ngIf="cuenta > 0" class="butonlabelrosa Cabin" text="Pagar cuenta" (tap)="onPagarCuenta(mesa.codigo_qr)"></label>
+                    <label *ngIf="cuenta === 0" class="butonlabelrosa Cabin" text="Liberar mesa" (tap)="onLiberarMesa(mesa.codigo_qr)"></label>
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
 
                     <label class="butonlabelmorado Cabin" marginBottom="50" text="Nuevo pedido" (tap)="onNuevoPedido(mesa.codigo_qr, mesa.nombre)"></label>

@@ -1,0 +1,24 @@
+<ScrollView>
+    <StackLayout backgroundColor="#000000">
+        <FlexboxLayout class="barraNavegacion2">
+            <FlexboxLayout class="InfoUser2">
+            <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+            <label class="Nunito text-medium">Gestión de Mesas</label>
+            </FlexboxLayout>
+        </FlexboxLayout>      
+        <StackLayout margiBottom="10">
+            <FlexboxLayout class="cardMesa" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let m of mesas">
+                <FlexboxLayout class="headCardMesa">
+                    <label class="Cabin titulo" text="{{m.nombre}}"></label>
+                    <label *ngIf="m.usuario && m.usuario.rol == 4" class="Cabin" fontSize="14" text="Cliente: {{m.usuario.nombre}}"></label>
+                    <label *ngIf="m.usuario && m.usuario.rol == 3" class="Cabin" fontSize="14" text="💁‍♂️ {{m.usuario.nombre}}"></label>
+                    <label *ngIf="!m.usuario" class="Cabin" fontSize="14" text="Disponible"></label>
+                </FlexboxLayout>
+                <FlexboxLayout class="botonvermas">
+                    <label *ngIf="m.estado == 'Activa'" class="butonlabelrosa Cabin" text="Ver" [nsRouterLink]="['detalles', m.codigo_qr]"></label>
+                    <label *ngIf="m.estado == 'Disponible'" class="butonlabelmorado Cabin" text="Activar" (tap)="activarMesa(m.codigo_qr, m.nombre)"></label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+        </StackLayout>
+    </StackLayout>
+</ScrollView>

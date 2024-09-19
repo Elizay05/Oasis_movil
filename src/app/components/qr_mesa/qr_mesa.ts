@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Page } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 import { MesaService } from '../../shared/services/mesa.service';
+import { PedidoService } from '~/app/shared/services/pedido.service';
 
 
 
@@ -11,21 +12,14 @@ import { MesaService } from '../../shared/services/mesa.service';
   templateUrl: './qr_mesa.html',
 })
 export class QrMesaComponent {
+
   public constructor(private router: Router, private page: Page, private barcodeScanner: BarcodeScanner, private mesaService: MesaService) {
   }
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
   }
-  public onTap(){
-    this.router.navigate(["home"]);
-  }
-  
-  /*
-  public onEscaneado(){
-    this.router.navigate(["pedido"]);
-  }
-  */
+
   abrirCamara() {
     this.barcodeScanner.scan({
       formats: 'QR_CODE',
@@ -49,4 +43,9 @@ export class QrMesaComponent {
       alert('QR Code Scanning failed: ' + error);
     });
   }
+
+  public onTap(){
+    this.router.navigate(["home"]);
+  }
+  
 }

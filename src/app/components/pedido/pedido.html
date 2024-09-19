@@ -14,7 +14,8 @@
                 </FlexboxLayout>
                 <FlexboxLayout flexDirection="column" class="infoPedido">
                     <FlexboxLayout justifyContent="center" marginBottom="10">
-                        <label class="Cabin" whiteSpace="normal" fontSize="16" text="Cliente: {{usuario}}"></label>
+                        <label *ngIf="usuario.rol == 4" class="Cabin" whiteSpace="normal" fontSize="16" text="Cliente: {{usuario.nombre}}"></label>
+                        <label *ngIf="usuario.rol == 3" class="Cabin" whiteSpace="normal" fontSize="16" text="Mesero: {{usuario.nombre}}"></label>
                     </FlexboxLayout>
                     <FlexboxLayout *ngFor="let producto of productosSeleccionados" display="flex" justifyContent="space-between">
                         <label class="Cabin" whiteSpace="normal" [text]="'x' + producto.cantidad + ' ' + producto.nombre"></label>

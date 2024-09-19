@@ -25,10 +25,14 @@ import { ModalPedidosComponent } from "./components/modal-pedidos/modal-pedidos"
 import { PerfilPedidosDetallesComponent } from "./components/perfil-pedidos-detalles/perfil-pedidos-detalles";
 import { ModalEliminarPedidoComponent } from "./components/modal-eliminar-pedido/modal-eliminar-pedido";
 import { ModalMotivoEliminacionComponent } from "./components/modal-motivo-eliminacion/modal-motivo-eliminacion";
+import { GestionMesasComponent } from "./components/gestion-mesas/gestion-mesas";
+import { GestionMesasDetallesComponent } from "./components/gestion-mesas-detalles/gestion-mesas-detalles";
+import { PerfilMesasCargoComponent } from "./components/perfil-mesas-cargo/perfil-mesas-cargo";
+import { PerfilMesasCargoDetallesComponent } from "./components/perfil-mesas-cargo-detalles/perfil-mesas-cargo-detalles";
 
 
 export const appRoutes: any = [
-  { path: '', redirectTo: 'perfil/pedidos', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: "home", component: HomeComponent,data:{permission:'1'} },
   { path: "tienda", component: TiendaComponent },
   { path: "evento", component: EventoComponent },
@@ -50,6 +54,10 @@ export const appRoutes: any = [
   { path: "perfil/reservas", component: PerfilReservasComponent},
   { path: "perfil/reservas/detalles/:id", component: PerfilReservasDetallesComponent},
   { path: "perfil/pedidos", component: PerfilPedidosDetallesComponent},
+  { path: "gestionMesas", component: GestionMesasComponent},
+  { path: "gestionMesas/detalles/:id", component: GestionMesasDetallesComponent},
+  { path: "perfil/mesasCargo", component: PerfilMesasCargoComponent},
+  { path: "perfil/mesasCargo/detalles/:id", component: PerfilMesasCargoDetallesComponent}
 ];
 
 export const appComponents: any = [
@@ -80,6 +88,10 @@ export const appComponents: any = [
   ModalPedidosComponent,
   PerfilPedidosDetallesComponent,
   ModalEliminarPedidoComponent,
-  ModalMotivoEliminacionComponent
+  ModalMotivoEliminacionComponent,
+  GestionMesasComponent,
+  GestionMesasDetallesComponent,
+  PerfilMesasCargoComponent,
+  PerfilMesasCargoDetallesComponent
 ];
 

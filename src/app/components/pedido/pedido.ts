@@ -15,7 +15,7 @@ import { PedidoService } from '~/app/shared/services/pedido.service';
 export class PedidoComponent {
   mesa: string;
   codigo_qr: string;
-  usuario: string;
+  usuario: any = {};
 
   productos: any = [];
   productosSeleccionados: any = [];
@@ -30,7 +30,7 @@ export class PedidoComponent {
     this.page.actionBarHidden = true;
     this.mesa = this.route.snapshot.params.mesa
     this.codigo_qr = this.route.snapshot.params.id
-    this.usuario = JSON.parse(localStorage.getItem('Oasis.user')).nombre
+    this.usuario = JSON.parse(localStorage.getItem('Oasis.user'))
     
 
     this.productoService.obtenerProductos().subscribe((data: any) => {
@@ -124,7 +124,7 @@ export class PedidoComponent {
 
 
   public onTap(){
-    this.router.navigate(["qr_mesa"]);
+    this.router.navigate(["home"]);
   }
 
   

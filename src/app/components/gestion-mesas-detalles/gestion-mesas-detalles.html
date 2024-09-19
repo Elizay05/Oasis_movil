@@ -1,0 +1,64 @@
+<ScrollView>
+    <DockLayout backgroundColor="#000000">
+        <StackLayout>
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                    <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                    <label class="Nunito text-medium">Detalle Mesa</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+
+            <label class="Cabin nombreMesa" text="{{ mesa.nombre }}"></label>
+            <label *ngIf="mesa.usuario?.rol == 4" class="Cabin totalPedidos" text="Cliente: {{ mesa.usuario?.nombre }}"></label>
+            <label *ngIf="mesa.usuario?.rol == 3" class="Cabin totalPedidos" text="💁‍♂️ {{ mesa.usuario?.nombre }}"></label>
+            <label class="Cabin totalPedidos grisColor" text="(todos {{ totalPedidos }})"></label>
+
+            <FlexboxLayout flexDirection="column" marginLeft="15" marginRight="15">
+                <FlexboxLayout *ngFor="let pedido of detalles_pedidos" flexDirection="column"
+                [ngClass]="{
+                    'pedidos': pedido.pedido.estado === 'En preparación' || pedido.pedido.estado === 'Entregado',
+                    'pedidos-cancelados': pedido.pedido.estado === 'Cancelado'
+                }">
+                    <FlexboxLayout display="flex" justifyContent="space-between" marginBottom="10">
+                        <FlexboxLayout display="flex" flexDirection="column">
+                            <label text="Fecha: {{ formatDate(pedido.pedido.fecha) }}"></label>
+                            <label fontSize="13" fontWeight="bold" [ngClass]="{
+                                'estado-preparacion': pedido.pedido.estado === 'En preparación',
+                                'estado-entregado': pedido.pedido.estado === 'Entregado',
+                                'estado-cancelado': pedido.pedido.estado === 'Cancelado'
+                            }" text="Estado: {{pedido.pedido.estado}}"></label>
+                        </FlexboxLayout>
+                        <Image *ngIf="pedido.pedido.estado === 'En preparación'" src=" ~/app/images/trash-icon.png" width="30" height="30" (tap)="onCancelarPedido(pedido.pedido.id)"></Image>
+                        <Image *ngIf="pedido.pedido.comentario !== '' && pedido.pedido.estado === 'Cancelado'" src=" ~/app/images/question2-icon.png" width="30" height="30" borderRadius="10" (tap)="onMotivoCancelacionPedido(pedido.pedido.comentario)"></Image>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout *ngFor="let detalle of pedido.detalles" justifyContent="space-between" marginTop="10">
+                        <Image *ngIf="pedido.detalles_activos_count > 1 && detalle.estado !== 'Eliminado'" src="~/app/images/x-icon.png" width="25" height="30" (tap)="onEliminarProducto(detalle.id)"></Image>
+                        <Image *ngIf="detalle.motivo_eliminacion != ''" src="~/app/images/question2-icon.png" height="60" width="60" marginRight="10" (tap)="onMotivoEliminacionProducto(detalle.motivo_eliminacion)"></Image>
+                        <FlexboxLayout 
+                        [ngClass]="{
+                            'tabla-compras': pedido.detalles_activos_count > 1 && detalle.estado !== 'Eliminado', 
+                            'tabla-compras-solo': pedido.detalles_activos_count <= 1 && detalle.estado !== 'Eliminado',
+                            'tabla-compras-solo-eliminado': detalle.estado === 'Eliminado' || pedido.pedido.estado === 'Cancelado'
+                        }"
+                        display="flex" 
+                        justifyContent="space-between">
+                            <Label [text]="'x' + detalle.cantidad + ' ' + detalle.producto.nombre"></Label>
+                            <Label [text]="'$' + formatCurrency(detalle.subtotal)"></Label>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+                </FlexboxLayout>
+
+                <FlexboxLayout justifyContent="flex-end" marginTop="10">
+                    <label class="Cabin" fontWeight="bold" fontSize="16" [text]="'Total: $' + formatCurrency(cuenta)"></label>
+                </FlexboxLayout>
+
+                <label *ngIf="cuenta > 0" class="butonlabelrosa Cabin" text="Cuenta pagada" (tap)="onPagarCuenta(mesa.codigo_qr)"></label>
+                <label *ngIf="cuenta === 0" class="butonlabelrosa Cabin" text="Liberar mesa" (tap)="onLiberarMesa(mesa.codigo_qr)"></label>
+                <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+                <label class="butonlabelmorado Cabin" marginBottom="50" text="Nuevo pedido" (tap)="onNuevoPedido(mesa.codigo_qr, mesa.nombre)"></label>
+            </FlexboxLayout>
+        </StackLayout>
+    </DockLayout>
+</ScrollView>

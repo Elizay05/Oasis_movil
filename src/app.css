@@ -153,6 +153,17 @@ This is where the vast majority of your CSS code goes. */
     border-radius: 20;
 }
 
+.butonlabelazul {
+    margin-top: 20;
+    text-align: center;
+    height: 45;
+    width: 200;
+    font-size: 13;
+    background-color: #4646fc;
+    color: white;
+    border-radius: 20;
+    margin-bottom: 30;
+}
 
 .butonIr {
     height: 30;

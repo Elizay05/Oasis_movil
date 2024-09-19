@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core'
-import { Router } from "@angular/router"; 
+import { ActivatedRoute, Router } from "@angular/router"; 
 import { ModalDialogOptions, ModalDialogService } from '@nativescript/angular';
 import { Page } from '@nativescript/core';
 import { PedidoService } from '~/app/shared/services/pedido.service';
@@ -10,30 +10,29 @@ import { ModalMotivoEliminacionComponent } from '../modal-motivo-eliminacion/mod
 
 
 @Component({
-  selector: 'perfil-pedidos-detalles',
-  templateUrl: './perfil-pedidos-detalles.html',
-  styleUrls: ['./perfil-pedidos-detalles.css']
+  selector: 'gestion-mesas-detalles',
+  templateUrl: './gestion-mesas-detalles.html',
+  styleUrls: ['./gestion-mesas-detalles.css']
 })
-export class PerfilPedidosDetallesComponent {
+export class GestionMesasDetallesComponent {
   totalPedidos = 0;
   mesa = {};
   pedidos = [];
   detalles_pedidos = [];
   cuenta = 0;
-  noHayPedidos: boolean = false;  
 
-  public constructor(private router: Router, private page: Page, private pedidoService: PedidoService, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
+  public constructor(private router: Router, private page: Page, private pedidoService: PedidoService, private route: ActivatedRoute, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit(): void {
     this.page.actionBarHidden = true;
-    const user_id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
-    this.pedidoService.obtenerPedidos(user_id).subscribe((data: any) => {
+    const codigo_mesa = this.route.snapshot.params.id
+    this.pedidoService.obtenerPedidosMesa(codigo_mesa).subscribe((data: any) => {
+        console.log(data);
         this.totalPedidos = data.total_pedidos;
         this.mesa = data.mesa;
         this.detalles_pedidos = data.detalles_pedidos; 
         this.cuenta = data.cuenta
-        this.noHayPedidos = !data.hay_pedidos;
     });
   }
 
@@ -59,7 +58,7 @@ export class PerfilPedidosDetallesComponent {
                   cancelable: true,
               });
 
-              this.router.navigate(['perfil']);
+              this.router.navigate(['gestionMesas']);
           }
           }, error => {
               console.log(error.error);
@@ -99,7 +98,7 @@ export class PerfilPedidosDetallesComponent {
                   cancelable: true,
               });
       
-              this.router.navigate(['perfil']);
+              this.router.navigate(['gestionMesas']);
           }
       }, error => {
           console.log(error.error); 
@@ -163,7 +162,7 @@ export class PerfilPedidosDetallesComponent {
             cancelable: true,
         });
 
-        this.router.navigate(['/perfil']);
+        this.router.navigate(['gestionMesas']);
     }}, error => {
     console.log(error.error);
     Dialogs.alert({
@@ -186,7 +185,7 @@ export class PerfilPedidosDetallesComponent {
             cancelable: true,
         });
 
-        this.router.navigate(['/perfil']);
+        this.router.navigate(['/gestionMesas']);
     }}, error => {
     console.log(error.error);
     Dialogs.alert({
@@ -199,18 +198,14 @@ export class PerfilPedidosDetallesComponent {
   }
 
 
-  onQrMesa() {
-    this.router.navigate(['qr_mesa'])
-  }
 
-  
   public onNuevoPedido(codigo_qr, mesa){
     this.router.navigate(["pedido", codigo_qr, mesa]);
   }
 
 
   public onTap(){
-    this.router.navigate(["perfil"])
+    this.router.navigate(["gestionMesas"])
   }
 
   formatDate(fecha: string): string {
