@@ -4,8 +4,12 @@
           <FlexboxLayout class="barraNavegacion2">
               <FlexboxLayout class="InfoUser2">
               <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
-              <label class="Nunito text-medium" text="Productos"></label>
+              <label class="Nunito text-medium" text="{{categoria.nombre}}"></label>
               </FlexboxLayout>
+          </FlexboxLayout>
+
+          <FlexboxLayout class="bloqueDescripcion">
+            <label textWrap="true" text="{{categoria.descripcion}}"></label>
           </FlexboxLayout>
 
           <FlexboxLayout flexWrap="wrap" justifyContent="space-around" marginBottom="30">
@@ -15,6 +19,7 @@
               <label class="precio Cabin" [text]="'$'+formatCurrency(p.precio)"></label>
             </FlexboxLayout>
           </FlexboxLayout>
+
 
           <FlexboxLayout marginLeft="20" marginRight="20">
             <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>

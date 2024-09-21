@@ -42,4 +42,12 @@ export class EventoService {
     obtenerReservasDetallesUsuario(user_id: number, reserva_id: number): Observable<any[]> {
         return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/reservas_detalles_usuario/${user_id}/${reserva_id}/`, { headers: this.headers });
     }
+
+    reservaEscaneado(codigo_qr: string): Observable<any[]> {
+        return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/reserva_escaneado/${codigo_qr}/`, { headers: this.headers });
+    }
+
+    entradaEscaneado(codigo_qr: string): Observable<any[]> {
+        return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/entrada_escaneado/${codigo_qr}/`, { headers: this.headers });
+    }
 }

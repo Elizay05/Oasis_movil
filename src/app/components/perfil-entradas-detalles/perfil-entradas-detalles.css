@@ -16,9 +16,20 @@
     align-items: center;
 }
 
-.contenedor-entradas .entrada{
+.contenedor-entradas .entrada-activa{
     padding: 12;
     background-color: #575757;
+    width: 90%;
+    margin-top: 15;
+    border-radius: 10;
+    color: white;
+    display: flex;
+    justify-content: space-between
+}
+
+.contenedor-entradas .entrada-desactiva{
+    padding: 12;
+    background-color: #990315;
     width: 90%;
     margin-top: 15;
     border-radius: 10;

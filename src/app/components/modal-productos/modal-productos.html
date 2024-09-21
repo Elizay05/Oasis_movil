@@ -1,0 +1,29 @@
+<StackLayout class="modal Cabin">
+    <label class="modal-title" text="{{nombreProducto}}"></label>
+    <label class="modal-categoria" text="({{categoriaProducto}})"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
+        <Image src="{{fotoProducto}}" row="0" borderRadius="10" height="150" width="50%" stretch="fill"></Image>
+    </FlexboxLayout> 
+
+    <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>
+
+    <FlexboxLayout flexDirection="column" marginTop="10">
+        <label fontWeight="bold" text="Descripción"></label>
+        <label textWrap="true" text="{{descripcionProducto}}"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>
+
+    <FlexboxLayout flexDirection="column" marginTop="10">
+        <label fontWeight="bold" text="Precio"></label>
+        <label textWrap="true" [text]="'$' + formatCurrency(precioProducto)"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout class="rayaIntermedia2" marginTop="10"></FlexboxLayout>
+
+    
+    <FlexboxLayout justifyContent="center" marginTop="10">
+        <Button text="Realizar Pedido" (tap)="confirmar()" class="btn-confirmar"></Button>
+    </FlexboxLayout>
+  </StackLayout>

@@ -23,8 +23,7 @@ export class PedidoComponent {
 
   comentario: string = '';
 
-  public constructor(private router: Router, private page: Page, private route: ActivatedRoute, private productoService: ProductoService, private pedidoService: PedidoService,private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
-    // Use the component constructor to inject providers.
+  public constructor(private router: Router, private page: Page, private route: ActivatedRoute, private productoService: ProductoService, private pedidoService: PedidoService, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
   }
   ngOnInit(): void {
     this.page.actionBarHidden = true;
@@ -35,7 +34,7 @@ export class PedidoComponent {
 
     this.productoService.obtenerProductos().subscribe((data: any) => {
       console.log("Productos recibidos: ", data);
-        this.productos = data.map(p => ({ ...p, cantidad: 0, subtotal: 0 })); // Inicializa la cantidad y el subtotal en 0
+        this.productos = data.map(p => ({ ...p, cantidad: 0, subtotal: 0 }));
         console.log("Array de productos: ", this.productos);
     });
 

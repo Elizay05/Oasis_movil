@@ -1,4 +1,3 @@
-
 import { HomeComponent } from "./components/home/home"; 
 import { TiendaComponent } from "./components/tienda/tienda";
 import { EventoComponent } from "./components/evento/evento";
@@ -8,8 +7,6 @@ import { PerfilComponent } from "./components/perfil/perfil";
 import { QrMesaComponent } from "./components/qr_mesa/qr_mesa";
 import { PedidoComponent } from "./components/pedido/pedido";
 import { RegistroComponent } from "./components/registro/registro";
-import { ProductosComponent } from "./components/productos/productos";
-import { ProductosAdminComponent } from "./components/productos_admin/productos_admin";
 import { EditarPerfilComponent } from "./components/editar_perfil/editarperfil";
 import { EventoEntradasComponent } from "./components/evento_entradas/evento_entradas";
 import { NumberInputStepperComponent } from "./components/number-input-stepper/number-input-stepper";
@@ -29,6 +26,11 @@ import { GestionMesasComponent } from "./components/gestion-mesas/gestion-mesas"
 import { GestionMesasDetallesComponent } from "./components/gestion-mesas-detalles/gestion-mesas-detalles";
 import { PerfilMesasCargoComponent } from "./components/perfil-mesas-cargo/perfil-mesas-cargo";
 import { PerfilMesasCargoDetallesComponent } from "./components/perfil-mesas-cargo-detalles/perfil-mesas-cargo-detalles";
+import { ModalReservaEscaneadoComponent } from "./components/modal-reserva-escaneado/modal-reserva-escaneado";
+import { ModalEntradaEscaneadoComponent } from "./components/modal-entrada-escaneado/modal-entrada-escaneado";
+import { CategoriaProductosComponent } from "./components/categoria-productos/categoria-productos";
+import { ProductosComponent } from "./components/productos/productos"
+import { ModalProductosComponent } from "./components/modal-productos/modal-productos"
 
 
 export const appRoutes: any = [
@@ -43,10 +45,7 @@ export const appRoutes: any = [
   { path: "pedido/:id/:mesa", component: PedidoComponent},
   { path: "registro", component: RegistroComponent},
   { path: "editarperfil", component: EditarPerfilComponent},
-  { path: "productos_admin", component: ProductosAdminComponent },
   // { path: "noticias", component: NoticiasComponent},
-  { path: "productos", component: ProductosComponent},
-  { path: "productos_admin", component: ProductosAdminComponent},
   { path: "evento/entradas/:id", component: EventoEntradasComponent},
   { path: "perfil/entradas", component: PerfilEntradasComponent},
   { path: "perfil/entradas/detalles/:id", component: PerfilEntradasDetallesComponent},
@@ -57,7 +56,9 @@ export const appRoutes: any = [
   { path: "gestionMesas", component: GestionMesasComponent},
   { path: "gestionMesas/detalles/:id", component: GestionMesasDetallesComponent},
   { path: "perfil/mesasCargo", component: PerfilMesasCargoComponent},
-  { path: "perfil/mesasCargo/detalles/:id", component: PerfilMesasCargoDetallesComponent}
+  { path: "perfil/mesasCargo/detalles/:id", component: PerfilMesasCargoDetallesComponent},
+  { path: "categoria/:id", component: CategoriaProductosComponent},
+  { path: "productos", component: ProductosComponent }
 ];
 
 export const appComponents: any = [
@@ -71,10 +72,7 @@ export const appComponents: any = [
   PedidoComponent,
   RegistroComponent,
   EditarPerfilComponent,
-  ProductosAdminComponent,
   //NoticiasComponent,
-  ProductosComponent,
-  ProductosAdminComponent,
   EventoEntradasComponent,
   NumberInputStepperComponent,
   ModalEntradasComponent,
@@ -92,6 +90,11 @@ export const appComponents: any = [
   GestionMesasComponent,
   GestionMesasDetallesComponent,
   PerfilMesasCargoComponent,
-  PerfilMesasCargoDetallesComponent
+  PerfilMesasCargoDetallesComponent,
+  ModalReservaEscaneadoComponent,
+  ModalEntradaEscaneadoComponent,
+  CategoriaProductosComponent,
+  ProductosComponent,
+  ModalProductosComponent
 ];
 

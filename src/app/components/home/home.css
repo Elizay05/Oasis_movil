@@ -34,8 +34,8 @@
 
 
 .blockCategorias{
-    margin: 10, 10;
-    justify-content: space-between;
+    margin: 10;
+    margin-top: 20;
 }
 
 .cardProductos{

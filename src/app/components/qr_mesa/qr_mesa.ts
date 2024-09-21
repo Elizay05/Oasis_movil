@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
-import { Page } from '@nativescript/core';
+import { DialogStrings, Page } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 import { MesaService } from '../../shared/services/mesa.service';
-import { PedidoService } from '~/app/shared/services/pedido.service';
+import { Dialogs } from '@nativescript/core';
+
 
 
 
@@ -32,15 +33,24 @@ export class QrMesaComponent {
       beepOnScan: true,
       openSettingsIfPermissionWasPreviouslyDenied: true
     }).then(result => {
-      const mesa = result.text
-      this.mesaService.obtenerMesaQr(mesa).subscribe((data: any) => {
-        const mesa = data.mesa.nombre;
-        const codigo_qr = data.mesa.codigo_qr;
-        this.router.navigate(["pedido", codigo_qr, mesa]);
-      })
-    }, error => {
-      console.log('QR Code scanning fail¨ed: ', error);
-      alert('QR Code Scanning failed: ' + error);
+      const mesa = result.text;
+        this.mesaService.obtenerMesaQr(mesa).subscribe(
+          (data: any) => {
+            const mesa = data.mesa.nombre;
+            const codigo_qr = data.mesa.codigo_qr;
+            this.router.navigate(["pedido", codigo_qr, mesa]);
+          },
+          (error) => {
+            Dialogs.alert({
+              title: "Error",
+              message: "No se encontró la mesa correspondiente al QR escaneado.",
+              okButtonText: "Ok"
+            });
+            console.error(error);
+          }
+        );
+      }, error => {
+        Dialogs.alert({ title: "Error", message: error, okButtonText: "Ok" });
     });
   }
 

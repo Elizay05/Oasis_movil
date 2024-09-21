@@ -19,7 +19,7 @@
         <FlexboxLayout class="blockImages" flexDirection="column">
           <Image class="logoOasis" src="~/app/images/logoOasisBlanco.png" width="150"></Image>
           <Image src="~/app/images/licores.jpg"></Image>
-          <label class="butonlabelrosa Cabin" (tap)="onQrMesa()" text="Hacer pedido"></label>
+          <label class="butonlabelrosa Cabin" (tap)="onQrMesa()" text="Realizar pedido"></label>
         </FlexboxLayout>
 
         <FlexboxLayout class="blockImages" flexDirection="column">
@@ -41,7 +41,7 @@
 
         <FlexboxLayout class="blockImages" flexDirection="column" marginBottom="20">
           <Image src="~/app/images/escanear-mesero.jpg"></Image>
-          <label class="butonlabelazul Cabin" (tap)="onGestionarMesas()" text="Escanear Entradas"></label>
+          <label class="butonlabelazul Cabin" (tap)="onEscanearQr()" text="Escanear Entradas"></label>
         </FlexboxLayout>
       </StackLayout>
 
@@ -49,33 +49,16 @@
       <StackLayout *ngIf="rol == 4">
         <Label class="texto_centrado" text="¡Nuestro Menú!"></Label>
         <FlexboxLayout class="blockProductos" flexDirection="column">
-          <FlexboxLayout class="blockCategorias">
-            <label class="butonlabelgris Cabin" text="Cocteles" (tap)="filtrarCategoria('Cocteles')"></label>
-            <label class="butonlabelgris Cabin" text="Licores" (tap)="filtrarCategoria('Licores')"></label>
-            <label class="butonlabelgris Cabin" text="Comidas" (tap)="filtrarCategoria('Comidas')"></label>
-            <label class="butonlabelgris Cabin" text="Aperitivos" (tap)="filtrarCategoria('Aperitivos')"></label>
-          </FlexboxLayout>
+          <ScrollView orientation="horizontal">
+            <FlexboxLayout class="blockCategorias">
+              <label *ngFor="let c of categorias" class="butonlabelgris Cabin" marginLeft="10" (tap)="onCategoria(c.id)" text="{{c.nombre}}"></label>
+            </FlexboxLayout>
+          </ScrollView>
           <ScrollView orientation="horizontal">
             <FlexboxLayout>
-              <FlexboxLayout class="cardProductos" flexDirection="column">
-                <Image src="~/app/images/coctel1.png"></Image>
-                <label class="Cabin" text="Flower Power"></label>
-              </FlexboxLayout>
-              <FlexboxLayout class="cardProductos" flexDirection="column">
-                <Image src="~/app/images/coctel2.jpg"></Image>
-                <label class="Cabin" text="Lemon Coctel"></label>
-              </FlexboxLayout>
-              <FlexboxLayout class="cardProductos" flexDirection="column">
-                <Image src="~/app/images/coctel3.jpg"></Image>
-                <label class="Cabin" text="Sky Blue"></label>
-              </FlexboxLayout>
-              <FlexboxLayout class="cardProductos" flexDirection="column">
-                <Image src="~/app/images/coctel3.jpg"></Image>
-                <label class="Cabin" text="Sky Blue"></label>
-              </FlexboxLayout>
-              <FlexboxLayout class="cardProductos" flexDirection="column">
-                <Image src="~/app/images/coctel3.jpg"></Image>
-                <label class="Cabin" text="Sky Blue"></label>
+              <FlexboxLayout class="cardProductos" flexDirection="column" (tap)="onModalProductos(p)" *ngFor="let p of productos.slice(0, 8)">
+                <Image src="{{p.foto}}"></Image>
+                <label class="Cabin" padding="5" text="{{p.nombre}}"></label>
               </FlexboxLayout>
             </FlexboxLayout>
           </ScrollView>

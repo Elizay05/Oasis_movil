@@ -30,7 +30,7 @@
                     <TextView class="Cabin" textWrap="true" v-model="textFieldValue" fontSize="14" (textChange)="onCommentChange($event)" hint="Agrega un comentario..."/>
                 </FlexboxLayout>
 
-                <label class="butonlabelrosa Cabin" [class.disabled]="productosSeleccionados.length == 0" (tap)="onHacerPedido()" text="Hacer pedido"></label>
+                <label class="butonlabelrosa Cabin" [class.disabled]="productosSeleccionados.length == 0" (tap)="onHacerPedido()" text="Realizar pedido"></label>
 
                 <FlexboxLayout flexDirection="column" justifyContent="space-between" class="cardProducto" *ngFor="let p of productos"
                 [ngClass]="{'cardProductoSeleccionado': p.cantidad > 0}">               

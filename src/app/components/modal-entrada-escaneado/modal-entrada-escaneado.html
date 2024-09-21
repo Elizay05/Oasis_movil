@@ -1,0 +1,23 @@
+<StackLayout class="modal Cabin" [ngStyle]="{'background-color': entrada.estado_qr ? '#333333' : '#990315'}">
+    <label class="modal-title" text="Entrada"></label>
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
+        <Image [src]="getFullImageUrl(entrada.evento_foto)" row="0" borderRadius="10" height="100" width="80%" stretch="fill"></Image>
+        <label fontSize="18" text="{{entrada.evento_nombre}}"></label>
+        <label text="{{entrada.evento_fecha}}"></label>
+    </FlexboxLayout>
+
+    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+
+    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
+        <label text="Usuario: {{entrada.usuario_nombre}}"></label>
+        <label text="Email: {{entrada.usuario_email}}"></label>
+        <label text="CC: {{entrada.usuario_cc}}"></label>
+        <label class="modal-entrada" text="{{entrada.tipo_entrada}}"></label>
+    </FlexboxLayout>
+    
+    <FlexboxLayout justifyContent="center" marginTop="10">
+        <Button *ngIf="entrada.estado_qr" text="Escaneada" (tap)="confirmar()" class="btn-confirmar" width="70%"></Button>
+    </FlexboxLayout>
+</StackLayout>

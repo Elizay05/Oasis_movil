@@ -23,11 +23,12 @@
                         <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" text="Total entradas: {{compra_entrada.entrada_general + compra_entrada.entrada_vip}}"></label>
                         <label class="Cabin" marginTop="5" fontSize="14" whiteSpace="normal" text="Fecha de compra: {{compra_entrada.fecha_compra}}"></label>
                         <FlexboxLayout class="contenedor-entradas">
-                            <FlexboxLayout class="entrada" *ngFor="let entrada of qr_entradas">
+                            <FlexboxLayout [ngClass]="entrada.estado_qr ? 'entrada-activa' : 'entrada-desactiva'" *ngFor="let entrada of qr_entradas">
                                 <label class="Cabin" text="Entrada {{entrada.tipo_entrada}}"></label>
                                 <Image src="~/app/images/icono-qr.png" height="30" width="30" borderRadius="5" (tap)="onQr(entrada.qr_imagen)"></Image>
                             </FlexboxLayout>
                         </FlexboxLayout>
+                        <label class="Cabin" marginTop="5" whiteSpace="normal" text="(Si la entrada esta de color rojo, es porque ya ha sido escaneada)"></label>
                         <label class="Cabin" fontSize="18" marginTop="20" marginBottom="20" [text]="'Total de la compra: $' + formatCurrency(compra_entrada?.total || 0)"></label>
                     </FlexboxLayout>
 

@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, ViewContainerRef } from '@angular/core'
 import { ActivatedRoute, Router } from "@angular/router";
-import { exit } from "nativescript-exit";
-import { Dialogs, Page, TextField } from '@nativescript/core';
+import { Dialogs, Page } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
 import { LoginService } from '../../shared/services/login.service';
 import { PedidoService } from '~/app/shared/services/pedido.service';
+import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
+import { ModalDialogOptions, ModalDialogService } from '@nativescript/angular';
+import { ModalReservaEscaneadoComponent } from '../modal-reserva-escaneado/modal-reserva-escaneado';
+import { EventoService } from '~/app/shared/services/evento.service';
+import { CategoriaService } from '~/app/shared/services/categoria.service';
+import { ModalEntradaEscaneadoComponent } from '../modal-entrada-escaneado/modal-entrada-escaneado';
+import { ProductoService } from '~/app/shared/services/producto.service';
+import { ModalProductosComponent } from '../modal-productos/modal-productos';
+
 
 @Component({
   selector: 'home',
@@ -22,8 +30,11 @@ export class HomeComponent {
 
   pedidos = false
   mesa: any = {};
+
+  categorias: any = [];
+  productos: any = [];
   
-  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService, private pedidoService: PedidoService) {
+  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService, private pedidoService: PedidoService, private eventoService: EventoService, private categoriaService: CategoriaService, private productoService: ProductoService, private barcodeScanner: BarcodeScanner, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
     console.log('home constructor');
     if (localStorage.getItem('Oasis.token')) {
       this.loggedIn = true;
@@ -47,7 +58,17 @@ export class HomeComponent {
       this.pedidoService.verificarPedidoUsuario(this.perfil.user_id).subscribe((res: any) => {
         this.pedidos = res.pedidos
         this.mesa = res.mesa
-      }) 
+      });
+      
+      this.categoriaService.obtenerCategorias().subscribe((data: any) => {
+        console.log(data)
+        this.categorias = data
+      });
+
+      this.productoService.obtenerProductos().subscribe((data: any) => {
+        console.log(data)
+        this.productos = data
+      })
     }
   }
 
@@ -62,29 +83,157 @@ export class HomeComponent {
       this.router.navigate(['qr_mesa'])
     }
   }
+
+  onCategoria(id_categoria){
+    this.router.navigate(['categoria', id_categoria])
+  }
+
   onProductos() {
-    const state = { returnToHome: true };
-    this.router.navigate(['productos'], { state });
+    this.router.navigate(['productos']);
   }
 
   onGestionarMesas() {
     this.router.navigate(['gestionMesas'])
   }
 
+  onEscanearQr() {
+    this.barcodeScanner.scan({
+      formats: 'QR_CODE',
+      cancelLabel: 'cancelar',
+      message: 'Coloca el QR dentro del cuadro',
+      showFlipCameraButton: true,
+      showTorchButton: true,
+      torchOn: false,
+      resultDisplayDuration: 500,
+      beepOnScan: true,
+      openSettingsIfPermissionWasPreviouslyDenied: true
+    }).then(result => {
+      if (result.text) {
+        try {
+          const qrData = JSON.parse(result.text);
+          console.log('Código QR:', qrData);
+
+          if (qrData.tipo === 'reserva') {
+              const options: ModalDialogOptions = {
+                context: {
+                  reserva: qrData
+                },
+                fullscreen: false,
+                viewContainerRef: this.viewContainerRef
+              };
+
+              this.modalService.showModal(ModalReservaEscaneadoComponent, options).then((result: boolean) => {
+                if (result) {
+                  this.eventoService.reservaEscaneado(qrData.codigo_reserva).subscribe((res: any) => {
+                    if (res){
+                      Dialogs.alert({
+                        title: 'Respuesta:',
+                        message: res.message,
+                        okButtonText: 'OK',
+                        cancelable: true,
+                      });
+                    } else {
+                      Dialogs.alert({
+                        title: 'Respuesta:',
+                        message: 'Reserva no encontrada',
+                        okButtonText: 'OK',
+                        cancelable: true,
+                      });
+                    }
+                  }) 
+                }
+              });
+          } else if (qrData.tipo === 'entrada') {
+            const options: ModalDialogOptions = {
+              context: {
+                entrada: qrData
+              },
+              fullscreen: false,
+              viewContainerRef: this.viewContainerRef
+            };
+
+            this.modalService.showModal(ModalEntradaEscaneadoComponent, options).then((result: boolean) => {
+              if (result) {
+                this.eventoService.entradaEscaneado(qrData.codigo_entrada).subscribe((res: any) => {
+                  if (res){
+                    Dialogs.alert({
+                      title: 'Respuesta:',
+                      message: res.message,
+                      okButtonText: 'OK',
+                      cancelable: true,
+                    });
+                  } else {
+                    Dialogs.alert({
+                      title: 'Respuesta:',
+                      message: 'Entrada no encontrada',
+                      okButtonText: 'OK',
+                      cancelable: true,
+                    });
+                  }
+                }) 
+              }
+            });
+          } else {
+            console.log('Código QR desconocido', qrData);
+            Dialogs.alert({
+              title: 'Respuesta:',
+              message: 'Tipo de código QR desconocido',
+              okButtonText: 'OK',
+              cancelable: true,
+            });
+          }
+        } catch (e) {
+          console.error('Error al analizar el QR:', e);
+          Dialogs.alert({
+            title: 'Error',
+            message: 'Código QR inválido. Contenido recibido: ' + result.text,
+            okButtonText: 'OK',
+            cancelable: true
+          });
+        }
+      } else {
+        Dialogs.alert({
+          title: 'Error',
+          message: 'El código QR no contiene datos.',
+          okButtonText: 'OK',
+          cancelable: true
+        });
+      }
+    }, error => {
+      console.error('Error al escanear el QR:', error);
+      alert('Error al escanear el QR: ' + error);
+    });
+  }
+
+
+  onModalProductos(producto){
+    const options: ModalDialogOptions = {
+      context: {
+        fotoProducto: producto.foto,
+        nombreProducto: producto.nombre,
+        categoriaProducto: producto.categoria.nombre,
+        precioProducto: producto.precio,
+        descripcionProducto: producto.descripcion
+      },
+      fullscreen: false,
+      viewContainerRef: this.viewContainerRef
+    };
+
+    this.modalService.showModal(ModalProductosComponent, options).then((result: boolean) => {
+      if (result) {
+        console.log('se vió el producto')
+      }
+    })
+  }
+
+
   mostrarMapa() {
     openUrl('https://www.google.com/maps/place/SENA+Complejo+Sur+Itag%C3%BC%C3%AD/@6.1809892,-75.6059929,15z/data=!4m6!3m5!1s0x8e46823b07fa76e7:0xd858c9c2ddf4b118!8m2!3d6.1809892!4d-75.6059929!16s%2Fg%2F1hc2vps2d?entry=ttu');// pueden cambiar el sitio yo lo puse en la ubicacion del sena pero pueden moverlo a otra parte si quieren que cuando lo habren les abre el google maps a la ubicacion que se puso aqui
   }
-  categorias = ["Cocteles", "Licores", "Comidas", "Aperitivos"];
-  todosItems = [
-    { nombre: "Flower Power", categoria: "Cocteles", imagen: "~/app/images/coctel1.png" },
-    { nombre: "Lemon Coctel", categoria: "Cocteles", imagen: "~/app/images/coctel2.jpg" },
-    { nombre: "Sky Blue", categoria: "Cocteles", imagen: "~/app/images/coctel3.jpg" },
-    { nombre: "Vodka", categoria: "Licores" },
-    { nombre: "Pizza", categoria: "Comidas" },
-    { nombre: "Patatas bravas", categoria: "Aperitivos" },
-    { nombre: "Flower Power", categoria: "Coteles" },
-  ];
 
+  getFullImageUrl(foto: string): string {
+    return `${global.urlLocalSayi}${foto}`;
+  }
 
   public cerrarSesion() {
     console.log("Eliminar sesión...")

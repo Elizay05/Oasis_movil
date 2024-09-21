@@ -1,0 +1,20 @@
+.modal {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .modal-categoria {
+    text-align: center;
+  }
+  
+  .btn-confirmar {
+    background-color: #fc4664;
+    color: white;
+    width: 80%;
+  }
+  
