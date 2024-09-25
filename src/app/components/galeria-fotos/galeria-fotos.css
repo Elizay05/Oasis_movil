@@ -1,0 +1,16 @@
+.cardGaleria{
+    background-color: #262626;
+    border-radius: 20;
+    margin-bottom: 20;
+}
+
+.Imagen_Galeria{
+    padding: 15;
+    border-radius: 10;
+    height: 200;
+}
+
+.Imagen_Galeria Image{
+    stretch: fill;
+    height: auto;
+}

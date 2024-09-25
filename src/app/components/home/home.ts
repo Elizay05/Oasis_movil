@@ -11,6 +11,7 @@ import { EventoService } from '~/app/shared/services/evento.service';
 import { CategoriaService } from '~/app/shared/services/categoria.service';
 import { ModalEntradaEscaneadoComponent } from '../modal-entrada-escaneado/modal-entrada-escaneado';
 import { ProductoService } from '~/app/shared/services/producto.service';
+import { GaleriaService } from '~/app/shared/services/galeria.service';
 import { ModalProductosComponent } from '../modal-productos/modal-productos';
 
 
@@ -33,15 +34,16 @@ export class HomeComponent {
 
   categorias: any = [];
   productos: any = [];
+
+  galeriaCarpetas: any = []
   
-  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService, private pedidoService: PedidoService, private eventoService: EventoService, private categoriaService: CategoriaService, private productoService: ProductoService, private barcodeScanner: BarcodeScanner, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
-    console.log('home constructor');
+  public constructor(private router: Router, private page: Page, private activatedRoute: ActivatedRoute, private loginService: LoginService, private pedidoService: PedidoService, private eventoService: EventoService, private categoriaService: CategoriaService, private productoService: ProductoService,  private galeriaService: GaleriaService, private barcodeScanner: BarcodeScanner, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
     if (localStorage.getItem('Oasis.token')) {
       this.loggedIn = true;
       this.perfil = JSON.parse(localStorage.getItem('Oasis.user'))
       this.rol = this.perfil.rol
       this.nombre = this.perfil.nombre
-      this.foto = global.urlLocalSayi+this.perfil.foto
+      this.foto = global.url+this.perfil.foto
       console.log(localStorage.getItem('Oasis.user'))
     }
     else {
@@ -61,13 +63,15 @@ export class HomeComponent {
       });
       
       this.categoriaService.obtenerCategorias().subscribe((data: any) => {
-        console.log(data)
         this.categorias = data
       });
 
       this.productoService.obtenerProductos().subscribe((data: any) => {
-        console.log(data)
         this.productos = data
+      })
+
+      this.galeriaService.obtenerGalerias().subscribe((data: any) => {
+        this.galeriaCarpetas = data
       })
     }
   }
@@ -77,10 +81,20 @@ export class HomeComponent {
   }
   
   onQrMesa() {
-    if (this.pedidos){
-      this.router.navigate(['pedido', this.mesa.codigo_qr, this.mesa.nombre])
+    const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+    if (estado === 2) { 
+      Dialogs.alert({
+        title: 'Respuesta:',
+        message: 'Eres un usuario bloqueado, no puedes realizar pedidos.',
+        okButtonText: 'OK',
+        cancelable: true,
+      });
     }else{
-      this.router.navigate(['qr_mesa'])
+      if (this.pedidos){
+        this.router.navigate(['pedido', this.mesa.codigo_qr, this.mesa.nombre])
+      }else{
+        this.router.navigate(['qr_mesa'])
+      }
     }
   }
 
@@ -92,28 +106,50 @@ export class HomeComponent {
     this.router.navigate(['productos']);
   }
 
+  onCarpeta(id_carpeta) {
+    this.router.navigate(['galeria', id_carpeta]);
+  }
+
   onGestionarMesas() {
-    this.router.navigate(['gestionMesas'])
+    const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+    if (estado === 2) { 
+      Dialogs.alert({
+        title: 'Respuesta:',
+        message: 'Eres un usuario bloqueado, no puedes gestionar mesas.',
+        okButtonText: 'OK',
+        cancelable: true,
+      });
+    }else{
+      this.router.navigate(['gestionMesas'])
+    }
   }
 
   onEscanearQr() {
-    this.barcodeScanner.scan({
-      formats: 'QR_CODE',
-      cancelLabel: 'cancelar',
-      message: 'Coloca el QR dentro del cuadro',
-      showFlipCameraButton: true,
-      showTorchButton: true,
-      torchOn: false,
-      resultDisplayDuration: 500,
-      beepOnScan: true,
-      openSettingsIfPermissionWasPreviouslyDenied: true
-    }).then(result => {
-      if (result.text) {
-        try {
-          const qrData = JSON.parse(result.text);
-          console.log('Código QR:', qrData);
+    const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+    if (estado === 2) {
+      Dialogs.alert({
+        title: 'Respuesta:',
+        message: 'Eres un usuario bloqueado, no puedes escanear entradas.',
+        okButtonText: 'OK',
+        cancelable: true,
+      });
+    } else {
+      this.barcodeScanner.scan({
+        formats: 'QR_CODE',
+        cancelLabel: 'cancelar',
+        message: 'Coloca el QR dentro del cuadro',
+        showFlipCameraButton: true,
+        showTorchButton: true,
+        torchOn: false,
+        resultDisplayDuration: 500,
+        beepOnScan: true,
+        openSettingsIfPermissionWasPreviouslyDenied: true
+      }).then(result => {
+        if (result.text) {
+          try {
+            const qrData = JSON.parse(result.text);
 
-          if (qrData.tipo === 'reserva') {
+            if (qrData.tipo === 'reserva') {
               const options: ModalDialogOptions = {
                 context: {
                   reserva: qrData
@@ -125,7 +161,7 @@ export class HomeComponent {
               this.modalService.showModal(ModalReservaEscaneadoComponent, options).then((result: boolean) => {
                 if (result) {
                   this.eventoService.reservaEscaneado(qrData.codigo_reserva).subscribe((res: any) => {
-                    if (res){
+                    if (res) {
                       Dialogs.alert({
                         title: 'Respuesta:',
                         message: res.message,
@@ -140,69 +176,67 @@ export class HomeComponent {
                         cancelable: true,
                       });
                     }
-                  }) 
+                  })
                 }
               });
-          } else if (qrData.tipo === 'entrada') {
-            const options: ModalDialogOptions = {
-              context: {
-                entrada: qrData
-              },
-              fullscreen: false,
-              viewContainerRef: this.viewContainerRef
-            };
+            } else if (qrData.tipo === 'entrada') {
+              const options: ModalDialogOptions = {
+                context: {
+                  entrada: qrData
+                },
+                fullscreen: false,
+                viewContainerRef: this.viewContainerRef
+              };
 
-            this.modalService.showModal(ModalEntradaEscaneadoComponent, options).then((result: boolean) => {
-              if (result) {
-                this.eventoService.entradaEscaneado(qrData.codigo_entrada).subscribe((res: any) => {
-                  if (res){
-                    Dialogs.alert({
-                      title: 'Respuesta:',
-                      message: res.message,
-                      okButtonText: 'OK',
-                      cancelable: true,
-                    });
-                  } else {
-                    Dialogs.alert({
-                      title: 'Respuesta:',
-                      message: 'Entrada no encontrada',
-                      okButtonText: 'OK',
-                      cancelable: true,
-                    });
-                  }
-                }) 
-              }
-            });
-          } else {
-            console.log('Código QR desconocido', qrData);
+              this.modalService.showModal(ModalEntradaEscaneadoComponent, options).then((result: boolean) => {
+                if (result) {
+                  this.eventoService.entradaEscaneado(qrData.codigo_entrada).subscribe((res: any) => {
+                    if (res) {
+                      Dialogs.alert({
+                        title: 'Respuesta:',
+                        message: res.message,
+                        okButtonText: 'OK',
+                        cancelable: true,
+                      });
+                    } else {
+                      Dialogs.alert({
+                        title: 'Respuesta:',
+                        message: 'Entrada no encontrada',
+                        okButtonText: 'OK',
+                        cancelable: true,
+                      });
+                    }
+                  })
+                }
+              });
+            } else {
+              Dialogs.alert({
+                title: 'Respuesta:',
+                message: 'Tipo de código QR desconocido',
+                okButtonText: 'OK',
+                cancelable: true,
+              });
+            }
+          } catch (e) {
             Dialogs.alert({
-              title: 'Respuesta:',
-              message: 'Tipo de código QR desconocido',
+              title: 'Error',
+              message: 'Código QR inválido. Contenido recibido: ' + result.text,
               okButtonText: 'OK',
-              cancelable: true,
+              cancelable: true
             });
           }
-        } catch (e) {
-          console.error('Error al analizar el QR:', e);
+        } else {
           Dialogs.alert({
             title: 'Error',
-            message: 'Código QR inválido. Contenido recibido: ' + result.text,
+            message: 'El código QR no contiene datos.',
             okButtonText: 'OK',
             cancelable: true
           });
         }
-      } else {
-        Dialogs.alert({
-          title: 'Error',
-          message: 'El código QR no contiene datos.',
-          okButtonText: 'OK',
-          cancelable: true
-        });
-      }
-    }, error => {
-      console.error('Error al escanear el QR:', error);
-      alert('Error al escanear el QR: ' + error);
-    });
+      }, error => {
+        alert('Error al escanear el QR: ' + error);
+      });
+    }
   }
 
 
@@ -219,11 +253,7 @@ export class HomeComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalProductosComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('se vió el producto')
-      }
-    })
+    this.modalService.showModal(ModalProductosComponent, options)
   }
 
 
@@ -232,11 +262,10 @@ export class HomeComponent {
   }
 
   getFullImageUrl(foto: string): string {
-    return `${global.urlLocalSayi}${foto}`;
+    return `${global.url}${foto}`;
   }
 
   public cerrarSesion() {
-    console.log("Eliminar sesión...")
     localStorage.clear();
     this.router.navigate(['login']);
   }

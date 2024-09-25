@@ -32,10 +32,9 @@ export class EventoEntradasComponent {
     this.page.actionBarHidden = true;
     const id = this.route.snapshot.params.id
     this.eventoService.obtenerEventoPorId(id).subscribe((evento: any) => {
-      console.log(evento);
       this.info_evento = evento;
       this.calcularSubtotales();
-        }); 
+    }); 
   }
 
   calcularSubtotales() {
@@ -77,37 +76,43 @@ export class EventoEntradasComponent {
 
     this.modalService.showModal(ModalEntradasComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Compra confirmada');
-        let data = {
+        const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+        if (estado === 2) {
+          Dialogs.alert({
+            title: 'Respuesta:',
+            message: 'Eres un usuario bloqueado, no puedes comprar entradas.',
+            okButtonText: 'OK',
+            cancelable: true,
+          });
+        } else {
+          let data = {
             id_usuario: JSON.parse(localStorage.getItem('Oasis.user')).user_id,
             id_evento: this.info_evento.id,
             cantidad_general: this.entradaGeneral,
             cantidad_vip: this.entradaVip,
             total: this.subtotalEntradaGeneral + this.subtotalEntradaVip
-        }
-        console.log(data);
+          }
 
-        this.eventoService.comprarEntradas(data).subscribe((res: any) => {
+          this.eventoService.comprarEntradas(data).subscribe((res: any) => {
             if (res) {
-                console.log(res.message);
-                Dialogs.alert({
-                    title: 'Respuesta:',
-                    message: 'Entradas compradas exitosamente!',
-                    okButtonText: 'OK',
-                    cancelable: true,
-                });
-
-                this.router.navigate(['/home']);
-            }
-        }, error => {
-            console.log(error.error);
-            Dialogs.alert({
+              Dialogs.alert({
                 title: 'Respuesta:',
-                message: error.error.message,
+                message: 'Entradas compradas exitosamente!',
                 okButtonText: 'OK',
                 cancelable: true,
+              });
+
+              this.router.navigate(['/home']);
+            }
+          }, error => {
+            Dialogs.alert({
+              title: 'Respuesta:',
+              message: error.error.message,
+              okButtonText: 'OK',
+              cancelable: true,
             });
-        });
+          });
+        }
       }
     });
   }

@@ -72,41 +72,20 @@
         <Label class="texto_centrado" text="Galería"></Label>
         <ScrollView orientation="horizontal">
           <FlexboxLayout class="blockGaleria">
-            <FlexboxLayout class="cardGaleria" flexDirection="column">
-              <Image src="~/app/images/galeria1.jpg"></Image>
-              <label class="Cabin" text="Noche de amigos"></label>
-            </FlexboxLayout>
-            <FlexboxLayout class="cardGaleria" flexDirection="column">
-              <Image src="~/app/images/galeria2.jpg"></Image>
-              <label class="Cabin" text="Noche de vinos"></label>
-            </FlexboxLayout>
-            <FlexboxLayout class="cardGaleria" flexDirection="column">
-              <Image src="~/app/images/galeria3.jpg"></Image>
-              <label class="Cabin" text="Halloween 2022"></label>
+            <FlexboxLayout class="cardGaleria" flexDirection="column" (tap)="onCarpeta(g.id)" *ngFor="let g of galeriaCarpetas">
+              <Image src="{{g.foto}}"></Image>
+              <label class="Cabin titulo" text="{{g.nombre}}"></label>
+              <label class="Cabin fecha" text="{{g.fecha}}"></label>
             </FlexboxLayout>
           </FlexboxLayout>
         </ScrollView>
 
         <FlexboxLayout class="blockInfo" flexDirection="column">
-          <Label class="Text-Info Cabin" text="Conoce más de Oasis"></Label>
-          <ScrollView orientation="horizontal">
-            <FlexboxLayout>
-              <FlexboxLayout class="cardInfo" flexDirection="column">
-                <Image src="~/app/images/ubicacion.png"></Image>
-                <label class="Cabin" text="Nuestra Ubicación"></label>
-                <label class="butonIr Cabin" text="📍 Ir" (tap)="mostrarMapa()"></label><!---->
-              </FlexboxLayout>
-              <FlexboxLayout class="cardInfo" flexDirection="column">
-                <Image src="~/app/images/local_bar.jpg"></Image>
-                <label class="Cabin" text="¡Ahora puedes reservar tus eventos VIP!"></label>
-                <label class="butonIr Cabin" text="📆 Reservar ahora" (tap)="onReserva()"></label>
-              </FlexboxLayout>
-              <FlexboxLayout class="cardInfo" flexDirection="column">
-                <Image src="~/app/images/terraza.jpg"></Image>
-                <label class="Cabin" text="Contamos con una nueva Terraza"></label>
-              </FlexboxLayout>
+          <Label class="Text-Info Cabin" text="Nuestra ubicación"></Label>
+            <FlexboxLayout class="cardInfo" flexDirection="column">
+              <Image src="~/app/images/ubicacion.png"></Image>
+              <label class="butonlabelmorado Cabin" text="📍 Ir" (tap)="mostrarMapa()"></label>
             </FlexboxLayout>
-          </ScrollView>
         </FlexboxLayout>
       </StackLayout>
     </StackLayout>

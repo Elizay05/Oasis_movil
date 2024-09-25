@@ -40,6 +40,6 @@ export class PerfilEntradasComponent {
   }
 
   getFullImageUrl(foto: string): string {
-    return `${global.urlLocalSayi}${foto}`;
+    return `${global.url}${foto}`;
   }
 }

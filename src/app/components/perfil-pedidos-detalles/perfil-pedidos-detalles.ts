@@ -48,10 +48,8 @@ export class PerfilPedidosDetallesComponent {
 
     this.modalService.showModal(ModalEliminarPedidoComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Eliminar Pedido');      
         this.pedidoService.eliminarPedido(id_pedido).subscribe((res: any) => {
           if (res) {
-              console.log(res.message);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: 'Pedido cancelado exitosamente!',
@@ -62,7 +60,6 @@ export class PerfilPedidosDetallesComponent {
               this.router.navigate(['perfil']);
           }
           }, error => {
-              console.log(error.error);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: error.error.message,
@@ -86,12 +83,9 @@ export class PerfilPedidosDetallesComponent {
 
     this.modalService.showModal(ModalEliminarPedidoComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Eliminar Producto');
         this.pedidoService.eliminarProductoPedido(id_detalle).subscribe((res: any) => {
-          console.log(res);
           
           if (res.message) {
-              console.log(res.message);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: 'Producto eliminado exitosamente!',
@@ -102,7 +96,6 @@ export class PerfilPedidosDetallesComponent {
               this.router.navigate(['perfil']);
           }
       }, error => {
-          console.log(error.error); 
           Dialogs.alert({
               title: 'Respuesta:',
               message: error.error.message || 'Error eliminando producto',
@@ -125,11 +118,7 @@ export class PerfilPedidosDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalMotivoEliminacionComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo motivo eliminación pedido');        
-      }
-    });
+    this.modalService.showModal(ModalMotivoEliminacionComponent, options)
   }
 
 
@@ -143,11 +132,7 @@ export class PerfilPedidosDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalMotivoEliminacionComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo motivo eliminación producto');        
-      }
-    });
+    this.modalService.showModal(ModalMotivoEliminacionComponent, options)
   }
 
 
@@ -155,7 +140,6 @@ export class PerfilPedidosDetallesComponent {
     const id_usuario = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     this.pedidoService.pagarPedido(id_usuario, codigo_mesa).subscribe((res: any) => {
       if (res) {
-        console.log(res.message);
         Dialogs.alert({
             title: 'Respuesta:',
             message: res.message,
@@ -165,7 +149,6 @@ export class PerfilPedidosDetallesComponent {
 
         this.router.navigate(['/perfil']);
     }}, error => {
-    console.log(error.error);
     Dialogs.alert({
         title: 'Respuesta:',
         message: error.error.message,
@@ -178,7 +161,6 @@ export class PerfilPedidosDetallesComponent {
   public onLiberarMesa(codigo_mesa){
     this.pedidoService.liberarMesa(codigo_mesa).subscribe((res: any) => {
       if (res) {
-        console.log(res.message);
         Dialogs.alert({
             title: 'Respuesta:',
             message: res.message,
@@ -188,7 +170,6 @@ export class PerfilPedidosDetallesComponent {
 
         this.router.navigate(['/perfil']);
     }}, error => {
-    console.log(error.error);
     Dialogs.alert({
         title: 'Respuesta:',
         message: error.error.message,

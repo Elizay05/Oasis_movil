@@ -14,14 +14,14 @@ import { Observable } from 'rxjs';
 
     
     obtenerMesas(): Observable<any[]> {
-      return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/mesa/`, {headers: this.headers});
+      return this.http.get<any[]>(`${global.url}/api/1.0/mesa/`, {headers: this.headers});
     }
 
     obtenerMesaQr(mesa: any): Observable<any> {
-      return this.http.get<any>(`${global.urlLocalSayi}/api/1.0/token_qr/${mesa}/`, {headers: this.headers});
+      return this.http.get<any>(`${global.url}/api/1.0/token_qr/${mesa}/`, {headers: this.headers});
     }
 
   obtenerMesasCargo(id_usuario: number): Observable<any[]> {
-      return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/pedidos_mesa_cargo/${id_usuario}/`, {headers: this.headers});
+      return this.http.get<any[]>(`${global.url}/api/1.0/pedidos_mesa_cargo/${id_usuario}/`, {headers: this.headers});
     }
 }

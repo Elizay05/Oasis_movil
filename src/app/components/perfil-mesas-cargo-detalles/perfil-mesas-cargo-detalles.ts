@@ -28,7 +28,6 @@ export class PerfilMesasCargoDetallesComponent {
     this.page.actionBarHidden = true;
     const codigo_mesa = this.route.snapshot.params.id
     this.pedidoService.obtenerPedidosMesa(codigo_mesa).subscribe((data: any) => {
-        console.log(data);
         this.totalPedidos = data.total_pedidos;
         this.mesa = data.mesa;
         this.detalles_pedidos = data.detalles_pedidos; 
@@ -47,10 +46,8 @@ export class PerfilMesasCargoDetallesComponent {
 
     this.modalService.showModal(ModalEliminarPedidoComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Eliminar Pedido');      
         this.pedidoService.eliminarPedido(id_pedido).subscribe((res: any) => {
           if (res) {
-              console.log(res.message);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: 'Pedido cancelado exitosamente!',
@@ -61,7 +58,6 @@ export class PerfilMesasCargoDetallesComponent {
               this.router.navigate(['gestionMesas']);
           }
           }, error => {
-              console.log(error.error);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: error.error.message,
@@ -85,12 +81,9 @@ export class PerfilMesasCargoDetallesComponent {
 
     this.modalService.showModal(ModalEliminarPedidoComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Eliminar Producto');
         this.pedidoService.eliminarProductoPedido(id_detalle).subscribe((res: any) => {
-          console.log(res);
           
           if (res.message) {
-              console.log(res.message);
               Dialogs.alert({
                   title: 'Respuesta:',
                   message: 'Producto eliminado exitosamente!',
@@ -101,7 +94,6 @@ export class PerfilMesasCargoDetallesComponent {
               this.router.navigate(['gestionMesas']);
           }
       }, error => {
-          console.log(error.error); 
           Dialogs.alert({
               title: 'Respuesta:',
               message: error.error.message || 'Error eliminando producto',
@@ -124,11 +116,7 @@ export class PerfilMesasCargoDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalMotivoEliminacionComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo motivo eliminación pedido');        
-      }
-    });
+    this.modalService.showModal(ModalMotivoEliminacionComponent, options)
   }
 
 
@@ -142,11 +130,7 @@ export class PerfilMesasCargoDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalMotivoEliminacionComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo motivo eliminación producto');        
-      }
-    });
+    this.modalService.showModal(ModalMotivoEliminacionComponent, options)
   }
 
 
@@ -154,7 +138,6 @@ export class PerfilMesasCargoDetallesComponent {
     const id_usuario = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     this.pedidoService.pagarPedido(id_usuario, codigo_mesa).subscribe((res: any) => {
       if (res) {
-        console.log(res.message);
         Dialogs.alert({
             title: 'Respuesta:',
             message: res.message,
@@ -164,7 +147,6 @@ export class PerfilMesasCargoDetallesComponent {
 
         this.router.navigate(['gestionMesas']);
     }}, error => {
-    console.log(error.error);
     Dialogs.alert({
         title: 'Respuesta:',
         message: error.error.message,
@@ -177,7 +159,6 @@ export class PerfilMesasCargoDetallesComponent {
   public onLiberarMesa(codigo_mesa){
     this.pedidoService.liberarMesa(codigo_mesa).subscribe((res: any) => {
       if (res) {
-        console.log(res.message);
         Dialogs.alert({
             title: 'Respuesta:',
             message: res.message,
@@ -187,7 +168,6 @@ export class PerfilMesasCargoDetallesComponent {
 
         this.router.navigate(['/gestionMesas']);
     }}, error => {
-    console.log(error.error);
     Dialogs.alert({
         title: 'Respuesta:',
         message: error.error.message,

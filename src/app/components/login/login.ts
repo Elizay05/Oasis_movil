@@ -103,7 +103,6 @@ export class LoginComponent {
                 });
             }
             else {
-                console.log(error.error.message);
                 Dialogs.alert({
                     title: 'Respuesta:',
                     message: error.error.message,
@@ -123,7 +122,6 @@ export class LoginComponent {
 
     public onTermsAcceptedChange(args): void {
         this.termsAccepted = args.object.checked;
-        console.log('El valor de termsAccepted ha cambiado:', this.termsAccepted);
     }
 
     public navigateToTerms(): void {

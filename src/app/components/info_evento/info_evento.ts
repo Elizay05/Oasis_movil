@@ -17,7 +17,6 @@ export class InfoEventoComponent {
     this.page.actionBarHidden = true;
     const id = this.route.snapshot.params.id
     this.eventoService.obtenerEventoPorId(id).subscribe((evento: any) => {
-      console.log(evento);
       this.info_evento = evento;
     }); 
   }

@@ -12,6 +12,6 @@ export class LoginService {
     constructor(private http: HttpClient) {}
 
     login(datos: any): Observable<any> {
-        return this.http.post<any>(`${global.urlLocalSayi}/api/1.0/token-auth/`, datos);
+        return this.http.post<any>(`${global.url}/api/1.0/token-auth/`, datos);
     }
 }

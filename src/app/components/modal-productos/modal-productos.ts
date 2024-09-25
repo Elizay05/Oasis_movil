@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalDialogParams } from '@nativescript/angular';
+import { PedidoService } from '~/app/shared/services/pedido.service';
 
 @Component({
   selector: 'modal-productos',
@@ -14,7 +16,8 @@ export class ModalProductosComponent {
   public precioProducto: number;
   public descripcionProducto: string;
 
-  constructor(private params: ModalDialogParams) {
+
+  constructor(private params: ModalDialogParams){
     const { fotoProducto, nombreProducto, categoriaProducto, precioProducto, descripcionProducto } = params.context;
 
     this.fotoProducto = fotoProducto;
@@ -23,6 +26,7 @@ export class ModalProductosComponent {
     this.precioProducto = precioProducto;
     this.descripcionProducto = descripcionProducto;
   }
+
 
   confirmar() {
     this.params.closeCallback(true);

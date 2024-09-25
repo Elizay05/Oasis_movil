@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Page } from '@nativescript/core';
 import { EventoService } from '~/app/shared/services/evento.service';
 import { ModalDialogService, ModalDialogOptions } from '@nativescript/angular';
-import { Dialogs } from '@nativescript/core';
 import { ModalQrComponent } from '../modal-qr/modal-qr';
 
 
@@ -27,7 +26,6 @@ export class PerfilEntradasDetallesComponent {
     const user_id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     const entrada_id = this.route.snapshot.params.id
     this.eventoService.obtenerEntradasDetallesUsuario(user_id, entrada_id).subscribe((data: any) => {
-        console.log(data);
         this.qr_entradas = data.qr_entradas;
         this.evento = data.evento;
         this.compra_entrada = data.compra_entrada;
@@ -36,7 +34,6 @@ export class PerfilEntradasDetallesComponent {
   }
 
   public onQr(fotoQr){
-    console.log(fotoQr);
     const options: ModalDialogOptions = {
       context: {
         fotoQr: fotoQr,
@@ -45,11 +42,7 @@ export class PerfilEntradasDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalQrComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo Qr');        
-      }
-    });
+    this.modalService.showModal(ModalQrComponent, options)
   } 
   
   public onTap(){

@@ -28,7 +28,6 @@ export class CategoriaProductosComponent {
 
     this.categoriaService.obtenerCategoriaProductos(id).subscribe((data: any) =>{
       this.productos = data.productos;
-      console.log(this.productos)
     })
   }
 
@@ -45,11 +44,7 @@ export class CategoriaProductosComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalProductosComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('se vió el producto')
-      }
-    })
+    this.modalService.showModal(ModalProductosComponent, options)
   }
 
   public onTap(){

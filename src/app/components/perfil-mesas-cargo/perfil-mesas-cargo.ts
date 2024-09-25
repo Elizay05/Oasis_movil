@@ -17,7 +17,6 @@ export class PerfilMesasCargoComponent {
     this.page.actionBarHidden = true;
     const id_usuario = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     this.mesaService.obtenerMesasCargo(id_usuario).subscribe((data: any) => {
-        console.log(data);
         this.mesas = data.mesas;
     })
   }

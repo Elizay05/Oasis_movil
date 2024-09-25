@@ -34,11 +34,9 @@ export class EventoReservasComponent {
     this.page.actionBarHidden = true;
     const id = this.route.snapshot.params.id
     this.eventoService.obtenerEventoPorId(id).subscribe((evento: any) => {
-      console.log(evento);
       this.info_evento = evento;
     }); 
     this.mesaService.obtenerMesas().subscribe((data: any) => {
-      console.log(data);
       this.options = data.map((mesa: any) => `${mesa.nombre} (x${mesa.capacidad} Personas)`);
       this.mesas = data;
 
@@ -83,37 +81,41 @@ export class EventoReservasComponent {
 
     this.modalService.showModal(ModalReservasComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('Compra confirmada');
-        let data = {
+        const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+        if (estado === 2) {
+          Dialogs.alert({
+            title: 'Respuesta:',
+            message: 'Eres un usuario bloqueado, no puedes reservar mesas.',
+            okButtonText: 'OK',
+            cancelable: true,
+          });
+        } else {
+          let data = {
             id_usuario: JSON.parse(localStorage.getItem('Oasis.user')).user_id,
             id_evento: this.info_evento.id,
             id_mesa: this.mesaSeleccionada.id,
             total: this.total
-        }
-        console.log(data);
-        this.eventoService.reservarMesa(data).subscribe((res: any) => {
-          if (res) {
-              console.log(res.message);
+          }
+          this.eventoService.reservarMesa(data).subscribe((res: any) => {
+            if (res) {
               Dialogs.alert({
-                  title: 'Respuesta:',
-                  message: 'Reserva hecha exitosamente!',
-                  okButtonText: 'OK',
-                  cancelable: true,
+                title: 'Respuesta:',
+                message: 'Reserva hecha exitosamente!',
+                okButtonText: 'OK',
+                cancelable: true,
               });
 
               this.router.navigate(['/home']);
-          }
+            }
           }, error => {
-              console.log(error.error);
-              Dialogs.alert({
-                  title: 'Respuesta:',
-                  message: error.error.message,
-                  okButtonText: 'OK',
-                  cancelable: true,
-              });
+            Dialogs.alert({
+              title: 'Respuesta:',
+              message: error.error.message,
+              okButtonText: 'OK',
+              cancelable: true,
+            });
           });
-      } else {
-        console.log('Compra cancelada');
+        }
       }
     });
   }

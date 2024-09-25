@@ -22,7 +22,7 @@ export class ModalReservaEscaneadoComponent {
   }
 
   getFullImageUrl(foto: string): string {
-    return `${global.urlLocalSayi}${foto}`;
+    return `${global.url}${foto}`;
   }
 
 }

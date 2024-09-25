@@ -1,0 +1,22 @@
+<ScrollView>
+        <StackLayout backgroundColor="#000000">
+            <FlexboxLayout class="barraNavegacion2">
+                <FlexboxLayout class="InfoUser2">
+                <label class="fas" id="flecha_devolver" text="&#xf053;" (tap)="onTap()"></label>
+                <label class="Nunito text-medium">Galeria</label>
+                </FlexboxLayout>
+            </FlexboxLayout>
+            
+            <FlexboxLayout *ngIf="fotos.length == 0" flexDirection="column" justifyContent="center" alignItems="center" >
+                <label text="No hay fotos" fontSize="16" class="Cabin"></label>
+            </FlexboxLayout>
+
+            <StackLayout margiBottom="10" *ngIf="fotos.length > 0">
+                <FlexboxLayout class="cardGaleria" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let f of fotos">
+                    <FlexboxLayout class="Imagen_Galeria">
+                        <Image src="{{f.foto}}" borderRadius="10"></Image>
+                    </FlexboxLayout>
+                </FlexboxLayout>
+            </StackLayout>
+        </StackLayout>
+</ScrollView>

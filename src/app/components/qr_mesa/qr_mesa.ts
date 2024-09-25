@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
-import { DialogStrings, Page } from '@nativescript/core';
+import { Page } from '@nativescript/core';
 import { BarcodeScanner } from '@nstudio/nativescript-barcodescanner';
 import { MesaService } from '../../shared/services/mesa.service';
 import { Dialogs } from '@nativescript/core';

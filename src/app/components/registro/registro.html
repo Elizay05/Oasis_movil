@@ -21,15 +21,15 @@
             </StackLayout>
             
             <StackLayout class="input-field" flexDirection="column" marginBottom="30">
-                <TextField hint="Contraseña" secure="true" [text]="password" (textChange)="inputChange($event, 'password')"></TextField>
+                <TextField hint="Contraseña" secure="true" [text]="password" (textChange)="inputChange($event, 'password1')"></TextField>
             </StackLayout>
             
-            <StackLayout class="input-field" marginBottom="30">
-                <TextField hint="Teléfono" [text]="telefono" (textChange)="inputChange($event, 'telefono')"></TextField>
+            <StackLayout class="input-field" flexDirection="column" marginBottom="30">
+                <TextField hint="Confirmar contraseña" secure="true" [text]="password" (textChange)="inputChange($event, 'password2')"></TextField>
             </StackLayout>
-            
+
             <StackLayout class="input-field" marginBottom="30">
-                <TextField hint="Fecha de Nacimiento (YYYY-MM-DD)" [text]="fecha_nacimiento" (textChange)="inputChange($event, 'fecha_nacimiento')"></TextField>
+                <TextField hint="Fecha de Nacimiento (YYYY-MM-DD)" [text]="fecha_nacimiento" (textChange)="inputChange($event, 'fechaNacimiento')"></TextField>
             </StackLayout>
             
             <StackLayout class="input-field" marginBottom="30">
@@ -40,18 +40,11 @@
                 <Label text="Ver términos y condiciones" (tap)="navigateToTerms()" class="terms-link" textDecoration="underline" textAlign="center"></Label>
             </FlexboxLayout>
                         
-            <!-- Accept Terms and Conditions -->
             <StackLayout orientation="horizontal" verticalAlignment="center">
                     <Label text="Aceptas los términos y condiciones" marginRight="10"></Label>
                     <Switch [checked]="termsAccepted" (checkedChange)="onTermsAcceptedChange($event)"></Switch>
             </StackLayout>
             
-            
-            <!-- Age Confirmation -->
-            <StackLayout orientation="horizontal" verticalAlignment="center">
-                    <Label text="Soy mayor de edad" marginRight="10"></Label>
-                    <Switch [(ngModel)]="mayorEdad" (checkedChange)="onCheckChanged($event)"></Switch>
-            </StackLayout>
         </FlexboxLayout>
 
 

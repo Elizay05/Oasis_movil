@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
     constructor(private http: HttpClient) { }
     
     obtenerProductos(): Observable<any[]> {
-      return this.http.get<any[]>(`${global.urlLocalSayi}/api/1.0/producto/`, {headers: this.headers});
+      return this.http.get<any[]>(`${global.url}/api/1.0/producto/`, {headers: this.headers});
     }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Page } from '@nativescript/core';
-import { ApiService } from './api.service';
+import { RegistroService } from '~/app/shared/services/registro.service';
 import { Dialogs } from '@nativescript/core';
 import { openUrl } from '@nativescript/core/utils';
 
@@ -13,12 +13,11 @@ import { openUrl } from '@nativescript/core/utils';
 export class RegistroComponent implements OnInit {
   nombre: string = '';
   email: string = '';
-  password: string = '';
-  telefono: string = '';
+  password1: string = '';
+  password2: string = '';
   mayorEdad: boolean = false;
-  fecha_nacimiento: string = '';
+  fechaNacimiento: string = '';
   cedula: string = '';
-  foto: "";
   rol: number = 0;
   estado: number = 0;
   termsAccepted: boolean = false;
@@ -29,7 +28,7 @@ export class RegistroComponent implements OnInit {
   public constructor(
     private router: Router,
     private page: Page,
-    private apiService: ApiService,
+    private registroService: RegistroService
   ) { }
 
   ngOnInit(): void {
@@ -40,67 +39,80 @@ export class RegistroComponent implements OnInit {
     this.router.navigate(["home"]);
   }
 
-  public registrar(): void {
-    console.log(this.nombre);
-    const usuario = {
-      nombre: this.nombre,
-      email: this.email,
-      password: this.password,
-      telefono: this.telefono,
-      fecha_nacimiento: this.fecha_nacimiento,
-      cedula: this.cedula,
-      mayorEdad: this.mayorEdad,
-      foto: this.foto,
-      rol: 4,  // Asumiendo que 4 es el rol por defecto para un nuevo usuario
-      estado: 1 // Asumiendo que 1 es el estado activo por defecto
-      
-    };
-  
-    console.log('Usuario a registrar:', usuario);
-
-    // Verificar si se han aceptado los términos y condiciones
-    if (!this.termsAccepted || !this.mayorEdad) {
+  public registrar(): void {  
+    if (!this.termsAccepted) {
       Dialogs.alert({
           title: 'Alerta',
-          message: 'Debes aceptar los términos y condiciones y confirmar que eres mayor de edad para registrarte.',
+          message: 'Debes aceptar los términos y condiciones para registrarte.',
           okButtonText: 'OK',
           cancelable: true,
       });
       return;
     }
-
-    this.apiService.registrarUsuario(usuario).subscribe(
+  
+    const isMayorEdad = this.calculateAge(this.fechaNacimiento) >= 18;
+  
+    if (!isMayorEdad) {
+      Dialogs.alert({
+        title: 'Alerta',
+        message: 'Debes ser mayor de 18 años para registrarte.',
+        okButtonText: 'OK',
+        cancelable: true,
+      });
+      return;
+    }
+  
+    const usuario = {
+      nombre: this.nombre,
+      email: this.email,
+      password1: this.password1,
+      password2: this.password2,
+      fechaNacimiento: this.fechaNacimiento,
+      cedula: this.cedula,
+    };
+  
+    this.registroService.registrarUsuario(usuario).subscribe(
       response => {
-        console.log('Usuario registrado con éxito', response);
         Dialogs.alert({
           title: 'Info!',
           message: '¡Usuario registrado correctamente!',
           okButtonText: 'OK',
           cancelable: true,
         });
-        this.router.navigate(['login']); // Cambia esta ruta según sea necesario
+        this.router.navigate(['login']);
       },
       error => {
-        console.error('Error al registrar el usuario', error);
-        console.log('Encabezados de la solicitud:', error.headers.keys()); // Imprime los nombres de los encabezados de la solicitud
-        console.log('Encabezado de autorización:', error.headers.get('Authorization')); // Imprime el encabezado de autorización de la solicitud // Imprime los encabezados de la solicitud
         if (error.status === 400) {
           Dialogs.alert({
             title: 'Alerta',
-            message: 'Error al registrar el usuario. Por favor, verifica los datos ingresados.',
+            message: error.error.message,
             okButtonText: 'OK',
             cancelable: true,
           });
         } else {
           Dialogs.alert({
             title: 'Error',
-            message: 'Ha ocurrido un error al registrar el usuario. Por favor, inténtalo nuevamente más tarde.',
+            message: error.message,
             okButtonText: 'OK',
             cancelable: true,
           });
         }
       }
     );
+  }
+  
+  private calculateAge(fechaNacimiento: string): number {
+    const birthDate = new Date(fechaNacimiento);
+    const today = new Date();
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+  
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+  
+    return age;
   }
 
   inputChange(args, campo): void {
@@ -113,14 +125,14 @@ export class RegistroComponent implements OnInit {
       case "email":
         this.email = value;
         break;
-      case "password":
-        this.password = value;
+      case "password1":
+        this.password1 = value;
         break;
-      case "telefono":
-        this.telefono = value;
+      case "password2":
+        this.password2 = value;
         break;
-      case "fecha_nacimiento":
-        this.fecha_nacimiento = value;
+      case "fechaNacimiento":
+        this.fechaNacimiento = value;
         break;
       case "cedula":
         this.cedula = value;
@@ -131,11 +143,6 @@ export class RegistroComponent implements OnInit {
   }
   onTermsAcceptedChange(args): void {
     this.termsAccepted = args.object.checked;
-    console.log('El valor de termsAccepted ha cambiado:', this.termsAccepted);
-}
-onCheckChanged(args): void { 
-      this.mayorEdad = args.object.checked;
-      console.log('El valor de mayorEdad ha cambiado:', this.mayorEdad);
 }
 
 public navigateToTerms(): void {

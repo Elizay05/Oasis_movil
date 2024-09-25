@@ -27,7 +27,6 @@ export class PerfilReservasDetallesComponent {
     const user_id = JSON.parse(localStorage.getItem('Oasis.user')).user_id
     const reserva_id = this.route.snapshot.params.id
     this.eventoService.obtenerReservasDetallesUsuario(user_id, reserva_id).subscribe((data: any) => {
-        console.log(data);
         this.evento = data.evento;
         this.reserva = data.reserva;
         this.mesa = data.mesa;
@@ -37,7 +36,6 @@ export class PerfilReservasDetallesComponent {
   }
 
   public onQr(fotoQr){
-    console.log(fotoQr);
     const options: ModalDialogOptions = {
       context: {
         fotoQr: fotoQr,
@@ -46,11 +44,7 @@ export class PerfilReservasDetallesComponent {
       viewContainerRef: this.viewContainerRef
     };
 
-    this.modalService.showModal(ModalQrComponent, options).then((result: boolean) => {
-      if (result) {
-        console.log('Viendo Qr');        
-      }
-    });
+    this.modalService.showModal(ModalQrComponent, options);
   }
   public onTap(){
     this.router.navigate(["perfil/reservas"])

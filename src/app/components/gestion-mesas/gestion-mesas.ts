@@ -16,7 +16,6 @@ export class GestionMesasComponent {
   ngOnInit(): void {
     this.page.actionBarHidden = true;
     this.mesaService.obtenerMesas().subscribe((data: any[]) => {
-        console.log(data);
         this.mesas = data;
     })
   }

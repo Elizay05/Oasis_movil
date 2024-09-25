@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from "@angular/router"; 
-import { Dialogs, Page, TextField } from '@nativescript/core';
+import { Page } from '@nativescript/core';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class PerfilComponent {
       this.perfil = JSON.parse(localStorage.getItem('Oasis.user'))
       this.rol = this.perfil.rol
       this.nombre = this.perfil.nombre
-      this.foto = global.urlLocalSayi+this.perfil.foto
+      this.foto = global.url+this.perfil.foto
       this.email = this.perfil.email
 
       this.asignarRol(this.rol);

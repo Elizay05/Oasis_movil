@@ -33,9 +33,7 @@ export class PedidoComponent {
     
 
     this.productoService.obtenerProductos().subscribe((data: any) => {
-      console.log("Productos recibidos: ", data);
         this.productos = data.map(p => ({ ...p, cantidad: 0, subtotal: 0 }));
-        console.log("Array de productos: ", this.productos);
     });
 
   }
@@ -60,8 +58,6 @@ export class PedidoComponent {
       p.subtotal = p.cantidad * p.precio; // Calcula el subtotal
       this.total += p.subtotal; // Acumula el total general
     });
-    console.log("Productos seleccionados: ", this.productosSeleccionados);
-    console.log("Total general: ", this.total);
   }
 
 
@@ -74,9 +70,9 @@ export class PedidoComponent {
     const options: ModalDialogOptions = {
       context: {
         nombreMesa: this.mesa,
-        productos : this.productosSeleccionados,
+        productos: this.productosSeleccionados,
         total: this.total,
-        comentario : this.comentario  
+        comentario: this.comentario
       },
       fullscreen: false,
       viewContainerRef: this.viewContainerRef
@@ -84,39 +80,43 @@ export class PedidoComponent {
 
     this.modalService.showModal(ModalPedidosComponent, options).then((result: boolean) => {
       if (result) {
-        console.log('pedido confirmado'); 
-        let data = {
-          id_usuario: JSON.parse(localStorage.getItem('Oasis.user')).user_id,
-          codigo_mesa: this.codigo_qr,
-          comentario: this.comentario,
-          total: this.total,
-          productos_seleccionados: this.productosSeleccionados
-        }
-        console.log(data);
+        const estado = JSON.parse(localStorage.getItem('Oasis.user')).estado;
+        if (estado === 2) {
+          Dialogs.alert({
+            title: 'Respuesta:',
+            message: 'Eres un usuario bloqueado, no puedes realizar pedidos.',
+            okButtonText: 'OK',
+            cancelable: true,
+          });
+        } else {
+          let data = {
+            id_usuario: JSON.parse(localStorage.getItem('Oasis.user')).user_id,
+            codigo_mesa: this.codigo_qr,
+            comentario: this.comentario,
+            total: this.total,
+            productos_seleccionados: this.productosSeleccionados
+          }
 
-        this.pedidoService.realizarPedido(data).subscribe((res: any) => {
+          this.pedidoService.realizarPedido(data).subscribe((res: any) => {
             if (res) {
-                console.log(res.message);
-                Dialogs.alert({
-                    title: 'Respuesta:',
-                    message: 'Pedido realizado exitosamente!',
-                    okButtonText: 'OK',
-                    cancelable: true,
-                });
-
-                this.router.navigate(['/home']);
-            }
-        }, error => {
-            console.log(error.error);
-            Dialogs.alert({
+              Dialogs.alert({
                 title: 'Respuesta:',
-                message: error.error.message,
+                message: 'Pedido realizado exitosamente!',
                 okButtonText: 'OK',
                 cancelable: true,
+              });
+
+              this.router.navigate(['/home']);
+            }
+          }, error => {
+            Dialogs.alert({
+              title: 'Respuesta:',
+              message: error.error.message,
+              okButtonText: 'OK',
+              cancelable: true,
             });
-        });
-      } else {
-        console.log('pedido cancelado');
+          });
+        }
       }
     });
   }
