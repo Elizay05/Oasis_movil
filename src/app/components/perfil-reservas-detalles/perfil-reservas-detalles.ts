@@ -4,6 +4,7 @@ import { Page } from '@nativescript/core';
 import { ModalDialogService, ModalDialogOptions } from '@nativescript/angular';
 import { ModalQrComponent } from '../modal-qr/modal-qr';
 import { EventoService } from '~/app/shared/services/evento.service';
+import { Utils } from '@nativescript/core';
 
 
 
@@ -50,6 +51,11 @@ export class PerfilReservasDetallesComponent {
     this.router.navigate(["perfil/reservas"])
   }
 
+  abrirWhatsApp() {
+    const url = "https://wa.me/573052777053";
+    Utils.openUrl(url);
+  }
+  
   formatDate(fecha: string): string {
     const date = new Date(fecha);
     const day = String(date.getDate()).padStart(2, '0');

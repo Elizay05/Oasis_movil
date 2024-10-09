@@ -152,6 +152,18 @@ This is where the vast majority of your CSS code goes. */
     color: white;
     border-radius: 20;
 }
+.butonlabelblanco {
+    margin-top: 20;
+    text-align: center;
+    height: 45;
+    width: 200;
+    background-color: #ffffff;
+    font-size: 13;
+    color: rgb(0, 0, 0);
+    border-radius: 20;
+    margin-bottom: 30;
+}
+
 
 .butonlabelazul {
     margin-top: 20;
@@ -217,8 +229,21 @@ This is where the vast majority of your CSS code goes. */
     margin-right: 8;
 }
 
+
+#calendario-cancelado {
+    background-color: transparent;
+    color: #ffffff;
+    font-size: small;
+    margin-right: 8;
+}
+
 .fecha {
     color: #fc4664;
+    font-size: 14;
+}
+
+.fecha-cancelado {
+    color: #ffffff;
     font-size: 14;
 }
 

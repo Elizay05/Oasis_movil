@@ -41,3 +41,9 @@
 .text-info{
     color:#c4c4c2
 }
+
+.link {
+    color: #fc4664;
+    text-decoration: underline; 
+    cursor: pointer;
+}

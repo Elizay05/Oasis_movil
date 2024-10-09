@@ -28,11 +28,12 @@
                             </FlexboxLayout>
                         </FlexboxLayout>
                         <label class="Cabin" fontSize="18" marginTop="15" marginBottom="20" [text]="'Total de la compra: $' + formatCurrency(reserva?.total || 0)"></label>
-                        <label class="butonlabelmorado Cabin" text="Ver código QR" (tap)="onQr(reserva.qr_imagen)"></label>
+                        
+                        <label *ngIf="evento.estado" class="butonlabelmorado Cabin" text="Ver código QR" (tap)="onQr(reserva.qr_imagen)"></label>
                     </FlexboxLayout>
 
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
-                    <FlexboxLayout class="contenedor-info">
+                    <FlexboxLayout *ngIf="evento.estado" class="contenedor-info">
                         <label class="Cabin subtitulo" text="Instrucciones de llegada"></label>
                         <label class="Cabin text-info" whiteSpace="normal" marginBottom="10" text="Al llegar, ¡No hagas fila!, puedes presentar el código QR en la entrada para acceder a tu mesa."></label>
                         <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
@@ -47,6 +48,15 @@
                         <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
                         <label class="Cabin subtitulo" text="Contacto"></label>
                         <label class="Cabin text-info" whiteSpace="normal" marginBottom="20" text="Si tienes alguna duda o inconveniente con tu reserva, no dudes en contactarnos al (+57) 305 277 7073 o (+57) 321 123 4567 o por correo electrónico a reservasoasis@gmail.com. Estamos aquí para ayudarte."></label>
+                    </FlexboxLayout>
+
+                    <FlexboxLayout *ngIf="!evento.estado" class="contenedor-info">
+                        <label class="Cabin subtitulo" text="Este evento ha sido cancelado"></label>
+                        <FlexboxLayout display="flex" flexDirection="column">
+                            <Label class="Cabin text-info" whiteSpace="normal" marginBottom="10" text="Por favor, comunicate lo antes posible a este WhatsApp para continuar con el proceso de devolución del dinero: "></Label>
+                            <Label class="Cabin text-info link" whiteSpace="normal" text="https://wa.me/573052777053" (tap)="abrirWhatsApp()"></Label>
+                            <Label class="Cabin text-info" whiteSpace="normal" marginBottom="20" text="Tenemos 5 días hábiles para darte respuesta."></Label>
+                        </FlexboxLayout>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

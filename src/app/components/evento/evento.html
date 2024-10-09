@@ -7,23 +7,25 @@
                 </FlexboxLayout>
             </FlexboxLayout>      
             <StackLayout margiBottom="10">
-                <FlexboxLayout class="cardEventos" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let i of eventos">
-                    <FlexboxLayout class="headCardEventos">
-                        <FlexboxLayout class="Info" flexDirection="column">
-                            <label class="Cabin titulo" text="{{i.nombre}}"></label>
-                            <FlexboxLayout>
-                                <label class="far" id="calendario" text="&#xf133;"></label>
-                                <label class="Cabin fecha" text="{{i.fecha}}"></label>
-                            </FlexboxLayout>
-                        </FlexboxLayout> 
-                    </FlexboxLayout>
-                    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
-                    <FlexboxLayout class="Imagen_Evento">
-                        <Image src="{{i.foto}}" borderRadius="10"></Image>
-                    </FlexboxLayout>
-                    <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
-                    <FlexboxLayout class="botonvermas">
-                        <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['info_evento', i.id]"></label>
+                <FlexboxLayout *ngFor="let i of eventos">
+                    <FlexboxLayout class="cardEventos" marginLeft="15" marginRight="15" flexDirection="column" *ngIf="i.estado">
+                        <FlexboxLayout class="headCardEventos">
+                            <FlexboxLayout class="Info" flexDirection="column">
+                                <label class="Cabin titulo" text="{{i.nombre}}"></label>
+                                <FlexboxLayout>
+                                    <label class="far" id="calendario" text="&#xf133;"></label>
+                                    <label class="Cabin fecha" text="{{i.fecha}}"></label>
+                                </FlexboxLayout>
+                            </FlexboxLayout> 
+                        </FlexboxLayout>
+                        <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+                        <FlexboxLayout class="Imagen_Evento">
+                            <Image src="{{i.foto}}" borderRadius="10"></Image>
+                        </FlexboxLayout>
+                        <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
+                        <FlexboxLayout class="botonvermas">
+                            <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['info_evento', i.id]"></label>
+                        </FlexboxLayout>
                     </FlexboxLayout>
                 </FlexboxLayout>
             </StackLayout>
