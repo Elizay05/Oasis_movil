@@ -22,7 +22,8 @@
 
                     <FlexboxLayout flexDirection="column" alignItems="center">
                         <label class="Cabin titulo" text="Mesa" fontSize="18" marginTop="15" whiteSpace="normal"></label>
-                        <label class="Cabin" whiteSpace="normal" textAlign="center" text="- Ten en cuenta que si reservas mesa no tienes que comprar entradas por la cantidad de personas x mesa"></label>
+                        <label class="Cabin" whiteSpace="normal" textAlign="center" text="- Ten en cuenta que si reservas mesa no tienes que comprar entradas por la cantidad de personas por mesa"></label>
+                        <label class="Cabin" whiteSpace="normal" textAlign="center" text="- Los números con los circulos de colores indican la cantidad de personas que caben por mesa."></label>
                     </FlexboxLayout>
                     <FlexboxLayout flexDirection="column" backgroundColor="#262626" marginTop="20" borderRadius="20">
                         <label class="Cabin" whiteSpace="normal" textAlign="center" text="Mapa de mesas" fontSize="16" paddingLeft="15" marginTop="10"></label>
@@ -37,7 +38,7 @@
                         <label class="Cabin" fontSize="16" whiteSpace="normal" [text]="'$' +formatCurrency(total)" verticalAlignment="bottom"></label>
                     </FlexboxLayout>
                     <FlexboxLayout alignItems="center" justifyContent="center" marginTop="30">
-                        <label class="butonlabelmorado Cabin" text="Reservar" (tap)="onReservar()"></label>
+                        <label class="butonlabelmorado Cabin [class.disabled]" [class.disabled]="isButtonDisabled" text="Reservar" (tap)="!isButtonDisabled ? onReservar() : null"></label>
                     </FlexboxLayout>
                 </FlexboxLayout> 
             </FlexboxLayout>

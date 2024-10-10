@@ -22,18 +22,18 @@
                     <FlexboxLayout flexDirection="column" height="auto" alignItems="center">
                         <label class="Cabin" marginTop="20" fontSize="14" whiteSpace="normal" text="Total entradas: {{compra_entrada.entrada_general + compra_entrada.entrada_vip}}"></label>
                         <label class="Cabin" marginTop="5" fontSize="14" whiteSpace="normal" text="Fecha de compra: {{compra_entrada.fecha_compra}}"></label>
-                        <FlexboxLayout class="contenedor-entradas">
+                        <FlexboxLayout  *ngIf="evento.estado" class="contenedor-entradas">
                             <FlexboxLayout [ngClass]="entrada.estado_qr ? 'entrada-activa' : 'entrada-desactiva'" *ngFor="let entrada of qr_entradas">
                                 <label class="Cabin" text="Entrada {{entrada.tipo_entrada}}"></label>
                                 <Image src="~/app/images/icono-qr.png" height="30" width="30" borderRadius="5" (tap)="onQr(entrada.qr_imagen)"></Image>
                             </FlexboxLayout>
                         </FlexboxLayout>
-                        <label class="Cabin" marginTop="5" whiteSpace="normal" text="(Si la entrada esta de color rojo, es porque ya ha sido escaneada)"></label>
+                        <label  *ngIf="evento.estado" class="Cabin" marginTop="5" whiteSpace="normal" text="(Si la entrada esta de color rojo, es porque ya ha sido escaneada)"></label>
                         <label class="Cabin" fontSize="18" marginTop="20" marginBottom="20" [text]="'Total de la compra: $' + formatCurrency(compra_entrada?.total || 0)"></label>
                     </FlexboxLayout>
 
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
-                    <FlexboxLayout class="contenedor-info">
+                    <FlexboxLayout *ngIf="evento.estado" class="contenedor-info">
                         <label class="Cabin subtitulo" text="Instrucciones de llegada"></label>
                         <label class="Cabin text-info" whiteSpace="normal" marginBottom="10" text="Al llegar, ¡No hagas fila!, puedes presentar el código QR en la entrada para acceder a tu mesa."></label>
                         <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
@@ -43,6 +43,16 @@
                         <label class="Cabin subtitulo" text="Contacto"></label>
                         <label class="Cabin text-info" whiteSpace="normal" marginBottom="20" text="Si tienes alguna duda o inconveniente con tu entrada, no dudes en contactarnos al (+57) 305 277 7073 o (+57) 321 123 4567 o por correo electrónico a reservasoasis@gmail.com. Estamos aquí para ayudarte."></label>
                     </FlexboxLayout>
+
+                    <FlexboxLayout *ngIf="!evento.estado" class="contenedor-info">
+                        <label class="Cabin subtitulo" text="Este evento ha sido cancelado"></label>
+                        <FlexboxLayout display="flex" flexDirection="column">
+                            <Label class="Cabin text-info" whiteSpace="normal" text="Por favor, comunicate lo antes posible a este WhatsApp para continuar con el proceso de devolución del dinero: "></Label>
+                            <Label class="Cabin text-info link" whiteSpace="normal" text="https://wa.me/573052777053" (tap)="abrirWhatsApp()"></Label>
+                            <Label class="Cabin text-info" whiteSpace="normal" marginBottom="20" text="Tenemos 5 días hábiles para darte respuesta."></Label>
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+
                 </FlexboxLayout> 
             </FlexboxLayout>
         </StackLayout>

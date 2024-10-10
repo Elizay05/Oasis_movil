@@ -17,6 +17,11 @@ import { Observable } from 'rxjs';
       return this.http.get<any[]>(`${global.url}/api/1.0/mesa/`, {headers: this.headers});
     }
 
+    obtenerMesasReservadas(id_evento: number): Observable<any[]> {
+      return this.http.get<any[]>(`${global.url}/api/1.0/mesas_reservadas/${id_evento}/`, {headers: this.headers});
+    }
+
+
     obtenerMesaQr(mesa: any): Observable<any> {
       return this.http.get<any>(`${global.url}/api/1.0/token_qr/${mesa}/`, {headers: this.headers});
     }

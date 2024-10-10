@@ -4,7 +4,8 @@
 
     <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
         <Image [src]="getFullImageUrl(entrada.evento_foto)" row="0" borderRadius="10" height="100" width="80%" stretch="fill"></Image>
-        <label fontSize="18" text="{{entrada.evento_nombre}}"></label>
+        <label *ngIf="entrada.evento_estado" fontSize="18" [text]="entrada.evento_nombre"></label>
+        <label *ngIf="!entrada.evento_estado" fontSize="18" [text]="entrada.evento_nombre + ' - CANCELADO'"></label>
         <label text="{{entrada.evento_fecha}}"></label>
     </FlexboxLayout>
 
@@ -17,7 +18,7 @@
         <label class="modal-entrada" text="{{entrada.tipo_entrada}}"></label>
     </FlexboxLayout>
     
-    <FlexboxLayout justifyContent="center" marginTop="10">
+    <FlexboxLayout *ngIf="entrada.evento_estado" justifyContent="center" marginTop="10">
         <Button *ngIf="entrada.estado_qr" text="Escaneada" (tap)="confirmar()" class="btn-confirmar" width="70%"></Button>
     </FlexboxLayout>
 </StackLayout>

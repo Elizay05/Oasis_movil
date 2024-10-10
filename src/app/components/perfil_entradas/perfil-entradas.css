@@ -8,6 +8,11 @@
     border-radius: 20;
     margin-bottom: 20;
 }
+.cardEntrada-cancelados{
+    background-color: #990315;
+    border-radius: 20;
+    margin-bottom: 20;
+}
 #lapizEdit{
     background-color: transparent;
     color: #fc4664;
@@ -58,3 +63,4 @@
 .botonvermas{
     justify-content: center;
 }
+

@@ -17,22 +17,25 @@
 
         <StackLayout *ngIf="hayEntradas">
             <StackLayout margiBottom="10">
-                <FlexboxLayout class="cardEventos" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let entrada of entradas">
+                <FlexboxLayout class="cardEventos" [ngClass]="{ 'cardEntrada-cancelados': !entrada.evento.estado }" marginLeft="15" marginRight="15" flexDirection="column" *ngFor="let entrada of entradas">
                     <FlexboxLayout class="Imagen_Evento">
                         <Image [src]="getFullImageUrl(entrada.evento.foto)" borderRadius="10"></Image>
                     </FlexboxLayout>
                     
                     <FlexboxLayout class="Info" display="flex" flexDirection="column" alignItems="center">
-                        <label class="Cabin titulo" [text]="entrada.evento.nombre"></label>
+                        <label *ngIf="entrada.evento.estado" class="Cabin titulo" [text]="entrada.evento.nombre"></label>
+                        <label *ngIf="!entrada.evento.estado" class="Cabin titulo" [text]="entrada.evento.nombre + ' - CANCELADO'"></label>
                         <FlexboxLayout>
-                            <label class="far" id="calendario" text="&#xf133;"></label>
-                            <label class="Cabin fecha" [text]="entrada.evento.fecha"></label>
+                            <label *ngIf="entrada.evento.estado" class="far" id="calendario" text="&#xf133;"></label>
+                            <label *ngIf="!entrada.evento.estado" class="far" id="calendario-cancelado" text="&#xf133;"></label>
+                            <label *ngIf="entrada.evento.estado" class="Cabin fecha" [text]="entrada.evento.fecha"></label>
+                            <label *ngIf="!entrada.evento.estado" class="Cabin fecha-cancelado" [text]="entrada.evento.fecha"></label>
                         </FlexboxLayout>
                     </FlexboxLayout> 
                     
                     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
 
-                    <FlexboxLayout class="contenedor-entradas">
+                    <FlexboxLayout *ngIf="entrada.evento.estado" class="contenedor-entradas">
                         <FlexboxLayout class="entrada" *ngIf="entrada.entrada.entrada_general > 0">
                             <label class="Cabin" [text]="'x' + entrada.entrada.entrada_general + ' Entrada General'"></label>
                         </FlexboxLayout>
@@ -42,7 +45,8 @@
                     </FlexboxLayout>
                                     
                     <FlexboxLayout class="botonvermas">
-                        <label class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['detalles', entrada.entrada.id]"></label>
+                        <label *ngIf="entrada.evento.estado" class="butonlabelrosa Cabin" text="Ver más" [nsRouterLink]="['detalles', entrada.entrada.id]"></label>
+                        <label *ngIf="!entrada.evento.estado" class="butonlabelblanco Cabin" text="Ver más" [nsRouterLink]="['detalles', entrada.entrada.id]"></label>
                     </FlexboxLayout>
                 </FlexboxLayout>
             </StackLayout>

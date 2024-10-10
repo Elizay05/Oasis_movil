@@ -4,20 +4,21 @@
 
     <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
         <Image [src]="getFullImageUrl(reserva.evento_foto)" row="0" borderRadius="10" height="100" width="80%" stretch="fill"></Image>
-        <label fontSize="18" text="{{reserva.evento_nombre}}"></label>
+        <label *ngIf="reserva.evento_estado" fontSize="18" [text]="reserva.evento_nombre"></label>
+        <label *ngIf="!reserva.evento_estado" fontSize="18" [text]="reserva.evento_nombre + ' - CANCELADO'"></label>
         <label text="{{reserva.evento_fecha}}"></label>
     </FlexboxLayout>
 
     <FlexboxLayout class="rayaIntermedia2"></FlexboxLayout>
 
-    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8">
+    <FlexboxLayout display="flex" flexDirection="column" alignItems="center" width="100%" marginTop="8" marginBottom="8">
         <label text="Usuario: {{reserva.usuario_nombre}}"></label>
         <label text="Email: {{reserva.usuario_email}}"></label>
         <label text="CC: {{reserva.usuario_cc}}"></label>
         <label class="modal-mesa" text="{{reserva.nombre_mesa}} x {{reserva.capacidad_mesa}} personas"></label>
     </FlexboxLayout>
     
-    <FlexboxLayout justifyContent="center" marginTop="10">
+    <FlexboxLayout *ngIf="reserva.evento_estado" justifyContent="center" marginTop="10">
         <Button *ngIf="reserva.estado_qr" text="Escaneada" (tap)="confirmar()" class="btn-confirmar" width="70%"></Button>
     </FlexboxLayout>
 </StackLayout>

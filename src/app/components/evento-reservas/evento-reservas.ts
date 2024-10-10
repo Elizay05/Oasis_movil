@@ -26,6 +26,8 @@ export class EventoReservasComponent {
   
   public mesaSeleccionada: any = {};
 
+  public isButtonDisabled = false;
+
 
   constructor(private router: Router, private page: Page, private eventoService: EventoService, private mesaService: MesaService, private route: ActivatedRoute, private modalService: ModalDialogService, private viewContainerRef: ViewContainerRef) {
   }
@@ -36,15 +38,20 @@ export class EventoReservasComponent {
     this.eventoService.obtenerEventoPorId(id).subscribe((evento: any) => {
       this.info_evento = evento;
     }); 
-    this.mesaService.obtenerMesas().subscribe((data: any) => {
-      this.options = data.map((mesa: any) => `${mesa.nombre} (x${mesa.capacidad} Personas)`);
-      this.mesas = data;
+    this.mesaService.obtenerMesasReservadas(id).subscribe((data: any) => {
+      
+      this.options = data.mesas.map((mesa: any) => 
+        mesa.reservada ? `${mesa.nombre} (Reservada)` : `${mesa.nombre}`
+      );
+      
+      this.mesas = data.mesas;
 
-      if (data.length > 0) {
-            this.precioMesa = data[0].precio;
-            const capacidad = data[0].capacidad;
-            this.total = this.calcularTotal(this.precioMesa, capacidad);
-        }
+      if (data.mesas.length > 0 && !data.mesas[0].reservada) {
+          this.precioMesa = data.mesas[0].precio;
+          const capacidad = data.mesas[0].capacidad;
+          this.total = this.calcularTotal(this.precioMesa, capacidad);
+          this.isButtonDisabled = false;
+      }
     });
   }
 
@@ -54,15 +61,20 @@ export class EventoReservasComponent {
   }
 
   public onMesaChange(event: any): void {
-    const index = event.value; 
+    const index = event.value;
     
     if (this.mesas && this.mesas[index]) {
-        this.mesaSeleccionada = this.mesas[index];
-        
+      this.mesaSeleccionada = this.mesas[index];
+
+      if (this.mesaSeleccionada.reservada) {
+        this.isButtonDisabled = true;
+        this.total = 0;
+      } else {
+        this.isButtonDisabled = false;
         this.precioMesa = this.mesaSeleccionada.precio;
         const capacidad = this.mesaSeleccionada.capacidad;
-
         this.total = this.calcularTotal(this.precioMesa, capacidad);
+      }
     }
   }
 

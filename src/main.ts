@@ -28,9 +28,9 @@ import * as appSettings from '@nativescript/core/application-settings'
 class AppComponentModule {}
 
 /* API web IP */
-global.url = "http://10.171.68.196:8000";
+global.url = "http://192.168.1.7:8000";
 
-/* global.urlLocalSayi = "http://192.168.20.8:8000" */
+/* global.urlLocalSayi = "http://192.168.1.7:8000" */
 /* global.urlLocalSena = "http://10.171.68.196:8000" */
 
 
